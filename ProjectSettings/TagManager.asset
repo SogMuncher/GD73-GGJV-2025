@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ground
   - Water
   - UI
   - 
@@ -40,6 +40,21 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FarBackground
+    uniqueID: 2717584913
+    locked: 0
+  - name: Background
+    uniqueID: 419080039
+    locked: 0
+  - name: Dynamic Level
+    uniqueID: 3989009623
+    locked: 0
+  - name: Level
+    uniqueID: 739320053
+    locked: 0
+  - name: Hazards
+    uniqueID: 1413518691
     locked: 0
   m_RenderingLayers:
   - Default
