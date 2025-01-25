@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{c8207c16-4515-4067-a254-0d72b035bf68}">
+		<property name="assetPath">
+			<value>SFX/Bubbles/BT WATER Bubble Single Plop.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>12.01659375</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5960e3ec-e478-4d13-bc2c-f125b1d6cf87}</destination>
+		</relationship>
+	</object>
+</objects>
