@@ -24,34 +24,6 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
     ""name"": ""IA_Gameplay"",
     ""maps"": [
         {
-            ""name"": ""Interface"",
-            ""id"": ""2361114b-3fff-4014-8bcc-59272a711151"",
-            ""actions"": [
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""ec317071-4dba-4f79-b4ff-90228ab5f5b4"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""465c05b1-ea02-4acd-bcf6-8516101af1b3"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""Gameplay"",
             ""id"": ""2d6a811b-75e0-4a3d-b307-da4ae26d6aac"",
             ""actions"": [
@@ -182,6 +154,34 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""7971586d-38e1-490d-ad83-4e64b2ed5f64"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""215c6a3f-5a64-4d47-acdd-71d0523707c6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""586838fd-242c-48a6-975b-f62f69b8b1de"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -198,21 +198,21 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Interface
-        m_Interface = asset.FindActionMap("Interface", throwIfNotFound: true);
-        m_Interface_Newaction = m_Interface.FindAction("New action", throwIfNotFound: true);
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Fire = m_Gameplay.FindAction("Fire", throwIfNotFound: true);
         m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
     }
 
     ~@IA_Gameplay()
     {
-        UnityEngine.Debug.Assert(!m_Interface.enabled, "This will cause a leak and performance issues, IA_Gameplay.Interface.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, IA_Gameplay.Gameplay.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, IA_Gameplay.UI.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -270,52 +270,6 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
     {
         return asset.FindBinding(bindingMask, out action);
     }
-
-    // Interface
-    private readonly InputActionMap m_Interface;
-    private List<IInterfaceActions> m_InterfaceActionsCallbackInterfaces = new List<IInterfaceActions>();
-    private readonly InputAction m_Interface_Newaction;
-    public struct InterfaceActions
-    {
-        private @IA_Gameplay m_Wrapper;
-        public InterfaceActions(@IA_Gameplay wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Interface_Newaction;
-        public InputActionMap Get() { return m_Wrapper.m_Interface; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(InterfaceActions set) { return set.Get(); }
-        public void AddCallbacks(IInterfaceActions instance)
-        {
-            if (instance == null || m_Wrapper.m_InterfaceActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_InterfaceActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
-        }
-
-        private void UnregisterCallbacks(IInterfaceActions instance)
-        {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
-        }
-
-        public void RemoveCallbacks(IInterfaceActions instance)
-        {
-            if (m_Wrapper.m_InterfaceActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IInterfaceActions instance)
-        {
-            foreach (var item in m_Wrapper.m_InterfaceActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_InterfaceActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public InterfaceActions @Interface => new InterfaceActions(this);
 
     // Gameplay
     private readonly InputActionMap m_Gameplay;
@@ -386,6 +340,52 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_Newaction;
+    public struct UIActions
+    {
+        private @IA_Gameplay m_Wrapper;
+        public UIActions(@IA_Gameplay wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_UI_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     private int m_GenericControllerSchemeSchemeIndex = -1;
     public InputControlScheme GenericControllerSchemeScheme
     {
@@ -395,15 +395,15 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GenericControllerSchemeSchemeIndex];
         }
     }
-    public interface IInterfaceActions
-    {
-        void OnNewaction(InputAction.CallbackContext context);
-    }
     public interface IGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }
