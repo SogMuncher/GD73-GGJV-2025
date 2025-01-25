@@ -142,6 +142,17 @@ public class PlayerController : MonoBehaviour
             _isSticky = false;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            Vector2 direction = ((collision.transform.position) - (this.transform.position)).normalized;
+
+            _rb.AddForce(-direction * _playerBounceForce, ForceMode2D.Impulse);
+
+            
+        }
+    }
 
     protected void FixedUpdate()
     {
