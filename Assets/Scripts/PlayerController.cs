@@ -24,7 +24,20 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attacking")]
     [SerializeField]
+    protected GameObject _weapon;
+
+    [SerializeField]
     protected float _throwStrength;
+
+    [SerializeField]
+    protected float _aimSpeed;
+
+    //[Header("Aim Spring Settings")]
+    //[SerializeField]
+    //protected float _aimSpringStrength;
+
+    //[SerializeField]
+    //protected float _aimSpringDampStrength;
 
     [Header("Spring Settings")]
     [SerializeField]
@@ -43,7 +56,9 @@ public class PlayerController : MonoBehaviour
     protected float _springDampStrength;
 
     protected Rigidbody2D _rb;
+    //protected Rigidbody2D _weaponRB;
     protected Vector2 _velocity;
+    //protected float _weaponAngularVelocity;
     protected bool _isGrounded = false;
 
     protected RaycastHit2D[] _raycastHitBuffer = new RaycastHit2D[10];
@@ -55,6 +70,7 @@ public class PlayerController : MonoBehaviour
     protected PlayerInput _playerInput;
     protected float _moveInput;
     protected Vector2 _aimInput;
+    protected float _weaponRotationY;
 
     protected Health _health;
 
@@ -65,6 +81,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _health = GetComponent<Health>();
         _playerInput = GetComponent<PlayerInput>();
+        //_weaponRB = _weapon.GetComponent<Rigidbody2D>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -76,12 +93,23 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
+        Vector3 goalRotation = new Vector3(0, _weaponRotationY, 90 * _aimInput.y);
+        Vector3 currentRotation = _weapon.transform.rotation.eulerAngles;
+        // so values dont need to be huge in the inspector
+        float aimSpeed = _aimSpeed * 10;
 
+        float rotationY = Mathf.Lerp(currentRotation.y, goalRotation.y, aimSpeed * Time.deltaTime);
+        float rotationZ = Mathf.Lerp(currentRotation.z, goalRotation.z, aimSpeed * Time.deltaTime);
+
+        _weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, 90 * _aimInput.y));
+        //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, rotationZ));
     }
 
     protected void FixedUpdate()
     {
         _velocity = _rb.linearVelocity;
+
+        //CalculateAimSpring();
 
         GroundCheckRay();
 
@@ -105,6 +133,20 @@ public class PlayerController : MonoBehaviour
             _rb.linearVelocityX = _maxSpeed;
         }
     }
+
+    //protected void CalculateAimSpring()
+    //{
+    //    //Vector3 goalRotation = new Vector3(0, _weaponRotationY, 90 * _aimInput.y);
+
+    //    //_weapon.transform.rotation = Quaternion.RotateTowards(_weapon.transform.rotation, Quaternion.Euler(goalRotation), Time.deltaTime);
+    //    //float offsetY = _weapon.transform.rotation.eulerAngles.y - goalRotation.y;
+    //    //float offsetZ = _weapon.transform.rotation.eulerAngles.z - goalRotation.z;
+
+    //    //float springForceY = (offsetY * _aimSpringStrength) - (_weaponRB.angularVelocity - _aimSpringDampStrength);
+    //    //float springForceZ = (offsetZ * _aimSpringStrength) - (_weaponRB.angularVelocity - _aimSpringDampStrength);
+
+    //    //_weaponRB.AddTorque(springForceZ);
+    //}
 
     protected void GroundCheckRay()
     {
@@ -187,6 +229,17 @@ public class PlayerController : MonoBehaviour
     protected void OnAim(InputValue inputValue)
     {
         _aimInput = inputValue.Get<Vector2>();
+
+        if (_aimInput.x < 0)
+        {
+            _weaponRotationY = 180f;
+        }
+        else if (_aimInput.x > 0)
+        {
+            _weaponRotationY = 0f;
+        }
+
+        //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, _weaponRotationY, 90 * _aimInput.y));
 
         Debug.Log($"Player {_playerInput.playerIndex} Aim Input: {_aimInput}");
     }
