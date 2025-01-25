@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         //death logic here
         OnDeathEvent.Invoke();
