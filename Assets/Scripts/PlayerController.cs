@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput), typeof(Health))]
@@ -56,6 +57,8 @@ public class PlayerController : MonoBehaviour
     protected Vector2 _aimInput;
 
     protected Health _health;
+
+    public UnityEvent OnPaused;
 
     protected void OnEnable()
     {
@@ -219,5 +222,13 @@ public class PlayerController : MonoBehaviour
 
             Gizmos.DrawLine(transform.position, new Vector2(transform.position.x, transform.position.y) + (Vector2.down * _rayMaxDistance));
         }
+    }
+
+    public void OnPause()
+    {
+       
+            OnPaused.Invoke();
+
+        
     }
 }
