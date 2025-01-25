@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{752e3b93-d452-49a2-aeca-de2e464bf298}">
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{4ba55424-8ca3-4c08-87c1-52f210ffb7a9}">
 		<property name="assetPath">
 			<value>Music/Laserpack.mp3</value>
 		</property>
@@ -17,7 +17,7 @@
 			<value>185.67836734693878</value>
 		</property>
 		<relationship name="masterAssetFolder">
-			<destination>{5960e3ec-e478-4d13-bc2c-f125b1d6cf87}</destination>
+			<destination>{2d2fa846-c1c0-45d1-bd95-af22f576405f}</destination>
 		</relationship>
 	</object>
 </objects>

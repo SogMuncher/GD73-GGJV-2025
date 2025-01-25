@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{ca0213c2-7251-43be-87e6-a2d6a074040f}">
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{540790ee-4cf2-4156-b3d0-1ce2e8d1338e}">
 		<property name="assetPath">
 			<value>Music/Funin and Sunin.mp3</value>
 		</property>
@@ -17,7 +17,7 @@
 			<value>218.95836734693879</value>
 		</property>
 		<relationship name="masterAssetFolder">
-			<destination>{5960e3ec-e478-4d13-bc2c-f125b1d6cf87}</destination>
+			<destination>{2d2fa846-c1c0-45d1-bd95-af22f576405f}</destination>
 		</relationship>
 	</object>
 </objects>

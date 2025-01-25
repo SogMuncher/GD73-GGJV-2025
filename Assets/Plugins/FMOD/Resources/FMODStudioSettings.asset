@@ -755,8 +755,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: FMOD/Game Jam 2025 FMOD 2.02/Game Jam 2025 FMOD 2.02.fspro
-  sourceBankPath: FMOD/Game Jam 2025 FMOD 2.02/Build
+  sourceProjectPath: GD73-GGJV-2025 FMOD/GD73-GGJV-2025 FMOD.fspro
+  sourceBankPath: GD73-GGJV-2025 FMOD/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -777,8 +777,7 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks:
-  - Master
+  MasterBanks: []
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
@@ -792,7 +791,7 @@ MonoBehaviour:
   SharedLibraryUpdateStage: 0
   SharedLibraryTimeSinceStart: 0
   CurrentVersion: 131622
-  HideSetupWizard: 1
+  HideSetupWizard: 0
   LastEventReferenceScanVersion: 131622
   Platforms:
   - {fileID: 719344299515987397}

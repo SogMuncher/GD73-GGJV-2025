@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{c8207c16-4515-4067-a254-0d72b035bf68}">
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{f9afe8dc-3cbc-4c33-90e6-746f377f339b}">
 		<property name="assetPath">
-			<value>SFX/Bubbles/BT WATER Bubble Single Plop.wav</value>
+			<value>SFX/BT WATER Bubble Single Plop.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
@@ -17,7 +17,7 @@
 			<value>12.01659375</value>
 		</property>
 		<relationship name="masterAssetFolder">
-			<destination>{5960e3ec-e478-4d13-bc2c-f125b1d6cf87}</destination>
+			<destination>{2d2fa846-c1c0-45d1-bd95-af22f576405f}</destination>
 		</relationship>
 	</object>
 </objects>

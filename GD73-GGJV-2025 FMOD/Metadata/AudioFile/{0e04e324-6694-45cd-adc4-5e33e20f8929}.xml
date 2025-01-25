@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{696dcf7c-842f-4c27-a6b4-4ecc16a4a16f}">
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{0e04e324-6694-45cd-adc4-5e33e20f8929}">
 		<property name="assetPath">
-			<value>SFX/Bubbles/MACK Liquid Bubbles Water Small Burst.wav</value>
+			<value>SFX/MACK Liquid Bubbles Water Small Burst.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
@@ -17,7 +17,7 @@
 			<value>21.292947916666666</value>
 		</property>
 		<relationship name="masterAssetFolder">
-			<destination>{5960e3ec-e478-4d13-bc2c-f125b1d6cf87}</destination>
+			<destination>{2d2fa846-c1c0-45d1-bd95-af22f576405f}</destination>
 		</relationship>
 	</object>
 </objects>

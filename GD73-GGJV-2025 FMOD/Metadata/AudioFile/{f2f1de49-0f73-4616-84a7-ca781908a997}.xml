@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{46a039ca-bc22-4ad7-9091-6e308ef7e56b}">
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{f2f1de49-0f73-4616-84a7-ca781908a997}">
 		<property name="assetPath">
-			<value>SFX/Bubbles/MACK Liquid Bubbles Dry Ice High.wav</value>
+			<value>SFX/MACK Liquid Bubbles Dry Ice High.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
@@ -17,7 +17,7 @@
 			<value>62.936072916666667</value>
 		</property>
 		<relationship name="masterAssetFolder">
-			<destination>{5960e3ec-e478-4d13-bc2c-f125b1d6cf87}</destination>
+			<destination>{2d2fa846-c1c0-45d1-bd95-af22f576405f}</destination>
 		</relationship>
 	</object>
 </objects>

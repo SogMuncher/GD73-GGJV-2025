@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{78079c17-a677-4ec0-b06d-d683f4bdb236}">
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{d103b3ff-55a8-46d5-ae36-1ec402c036ce}">
 		<property name="assetPath">
-			<value>SFX/Bubbles/MACK Liquid Bubbles Platinum Wire Heavy.wav</value>
+			<value>SFX/MACK Liquid Bubbles Platinum Wire Heavy.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
@@ -17,7 +17,7 @@
 			<value>11.093885416666666</value>
 		</property>
 		<relationship name="masterAssetFolder">
-			<destination>{5960e3ec-e478-4d13-bc2c-f125b1d6cf87}</destination>
+			<destination>{2d2fa846-c1c0-45d1-bd95-af22f576405f}</destination>
 		</relationship>
 	</object>
 </objects>
