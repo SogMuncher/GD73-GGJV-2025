@@ -1,0 +1,178 @@
+{
+    "name": "IA_Gameplay",
+    "maps": [
+        {
+            "name": "Interface",
+            "id": "2361114b-3fff-4014-8bcc-59272a711151",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "ec317071-4dba-4f79-b4ff-90228ab5f5b4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "465c05b1-ea02-4acd-bcf6-8516101af1b3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Gameplay",
+            "id": "2d6a811b-75e0-4a3d-b307-da4ae26d6aac",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "70acc315-745d-4e4f-affe-5175498e460c",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "6a951a9d-5b8e-4134-abd1-35305584e241",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "c44345b0-a044-4825-ab38-e5d6326634c0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "87995fdf-8c84-4ff8-8825-8e872d8587cb",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "86e72d83-3f41-491a-8f81-e5a60111ecac",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b662aa66-a824-49d9-ade3-ff2bcae562e1",
+                    "path": "<Gamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32022dee-0e17-4b0a-a348-9bc0269e0859",
+                    "path": "<Gamepad>/dpad/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9da0afcf-a795-40d6-adc0-816c9d779e0d",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d645e67-c628-4f81-931d-333e45b03afe",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3e922097-61f4-4c0e-8082-e9c332f99086",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d40402e-b3d1-4c22-891a-14d1a013ed97",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc9dd6e9-3bfb-4e76-a0ba-1d6202412b97",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Generic Controller Scheme",
+            "bindingGroup": "Generic Controller Scheme",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
