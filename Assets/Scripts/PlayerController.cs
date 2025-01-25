@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     protected float _airControl;
 
+    [SerializeField]
+    protected float _playerBounceForce = 5f;
+
     [Header("Attacking")]
     [SerializeField]
     protected GameObject _weapon;
@@ -103,6 +106,17 @@ public class PlayerController : MonoBehaviour
 
         _weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, 90 * _aimInput.y));
         //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, rotationZ));
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            Vector2 direction = ((collision.transform.position) - (this.transform.position)).normalized;
+
+            _rb.AddForce(-direction * _playerBounceForce, ForceMode2D.Impulse);
+
+            
+        }
     }
 
     protected void FixedUpdate()
