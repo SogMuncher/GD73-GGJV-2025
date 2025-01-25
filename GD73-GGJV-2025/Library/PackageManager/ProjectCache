@@ -1,25 +1,25 @@
 m_ProjectFiles:
   m_ManifestFileStatus:
-    m_FilePath: C:/REPOS/GD73-GGJV-2025/GD73-GGJV-2025/Packages/manifest.json
+    m_FilePath: W:/Game Dev/GD73-GGJV-2025/GD73-GGJV-2025/Packages/manifest.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638733801546064154
-    m_Hash: 2494819628
+      ticks: 638733814232245157
+    m_Hash: 385026697
   m_LockFileStatus:
-    m_FilePath: C:/REPOS/GD73-GGJV-2025/GD73-GGJV-2025/Packages/packages-lock.json
+    m_FilePath: W:/Game Dev/GD73-GGJV-2025/GD73-GGJV-2025/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638733801546114708
-    m_Hash: 4101755380
+      ticks: 638733814232245157
+    m_Hash: 2904931247
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
   m_LocalFileStatus: []
-m_ProjectPath: C:/REPOS/GD73-GGJV-2025/GD73-GGJV-2025/Packages
+m_ProjectPath: W:/Game Dev/GD73-GGJV-2025/GD73-GGJV-2025/Packages
 m_EditorVersion: 6000.0.35f1 (9a3bc604008a)
 m_ResolvedPackages:
 - packageId: com.unity.cinemachine@3.1.2
@@ -27,7 +27,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 3.1.2
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.cinemachine@b2e7bffab772
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.cinemachine@b2e7bffab772
   assetPath: Packages/com.unity.cinemachine
   name: com.unity.cinemachine
   displayName: Cinemachine
@@ -145,10 +145,10 @@ m_ResolvedPackages:
   resolvedDependencies:
   - name: com.unity.splines
     version: 2.7.2
-  - name: com.unity.mathematics
-    version: 1.3.2
   - name: com.unity.settings-manager
     version: 2.0.1
+  - name: com.unity.mathematics
+    version: 1.3.2
   keywords:
   - camera
   - follow
@@ -232,7 +232,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.6.0
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.collab-proxy@001b54a8988a
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.collab-proxy@001b54a8988a
   assetPath: Packages/com.unity.collab-proxy
   name: com.unity.collab-proxy
   displayName: Version Control
@@ -320,9 +320,6 @@ m_ResolvedPackages:
     - 2.2.0
     - 2.3.1
     - 2.4.3
-    - 2.4.4
-    - 2.5.1
-    - 2.5.2
     - 2.6.0
     compatible:
     - 2.6.0
@@ -356,9 +353,9 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   entitlements:
-    licensingModel: 1
+    licensingModel: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 638684801569990000
+  datePublishedTicks: 0
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.6/manual/index.html
   hasRepository: 1
   repository:
@@ -420,7 +417,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.0.1
   source: 2
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.feature.2d@dd1ea8910f12
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.feature.2d@dd1ea8910f12
   assetPath: Packages/com.unity.feature.2d
   name: com.unity.feature.2d
   displayName: 2D
@@ -465,24 +462,24 @@ m_ResolvedPackages:
     version: 10.1.4
   - name: com.unity.2d.common
     version: 9.0.7
-  - name: com.unity.burst
-    version: 1.8.18
-  - name: com.unity.mathematics
-    version: 1.3.2
-  - name: com.unity.modules.jsonserialize
-    version: 1.0.0
   - name: com.unity.2d.sprite
     version: 1.0.0
-  - name: com.unity.modules.animation
-    version: 1.0.0
+  - name: com.unity.mathematics
+    version: 1.3.2
   - name: com.unity.modules.uielements
     version: 1.0.0
   - name: com.unity.modules.ui
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
   - name: com.unity.modules.hierarchycore
     version: 1.0.0
+  - name: com.unity.modules.animation
+    version: 1.0.0
+  - name: com.unity.burst
+    version: 1.8.18
   - name: com.unity.collections
     version: 2.5.1
   - name: com.unity.test-framework
@@ -554,7 +551,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 3.0.31
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.ide.rider@7921be93db40
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.ide.rider@7921be93db40
   assetPath: Packages/com.unity.ide.rider
   name: com.unity.ide.rider
   displayName: JetBrains Rider Editor
@@ -613,11 +610,9 @@ m_ResolvedPackages:
     - 3.0.27
     - 3.0.28
     - 3.0.31
-    - 3.0.34
     compatible:
     - 3.0.31
-    - 3.0.34
-    recommended: 3.0.34
+    recommended: 3.0.31
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
@@ -673,7 +668,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.0.22
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.ide.visualstudio@8140e851d83e
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.ide.visualstudio@8140e851d83e
   assetPath: Packages/com.unity.ide.visualstudio
   name: com.unity.ide.visualstudio
   displayName: Visual Studio Editor
@@ -779,7 +774,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.11.2
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.inputsystem@3c4a97c3950f
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.inputsystem@3c4a97c3950f
   assetPath: Packages/com.unity.inputsystem
   name: com.unity.inputsystem
   displayName: Input System
@@ -845,10 +840,8 @@ m_ResolvedPackages:
     - 1.11.0
     - 1.11.1
     - 1.11.2
-    - 1.12.0
     compatible:
     - 1.11.2
-    - 1.12.0
     recommended: 1.11.2
     deprecated: []
   dependencies:
@@ -932,7 +925,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.multiplayer.center@f502d8ac613f
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.multiplayer.center@f502d8ac613f
   assetPath: Packages/com.unity.multiplayer.center
   name: com.unity.multiplayer.center
   displayName: Multiplayer Center
@@ -948,12 +941,6 @@ m_ResolvedPackages:
   errors: []
   versions:
     all:
-    - 0.2.1
-    - 0.3.0
-    - 0.4.0
-    - 1.0.0-pre.1
-    - 1.0.0-pre.2
-    - 1.0.0-pre.3
     - 1.0.0
     compatible:
     - 1.0.0
@@ -1022,7 +1009,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 17.0.3
   source: 2
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.render-pipelines.universal@39c80789bb81
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.render-pipelines.universal@39c80789bb81
   assetPath: Packages/com.unity.render-pipelines.universal
   name: com.unity.render-pipelines.universal
   displayName: Universal RP
@@ -1184,7 +1171,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.4.5
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.test-framework@0a21eb82d95c
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.test-framework@0a21eb82d95c
   assetPath: Packages/com.unity.test-framework
   name: com.unity.test-framework
   displayName: Test Framework
@@ -1347,7 +1334,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.8.7
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.timeline@c58b4ee65782
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.timeline@c58b4ee65782
   assetPath: Packages/com.unity.timeline
   name: com.unity.timeline
   displayName: Timeline
@@ -1530,7 +1517,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.0.0
   source: 2
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.ugui@24b10291b18f
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.ugui@24b10291b18f
   assetPath: Packages/com.unity.ugui
   name: com.unity.ugui
   displayName: Unity UI
@@ -1622,7 +1609,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.9.5
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.visualscripting@1b53f46e931b
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.visualscripting@1b53f46e931b
   assetPath: Packages/com.unity.visualscripting
   name: com.unity.visualscripting
   displayName: Visual Scripting
@@ -1662,6 +1649,7 @@ m_ResolvedPackages:
     - 1.7.6
     - 1.7.7
     - 1.7.8
+    - 1.8.0-pre.1
     - 1.8.0
     - 1.9.0
     - 1.9.1
@@ -1671,7 +1659,8 @@ m_ResolvedPackages:
     compatible:
     - 1.9.5
     recommended: 1.9.5
-    deprecated: []
+    deprecated:
+    - 1.8.0-pre.1
   dependencies:
   - name: com.unity.ugui
     version: 1.0.0
@@ -4158,7 +4147,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 2.0.5
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.ext.nunit@60ef35ffd3cd
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.ext.nunit@60ef35ffd3cd
   assetPath: Packages/com.unity.ext.nunit
   name: com.unity.ext.nunit
   displayName: Custom NUnit
@@ -4237,7 +4226,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 17.0.3
   source: 2
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.render-pipelines.core@a50b3570474f
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.render-pipelines.core@a50b3570474f
   assetPath: Packages/com.unity.render-pipelines.core
   name: com.unity.render-pipelines.core
   displayName: Core RP Library
@@ -4451,7 +4440,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 17.0.3
   source: 2
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.shadergraph@911117698220
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.shadergraph@911117698220
   assetPath: Packages/com.unity.shadergraph
   name: com.unity.shadergraph
   displayName: Shader Graph
@@ -4654,7 +4643,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 17.0.3
   source: 2
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.render-pipelines.universal-config@fa63c96d3e1a
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.render-pipelines.universal-config@fa63c96d3e1a
   assetPath: Packages/com.unity.render-pipelines.universal-config
   name: com.unity.render-pipelines.universal-config
   displayName: Universal RP Config
@@ -4752,7 +4741,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 10.1.4
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.animation@494a3b4e73a9
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.animation@494a3b4e73a9
   assetPath: Packages/com.unity.2d.animation
   name: com.unity.2d.animation
   displayName: 2D Animation
@@ -4866,7 +4855,6 @@ m_ResolvedPackages:
     - 7.0.13
     - 7.1.0
     - 7.1.1
-    - 7.1.2
     - 8.0.0-pre.3
     - 8.0.0-pre.4
     - 8.0.0
@@ -4884,8 +4872,6 @@ m_ResolvedPackages:
     - 9.0.4
     - 9.1.0
     - 9.1.1
-    - 9.1.2
-    - 9.1.3
     - 10.0.0-pre.1
     - 10.0.0-pre.2
     - 10.0.0
@@ -4895,7 +4881,6 @@ m_ResolvedPackages:
     - 10.1.0
     - 10.1.1
     - 10.1.2
-    - 10.1.3
     - 10.1.4
     compatible:
     - 10.1.4
@@ -4915,24 +4900,24 @@ m_ResolvedPackages:
   resolvedDependencies:
   - name: com.unity.2d.common
     version: 9.0.7
-  - name: com.unity.burst
-    version: 1.8.18
-  - name: com.unity.mathematics
-    version: 1.3.2
-  - name: com.unity.modules.jsonserialize
-    version: 1.0.0
   - name: com.unity.2d.sprite
     version: 1.0.0
-  - name: com.unity.modules.animation
-    version: 1.0.0
+  - name: com.unity.mathematics
+    version: 1.3.2
   - name: com.unity.modules.uielements
     version: 1.0.0
   - name: com.unity.modules.ui
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
   - name: com.unity.modules.hierarchycore
     version: 1.0.0
+  - name: com.unity.modules.animation
+    version: 1.0.0
+  - name: com.unity.burst
+    version: 1.8.18
   - name: com.unity.collections
     version: 2.5.1
   - name: com.unity.test-framework
@@ -4956,9 +4941,9 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   entitlements:
-    licensingModel: 1
+    licensingModel: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 638654459075740000
+  datePublishedTicks: 0
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.2d.animation@10.1/manual/index.html
   hasRepository: 1
   repository:
@@ -5002,7 +4987,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 5.0.3
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.pixel-perfect@e3ae982b672d
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.pixel-perfect@e3ae982b672d
   assetPath: Packages/com.unity.2d.pixel-perfect
   name: com.unity.2d.pixel-perfect
   displayName: 2D Pixel Perfect
@@ -5097,7 +5082,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 9.0.3
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.psdimporter@676bae148e11
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.psdimporter@676bae148e11
   assetPath: Packages/com.unity.2d.psdimporter
   name: com.unity.2d.psdimporter
   displayName: 2D PSD Importer
@@ -5192,7 +5177,6 @@ m_ResolvedPackages:
     - 9.0.1
     - 9.0.2
     - 9.0.3
-    - 10.0.0
     compatible:
     - 9.0.3
     recommended: 9.0.3
@@ -5205,24 +5189,24 @@ m_ResolvedPackages:
   resolvedDependencies:
   - name: com.unity.2d.common
     version: 9.0.7
-  - name: com.unity.burst
-    version: 1.8.18
-  - name: com.unity.mathematics
-    version: 1.3.2
-  - name: com.unity.modules.jsonserialize
-    version: 1.0.0
   - name: com.unity.2d.sprite
     version: 1.0.0
-  - name: com.unity.modules.animation
-    version: 1.0.0
+  - name: com.unity.mathematics
+    version: 1.3.2
   - name: com.unity.modules.uielements
     version: 1.0.0
   - name: com.unity.modules.ui
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
   - name: com.unity.modules.hierarchycore
     version: 1.0.0
+  - name: com.unity.modules.animation
+    version: 1.0.0
+  - name: com.unity.burst
+    version: 1.8.18
   keywords:
   - 2d
   - psdimporter
@@ -5273,7 +5257,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.0.0
   source: 2
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.sprite@6e37a90069af
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.sprite@6e37a90069af
   assetPath: Packages/com.unity.2d.sprite
   name: com.unity.2d.sprite
   displayName: 2D Sprite
@@ -5343,7 +5327,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 10.0.7
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.spriteshape@9e35352ae135
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.spriteshape@9e35352ae135
   assetPath: Packages/com.unity.2d.spriteshape
   name: com.unity.2d.spriteshape
   displayName: 2D SpriteShape
@@ -5437,8 +5421,6 @@ m_ResolvedPackages:
     - 9.0.1
     - 9.0.2
     - 9.0.3
-    - 9.0.4
-    - 9.0.5
     - 10.0.0-pre.1
     - 10.0.0-pre.2
     - 10.0.0
@@ -5454,24 +5436,18 @@ m_ResolvedPackages:
     recommended: 10.0.7
     deprecated: []
   dependencies:
-  - name: com.unity.2d.common
-    version: 9.0.7
   - name: com.unity.mathematics
     version: 1.1.0
+  - name: com.unity.2d.common
+    version: 9.0.7
   - name: com.unity.modules.physics2d
     version: 1.0.0
   resolvedDependencies:
-  - name: com.unity.2d.common
-    version: 9.0.7
-  - name: com.unity.burst
-    version: 1.8.18
   - name: com.unity.mathematics
     version: 1.3.2
-  - name: com.unity.modules.jsonserialize
-    version: 1.0.0
+  - name: com.unity.2d.common
+    version: 9.0.7
   - name: com.unity.2d.sprite
-    version: 1.0.0
-  - name: com.unity.modules.animation
     version: 1.0.0
   - name: com.unity.modules.uielements
     version: 1.0.0
@@ -5479,8 +5455,14 @@ m_ResolvedPackages:
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
   - name: com.unity.modules.hierarchycore
     version: 1.0.0
+  - name: com.unity.modules.animation
+    version: 1.0.0
+  - name: com.unity.burst
+    version: 1.8.18
   - name: com.unity.modules.physics2d
     version: 1.0.0
   keywords:
@@ -5500,9 +5482,9 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   entitlements:
-    licensingModel: 1
+    licensingModel: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 638654459104040000
+  datePublishedTicks: 0
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.2d.spriteshape@10.0/manual/index.html
   hasRepository: 1
   repository:
@@ -5535,7 +5517,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.0.0
   source: 2
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.tilemap@72aa52500d81
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.tilemap@72aa52500d81
   assetPath: Packages/com.unity.2d.tilemap
   name: com.unity.2d.tilemap
   displayName: 2D Tilemap Editor
@@ -5622,7 +5604,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 4.1.0
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.tilemap.extras@13634da7dbe0
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.tilemap.extras@13634da7dbe0
   assetPath: Packages/com.unity.2d.tilemap.extras
   name: com.unity.2d.tilemap.extras
   displayName: 2D Tilemap Extras
@@ -5673,7 +5655,6 @@ m_ResolvedPackages:
     - 2.2.5
     - 2.2.6
     - 2.2.7
-    - 2.2.8
     - 3.0.0
     - 3.0.1
     - 3.0.2
@@ -5681,7 +5662,6 @@ m_ResolvedPackages:
     - 3.1.0
     - 3.1.1
     - 3.1.2
-    - 3.1.3
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     - 4.0.0-pre.3
@@ -5689,24 +5669,23 @@ m_ResolvedPackages:
     - 4.0.1
     - 4.0.2
     - 4.1.0
-    - 4.2.1
     compatible:
     - 4.1.0
     recommended: 4.1.0
     deprecated: []
   dependencies:
-  - name: com.unity.2d.tilemap
-    version: 1.0.0
   - name: com.unity.modules.tilemap
+    version: 1.0.0
+  - name: com.unity.2d.tilemap
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
   resolvedDependencies:
-  - name: com.unity.2d.tilemap
-    version: 1.0.0
   - name: com.unity.modules.tilemap
     version: 1.0.0
   - name: com.unity.modules.physics2d
+    version: 1.0.0
+  - name: com.unity.2d.tilemap
     version: 1.0.0
   - name: com.unity.modules.uielements
     version: 1.0.0
@@ -5730,9 +5709,9 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   entitlements:
-    licensingModel: 1
+    licensingModel: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 638654459126220000
+  datePublishedTicks: 0
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.2d.tilemap.extras@4.1/manual/index.html
   hasRepository: 1
   repository:
@@ -5767,7 +5746,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.1.7
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.aseprite@69c6d22488f5
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.aseprite@69c6d22488f5
   assetPath: Packages/com.unity.2d.aseprite
   name: com.unity.2d.aseprite
   displayName: 2D Aseprite Importer
@@ -5793,47 +5772,41 @@ m_ResolvedPackages:
     - 1.1.2
     - 1.1.3
     - 1.1.4
-    - 1.1.5
-    - 1.1.6
     - 1.1.7
-    - 1.1.8
-    - 1.2.0
-    - 1.2.1
     compatible:
     - 1.1.7
-    - 1.1.8
-    recommended: 1.1.8
+    recommended: 1.1.7
     deprecated: []
   dependencies:
-  - name: com.unity.2d.common
-    version: 6.0.6
   - name: com.unity.2d.sprite
     version: 1.0.0
+  - name: com.unity.2d.common
+    version: 6.0.6
   - name: com.unity.mathematics
     version: 1.2.6
   - name: com.unity.modules.animation
     version: 1.0.0
   resolvedDependencies:
-  - name: com.unity.2d.common
-    version: 9.0.7
-  - name: com.unity.burst
-    version: 1.8.18
-  - name: com.unity.mathematics
-    version: 1.3.2
-  - name: com.unity.modules.jsonserialize
-    version: 1.0.0
   - name: com.unity.2d.sprite
     version: 1.0.0
-  - name: com.unity.modules.animation
-    version: 1.0.0
+  - name: com.unity.2d.common
+    version: 9.0.7
+  - name: com.unity.mathematics
+    version: 1.3.2
   - name: com.unity.modules.uielements
     version: 1.0.0
   - name: com.unity.modules.ui
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
   - name: com.unity.modules.hierarchycore
     version: 1.0.0
+  - name: com.unity.modules.animation
+    version: 1.0.0
+  - name: com.unity.burst
+    version: 1.8.18
   keywords:
   - 2d
   - Aseprite
@@ -5850,9 +5823,9 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   entitlements:
-    licensingModel: 1
+    licensingModel: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 638689949786490000
+  datePublishedTicks: 0
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.2d.aseprite@1.1/manual/index.html
   hasRepository: 1
   repository:
@@ -5890,7 +5863,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 2.7.2
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.splines@d3e1e500c9a0
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.splines@d3e1e500c9a0
   assetPath: Packages/com.unity.splines
   name: com.unity.splines
   displayName: Splines
@@ -5931,15 +5904,15 @@ m_ResolvedPackages:
     recommended: 2.7.2
     deprecated: []
   dependencies:
-  - name: com.unity.mathematics
-    version: 1.2.1
   - name: com.unity.settings-manager
     version: 1.0.3
-  resolvedDependencies:
   - name: com.unity.mathematics
-    version: 1.3.2
+    version: 1.2.1
+  resolvedDependencies:
   - name: com.unity.settings-manager
     version: 2.0.1
+  - name: com.unity.mathematics
+    version: 1.3.2
   keywords:
   - spline
   - curve
@@ -5954,9 +5927,9 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   entitlements:
-    licensingModel: 1
+    licensingModel: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 638678084074740000
+  datePublishedTicks: 0
   documentationUrl: 
   hasRepository: 1
   repository:
@@ -6004,7 +5977,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 4.9.2
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.searcher@90d011a70418
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.searcher@90d011a70418
   assetPath: Packages/com.unity.searcher
   name: com.unity.searcher
   displayName: Searcher
@@ -6035,11 +6008,9 @@ m_ResolvedPackages:
     - 4.7.0-preview
     - 4.9.1
     - 4.9.2
-    - 4.9.3
     compatible:
     - 4.9.2
-    - 4.9.3
-    recommended: 4.9.3
+    recommended: 4.9.2
     deprecated: []
   dependencies: []
   resolvedDependencies: []
@@ -6090,7 +6061,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.8.18
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.burst@616862665d8c
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.burst@616862665d8c
   assetPath: Packages/com.unity.burst
   name: com.unity.burst
   displayName: Burst
@@ -6238,11 +6209,9 @@ m_ResolvedPackages:
     - 1.8.16
     - 1.8.17
     - 1.8.18
-    - 1.8.19
     compatible:
     - 1.8.18
-    - 1.8.19
-    recommended: 1.8.19
+    recommended: 1.8.18
     deprecated: []
   dependencies:
   - name: com.unity.mathematics
@@ -6310,7 +6279,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.3.2
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.mathematics@8017b507cc74
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.mathematics@8017b507cc74
   assetPath: Packages/com.unity.mathematics
   name: com.unity.mathematics
   displayName: Mathematics
@@ -6399,7 +6368,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 2.5.1
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.collections@56bff8827a7e
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.collections@56bff8827a7e
   assetPath: Packages/com.unity.collections
   name: com.unity.collections
   displayName: Collections
@@ -6484,11 +6453,9 @@ m_ResolvedPackages:
     - 2.5.0-exp.1
     - 2.5.0-pre.2
     - 2.5.1
-    - 2.5.2
     compatible:
     - 2.5.1
-    - 2.5.2
-    recommended: 2.5.2
+    recommended: 2.5.1
     deprecated: []
   dependencies:
   - name: com.unity.burst
@@ -6567,7 +6534,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.0.1
   source: 2
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.rendering.light-transport@307bc27a498f
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.rendering.light-transport@307bc27a498f
   assetPath: Packages/com.unity.rendering.light-transport
   name: com.unity.rendering.light-transport
   displayName: Unity Light Transport Library
@@ -6663,7 +6630,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 9.0.7
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.common@bb1fc9b3d81b
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.2d.common@bb1fc9b3d81b
   assetPath: Packages/com.unity.2d.common
   name: com.unity.2d.common
   displayName: 2D Common
@@ -6678,100 +6645,41 @@ m_ResolvedPackages:
   errors: []
   versions:
     all:
-    - 1.0.9-preview.1
-    - 1.0.9-preview.2
-    - 1.0.10-preview
-    - 1.0.11-preview.1
-    - 1.1.0-preview.1
-    - 1.1.0-preview.2
-    - 1.2.0-preview.1
-    - 2.0.1
-    - 2.0.2
-    - 2.1.0
-    - 2.1.1
-    - 2.1.2
-    - 3.0.0
-    - 3.0.1
-    - 4.0.0
-    - 4.0.1
-    - 4.0.2
-    - 4.0.3
-    - 4.0.4
-    - 4.1.0
-    - 4.2.0
-    - 4.2.1
-    - 5.0.0-pre.1
-    - 5.0.0-pre.2
-    - 5.0.0
-    - 6.0.0-pre.2
-    - 6.0.0-pre.3
-    - 6.0.0-pre.4
-    - 6.0.0
-    - 6.0.1
-    - 6.0.2
-    - 6.0.3
-    - 6.0.4
-    - 6.0.5
-    - 6.0.6
-    - 6.0.7
-    - 6.0.8
-    - 7.0.0-pre.3
-    - 7.0.0-pre.4
-    - 7.0.0
-    - 7.0.1
-    - 7.0.2
-    - 7.0.3
-    - 8.0.0-pre.1
-    - 8.0.0-pre.2
-    - 8.0.0
-    - 8.0.1
-    - 8.0.2
-    - 8.0.3
-    - 8.0.4
-    - 9.0.0-pre.1
-    - 9.0.0-pre.2
-    - 9.0.0
-    - 9.0.1
-    - 9.0.2
-    - 9.0.3
-    - 9.0.4
-    - 9.0.5
-    - 9.0.6
     - 9.0.7
     compatible:
     - 9.0.7
     recommended: 9.0.7
     deprecated: []
   dependencies:
-  - name: com.unity.burst
-    version: 1.8.4
   - name: com.unity.2d.sprite
     version: 1.0.0
   - name: com.unity.mathematics
     version: 1.1.0
-  - name: com.unity.modules.animation
-    version: 1.0.0
   - name: com.unity.modules.uielements
     version: 1.0.0
-  resolvedDependencies:
-  - name: com.unity.burst
-    version: 1.8.18
-  - name: com.unity.mathematics
-    version: 1.3.2
-  - name: com.unity.modules.jsonserialize
-    version: 1.0.0
-  - name: com.unity.2d.sprite
-    version: 1.0.0
   - name: com.unity.modules.animation
     version: 1.0.0
+  - name: com.unity.burst
+    version: 1.8.4
+  resolvedDependencies:
+  - name: com.unity.2d.sprite
+    version: 1.0.0
+  - name: com.unity.mathematics
+    version: 1.3.2
   - name: com.unity.modules.uielements
     version: 1.0.0
   - name: com.unity.modules.ui
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
   - name: com.unity.modules.hierarchycore
     version: 1.0.0
+  - name: com.unity.modules.animation
+    version: 1.0.0
+  - name: com.unity.burst
+    version: 1.8.18
   keywords:
   - 2d
   registry:
@@ -6784,9 +6692,9 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   entitlements:
-    licensingModel: 1
+    licensingModel: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 638654459039420000
+  datePublishedTicks: 0
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.2d.common@9.0/manual/index.html
   hasRepository: 1
   repository:
@@ -6821,7 +6729,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 2.0.1
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.settings-manager@56a930affa1e
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.settings-manager@56a930affa1e
   assetPath: Packages/com.unity.settings-manager
   name: com.unity.settings-manager
   displayName: Settings Manager
@@ -6895,7 +6803,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.11.4
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.nuget.mono-cecil@d6f9955a5d5f
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.nuget.mono-cecil@d6f9955a5d5f
   assetPath: Packages/com.unity.nuget.mono-cecil
   name: com.unity.nuget.mono-cecil
   displayName: Mono Cecil
@@ -6924,11 +6832,9 @@ m_ResolvedPackages:
     - 1.10.1
     - 1.10.2
     - 1.11.4
-    - 1.11.5
     compatible:
     - 1.11.4
-    - 1.11.5
-    recommended: 1.11.5
+    recommended: 1.11.4
     deprecated: []
   dependencies: []
   resolvedDependencies: []
@@ -6977,7 +6883,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 3.0.3
   source: 1
-  resolvedPath: C:\REPOS\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.test-framework.performance@fb0dc592af8b
+  resolvedPath: W:\Game Dev\GD73-GGJV-2025\GD73-GGJV-2025\Library\PackageCache\com.unity.test-framework.performance@fb0dc592af8b
   assetPath: Packages/com.unity.test-framework.performance
   name: com.unity.test-framework.performance
   displayName: Performance testing API
@@ -6986,62 +6892,12 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: assets
+  type: 
   description: Package that extends Unity Test Framework package. Adds performance
     testing capabilities and collects configuration metadata.
   errors: []
   versions:
     all:
-    - 0.1.27-preview
-    - 0.1.29-preview
-    - 0.1.31-preview
-    - 0.1.33-preview
-    - 0.1.34-preview
-    - 0.1.36-preview
-    - 0.1.37-preview
-    - 0.1.39-preview
-    - 0.1.40-preview
-    - 0.1.41-preview
-    - 0.1.42-preview
-    - 0.1.44-preview
-    - 0.1.45-preview
-    - 0.1.47-preview
-    - 0.1.48-preview
-    - 0.1.49-preview
-    - 0.1.50-preview
-    - 1.0.4-preview
-    - 1.0.6-preview
-    - 1.0.9-preview
-    - 1.1.2-preview
-    - 1.2.0-preview
-    - 1.2.1-preview
-    - 1.2.3-preview
-    - 1.2.5-preview
-    - 1.2.6-preview
-    - 1.3.0-preview
-    - 1.3.1-preview
-    - 1.3.2-preview
-    - 1.3.3-preview
-    - 2.0.1-preview
-    - 2.0.2-preview
-    - 2.0.3-preview
-    - 2.0.6-preview
-    - 2.0.7-preview
-    - 2.0.8-preview
-    - 2.0.9-preview
-    - 2.1.0-preview
-    - 2.2.0-preview
-    - 2.3.1-preview
-    - 2.4.1-preview
-    - 2.5.1-preview
-    - 2.6.0-preview
-    - 2.7.0-preview
-    - 2.8.0-preview
-    - 2.8.1-preview
-    - 3.0.0-pre.1
-    - 3.0.0-pre.2
-    - 3.0.1
-    - 3.0.2
     - 3.0.3
     compatible:
     - 3.0.3
@@ -7074,9 +6930,9 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   entitlements:
-    licensingModel: 1
+    licensingModel: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 638301960470000000
+  datePublishedTicks: 0
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.test-framework.performance@3.0/manual/index.html
   hasRepository: 1
   repository:
