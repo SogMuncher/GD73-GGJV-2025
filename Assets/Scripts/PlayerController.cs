@@ -2,6 +2,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using FMODUnity;
+using FMOD.Studio;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput), typeof(Health))]
 public class PlayerController : MonoBehaviour
@@ -25,6 +27,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     protected float _playerBounceForce = 5f;
 
+    [SerializeField]
+    EventReference _jumpSFX;
+    EventInstance _jumpSFXInstance;
+
     [Header("Attacking")]
     [SerializeField]
     protected GameObject _weapon;
@@ -44,6 +50,10 @@ public class PlayerController : MonoBehaviour
 
     //[SerializeField]
     //protected float _aimSpringDampStrength;
+
+    [SerializeField]  
+    EventReference _throwSFX;
+    EventInstance _throwSFXInstance;
 
     [Header("Spring Settings")]
     [SerializeField]
@@ -309,6 +319,7 @@ public class PlayerController : MonoBehaviour
         if (thrownRB != null)
         {
             thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
+            RuntimeManager.PlayOneShot(_throwSFX, transform.position);
         }
 
         Debug.Log($"Player {_playerInput.playerIndex} Fired");
@@ -322,6 +333,7 @@ public class PlayerController : MonoBehaviour
         }
 
         _rb.AddForceY(_jumpStrength, ForceMode2D.Impulse);
+        RuntimeManager.PlayOneShot(_jumpSFX, transform.position);
 
         Debug.Log($"Player {_playerInput.playerIndex} Jumped");
     }

@@ -531,10 +531,24 @@ MonoBehaviour:
   _jumpCost: 0
   _airControl: 0
   _playerBounceForce: 5
+  _jumpSFX:
+    Guid:
+      Data1: 972232979
+      Data2: 1310206627
+      Data3: -521247852
+      Data4: 1270925113
+    Path: event:/SFX/Bubbles/Bubble Pop/Bubble Pop
   _weapon: {fileID: 881098138845070590}
   _throwStrength: 10
   _aimSpeed: 1.25
   _thrownWeaponPrefab: {fileID: 2691685587547050328, guid: bc5495dd58430da479e3d2a48cf5fa52, type: 3}
+  _throwSFX:
+    Guid:
+      Data1: -54249715
+      Data2: 1093201362
+      Data3: -2110805588
+      Data4: -1296817943
+    Path: event:/SFX/Spike Throw/Spike Throw
   _rayMaxDistance: 1
   _rayLayerMask:
     serializedVersion: 2

@@ -130,6 +130,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 33792
   _owningPlayerInvulnerabilityTime: 0.5
+  _impactSFX:
+    Guid:
+      Data1: 1049952215
+      Data2: 1195589948
+      Data3: -1793190471
+      Data4: 729829697
+    Path: event:/SFX/Impact/Spike Impact
 --- !u!1 &5462793544920467373
 GameObject:
   m_ObjectHideFlags: 0
