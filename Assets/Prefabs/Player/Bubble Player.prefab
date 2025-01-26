@@ -530,9 +530,11 @@ MonoBehaviour:
   _jumpStrength: 5
   _jumpCost: 0
   _airControl: 0
+  _playerBounceForce: 5
   _weapon: {fileID: 881098138845070590}
-  _throwStrength: 0
+  _throwStrength: 10
   _aimSpeed: 1.25
+  _thrownWeaponPrefab: {fileID: 2691685587547050328, guid: bc5495dd58430da479e3d2a48cf5fa52, type: 3}
   _rayMaxDistance: 1
   _rayLayerMask:
     serializedVersion: 2
