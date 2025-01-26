@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using FMODUnity;
 using FMOD.Studio;
 using DG.Tweening;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,20 +38,22 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] EventReference _winSFX;
     [SerializeField] EventReference _countdownSFX;
-    
+
     [SerializeField] EventReference _roundStartSFX;
 
-    [SerializeField] EventReference _roundEndSFX;
 
-    
-    [SerializeField]private float _maxScore = 5;
+    [SerializeField] private float _maxScore = 5;
 
-    [Header ("Tween")]
+    [Header("Tween")]
     [SerializeField] private RectTransform _scoreRectTransform;
     [SerializeField] private RectTransform _pause1RectTransform;
     [SerializeField] private RectTransform _pause2RectTransform;
     [SerializeField] private float topPosY, finalPosY;
     [SerializeField] private float tweenDuration;
+
+    //[Header("Hearts")]
+    //[SerializeField] private GameObject[] _heartsP1;  
+    //[SerializeField] private GameObject[] _heartsP2;  
 
     private void Awake()
     {
@@ -90,7 +93,6 @@ public class GameManager : MonoBehaviour
 
             if (playerScores[0] == _maxScore)
             {
-                RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play round end sound
                 OnRoundEnd.Invoke();
 
                 IncrementPlayerRoundsWon(playerIndex);
@@ -101,7 +103,6 @@ public class GameManager : MonoBehaviour
             }
             if (playerScores[1] == _maxScore)
             {
-                RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play round end sound
                 OnRoundEnd.Invoke();
                 
                 IncrementPlayerRoundsWon(playerIndex);
@@ -160,10 +161,26 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < playerScores.Length; i++)
         {
-            playerScoreTexts[i].text = "Player " + (i + 1); //+ ": " + playerScores[i];
+            //if (i  == 0)
+            //{
+            //    if (_heartsP1.Length > 0)
+            //    {
+            //        _heartsP1[(_heartsP1.Length - playerScores[i])].SetActive(false);
+            //    }
+            //}
+
+            //if (i == 1)
+            //{
+            //    if (_heartsP2.Length > 0)
+            //    {
+            //        _heartsP2[(_heartsP2.Length - playerScores[i])].SetActive(false);
+            //    }
+            //}
+
+            
+            playerScoreTexts[i].text = "Player " + (i + 1) + ": " + playerScores[i];
             Transform ScoreTransform = playerScoreTexts[i].transform;
             //ScoreTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
-
         }
 
         for (int i = 0; i < playerRoundsWon.Length; i++)
