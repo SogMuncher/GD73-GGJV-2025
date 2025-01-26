@@ -1,6 +1,7 @@
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class Health : MonoBehaviour
@@ -16,6 +17,13 @@ public class Health : MonoBehaviour
 
     [HideInInspector]
     public UnityEvent OnDeathEvent;
+
+    private PlayerInput _playerInput;
+
+    private void Awake()
+    {
+        _playerInput = GetComponent<PlayerInput>();
+    }
 
     public float GetCurrentHealth()
     {
@@ -37,7 +45,7 @@ public class Health : MonoBehaviour
         _currentHealth -= damageAmount;
         if (_currentHealth <= 0)
         {
-
+            Die();
         }
     }
 
@@ -45,5 +53,12 @@ public class Health : MonoBehaviour
     {
         //death logic here
         OnDeathEvent.Invoke();
+        int playerIndex = _playerInput.playerIndex;
+
+        if (GameManager.instance != null && playerIndex >= 0)
+        {
+            GameManager.instance.IncrementPlayerScore(playerIndex);
+        }
+        
     }
 }

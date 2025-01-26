@@ -538,10 +538,20 @@ MonoBehaviour:
   _rayMaxDistance: 1
   _rayLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 32777
   _springRestHeight: 0.8
-  _springStrength: 1
-  _springDampStrength: 0
+  _springStrength: 100
+  _springDampStrength: 10
+  _isSticky: 0
+  _stick:
+    m_Name: Stick
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9a026099-1c64-401a-8200-2a3a041b96c8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   OnPaused:
     m_PersistentCalls:
       m_Calls: []
