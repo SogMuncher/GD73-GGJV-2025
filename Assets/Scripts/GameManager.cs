@@ -17,9 +17,11 @@ public class GameManager : MonoBehaviour
     private PlayerInput playerInput;
 
     public TextMeshProUGUI[] playerScoreTexts;
-    public TextMeshProUGUI WinText;
+    public TextMeshProUGUI P1WinText;
+    public TextMeshProUGUI P2WinText;
 
-    public UnityEvent OnWin;
+    public UnityEvent OnP1Win;
+    public UnityEvent OnP2Win;
 
     
     [SerializeField]private float _maxScore = 2;
@@ -50,14 +52,19 @@ public class GameManager : MonoBehaviour
             playerScores[playerIndex]++;
             UpdateUIScore();
 
-          /*  if (playerScores[0] == 2)
+            if (playerScores[0] == 2)
             {
-                Win("Player 1 wins!");
+                
+                P1Win("Player 1 wins!");
             }
             if (playerScores[1] == 2)
             {
-                Win("Player 2 wins!");
-            }*/
+                
+                P2Win("Player 2 wins!");
+            }
+
+            Debug.Log(playerScores[0]);
+            Debug.Log(playerScores[1]);
 
         }
     }
@@ -81,9 +88,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Win(string winnerString)
+    public void P1Win(string winnerString)
     {
-        OnWin.Invoke();
-     //   WinText.text = winnerString;
+        OnP1Win.Invoke();
+        P1WinText.text = winnerString;
+    }
+    public void P2Win(string winnerString)
+    {
+        OnP2Win.Invoke();
+        P2WinText.text = winnerString;
     }
 }

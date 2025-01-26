@@ -31,8 +31,8 @@ public class PauseManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void MainMenu()
+    public void LoadScene(string SceneName)
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(SceneName);
     }
 }
