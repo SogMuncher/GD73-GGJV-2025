@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using FMODUnity;
 using FMOD.Studio;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput), typeof(Health))]
 public class PlayerController : MonoBehaviour
@@ -37,6 +38,15 @@ public class PlayerController : MonoBehaviour
     [Header("Attacking")]
     [SerializeField]
     protected GameObject _weapon;
+
+    [SerializeField]
+    protected int _maxAmmo = 3;
+
+    [SerializeField]
+    protected float _reloadTime = 2f;
+
+    [SerializeField]
+    protected float _throwCooldownTime = .25f;
 
     [SerializeField]
     protected float _throwStrength;
@@ -99,6 +109,10 @@ public class PlayerController : MonoBehaviour
     protected float _weaponRotationY;
 
     protected GameObject _lastThrownWeapon;
+
+    protected int _currentAmmo = 3;
+    protected bool _isReloading;
+    protected bool _throwIsOnCooldown;
 
     protected Health _health;
 
@@ -326,15 +340,29 @@ public class PlayerController : MonoBehaviour
 
     protected void OnFire()
     {
-        _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, transform.position, _weapon.transform.rotation);
-        _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
-
-        Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
-
-        if (thrownRB != null)
+        if (_currentAmmo > 0 && _throwIsOnCooldown == false)
         {
-            thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
-            RuntimeManager.PlayOneShot(_throwSFX, transform.position);
+            _currentAmmo--;
+
+            _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, transform.position, _weapon.transform.rotation);
+            _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
+
+            Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
+
+            if (thrownRB != null)
+            {
+                thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
+                RuntimeManager.PlayOneShot(_throwSFX, transform.position);
+            }
+
+            _throwIsOnCooldown = true;
+            StartCoroutine(ThrowCooldownCoroutine());
+        }
+
+        if (_currentAmmo <= 0 && _isReloading == false)
+        {
+            _isReloading = true;
+            StartCoroutine(ReloadTimerCoroutine());
         }
 
         Debug.Log($"Player {_playerInput.playerIndex} Fired");
@@ -380,6 +408,30 @@ public class PlayerController : MonoBehaviour
     protected void OnDamaged()
     {
         // logic here for when damaged, bounce??
+    }
+
+    protected IEnumerator ReloadTimerCoroutine()
+    {
+        _isReloading = true;
+
+        _weapon.SetActive(false);
+
+        yield return new WaitForSeconds(_reloadTime);
+
+        _weapon.SetActive(true);
+        _currentAmmo = _maxAmmo;
+        _isReloading = false;
+        yield break;
+    }
+
+    protected IEnumerator ThrowCooldownCoroutine()
+    {
+        _throwIsOnCooldown = true;
+
+        yield return new WaitForSeconds(_throwCooldownTime);
+
+        _throwIsOnCooldown = false;
+        yield break;
     }
 
     private void OnDrawGizmos()
