@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] EventReference _roundStartSFX;
 
+    [SerializeField] EventReference _roundEndSFX;
+
     
     [SerializeField]private float _maxScore = 5;
 
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
 
             if (playerScores[0] == _maxScore)
             {
+                RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play round end sound
                 OnRoundEnd.Invoke();
 
                 IncrementPlayerRoundsWon(playerIndex);
@@ -98,6 +101,7 @@ public class GameManager : MonoBehaviour
             }
             if (playerScores[1] == _maxScore)
             {
+                RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play round end sound
                 OnRoundEnd.Invoke();
                 
                 IncrementPlayerRoundsWon(playerIndex);
