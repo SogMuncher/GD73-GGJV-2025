@@ -194,8 +194,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -345182943
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.8050314, g: 0.55260795, b: 0.3164431, a: 1}
@@ -281,8 +281,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -345182943
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0.8039216, g: 0.5529412, b: 0.31764707, a: 1}
@@ -368,8 +368,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -345182943
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -5712959122012955994, guid: da1795ad4ac5aec4d9c5e4e297040f8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -435,7 +435,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0.3
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.45
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -530,16 +530,42 @@ MonoBehaviour:
   _jumpStrength: 5
   _jumpCost: 0
   _airControl: 0
+  _playerBounceForce: 5
+  _jumpSFX:
+    Guid:
+      Data1: 972232979
+      Data2: 1310206627
+      Data3: -521247852
+      Data4: 1270925113
+    Path: event:/SFX/Bubbles/Bubble Pop/Bubble Pop
   _weapon: {fileID: 881098138845070590}
-  _throwStrength: 0
+  _throwStrength: 20
   _aimSpeed: 1.25
+  _thrownWeaponPrefab: {fileID: 2691685587547050328, guid: bc5495dd58430da479e3d2a48cf5fa52, type: 3}
+  _throwSFX:
+    Guid:
+      Data1: -54249715
+      Data2: 1093201362
+      Data3: -2110805588
+      Data4: -1296817943
+    Path: event:/SFX/Spike Throw/Spike Throw
   _rayMaxDistance: 1
   _rayLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 32777
   _springRestHeight: 0.8
-  _springStrength: 1
-  _springDampStrength: 0
+  _springStrength: 100
+  _springDampStrength: 10
+  _isSticky: 0
+  _stick:
+    m_Name: Stick
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9a026099-1c64-401a-8200-2a3a041b96c8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   OnPaused:
     m_PersistentCalls:
       m_Calls: []

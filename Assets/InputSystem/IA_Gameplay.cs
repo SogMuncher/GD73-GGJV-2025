@@ -71,6 +71,24 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Stick"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f2569f4-bb12-48cf-97f6-a1a957231c0d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Unstick"",
+                    ""type"": ""Button"",
+                    ""id"": ""c9ff4126-c0c7-47f2-ae8e-53f1b2b964cb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -113,17 +131,6 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Generic Controller Scheme"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4d645e67-c628-4f81-931d-333e45b03afe"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": ""AxisDeadzone"",
                     ""groups"": "";Generic Controller Scheme"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
@@ -181,6 +188,28 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c53deb6-dadd-4fb8-8937-add78adcfe67"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Stick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f465ce34-36af-48ac-b130-fb196afeceb6"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Unstick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -408,6 +437,8 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         m_Gameplay_Fire = m_Gameplay.FindAction("Fire", throwIfNotFound: true);
         m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+        m_Gameplay_Stick = m_Gameplay.FindAction("Stick", throwIfNotFound: true);
+        m_Gameplay_Unstick = m_Gameplay.FindAction("Unstick", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
@@ -485,6 +516,8 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Fire;
     private readonly InputAction m_Gameplay_Aim;
     private readonly InputAction m_Gameplay_Pause;
+    private readonly InputAction m_Gameplay_Stick;
+    private readonly InputAction m_Gameplay_Unstick;
     public struct GameplayActions
     {
         private @IA_Gameplay m_Wrapper;
@@ -494,6 +527,8 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Gameplay_Fire;
         public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputAction @Stick => m_Wrapper.m_Gameplay_Stick;
+        public InputAction @Unstick => m_Wrapper.m_Gameplay_Unstick;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -518,6 +553,12 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Stick.started += instance.OnStick;
+            @Stick.performed += instance.OnStick;
+            @Stick.canceled += instance.OnStick;
+            @Unstick.started += instance.OnUnstick;
+            @Unstick.performed += instance.OnUnstick;
+            @Unstick.canceled += instance.OnUnstick;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -537,6 +578,12 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Stick.started -= instance.OnStick;
+            @Stick.performed -= instance.OnStick;
+            @Stick.canceled -= instance.OnStick;
+            @Unstick.started -= instance.OnUnstick;
+            @Unstick.performed -= instance.OnUnstick;
+            @Unstick.canceled -= instance.OnUnstick;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -632,6 +679,8 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnStick(InputAction.CallbackContext context);
+        void OnUnstick(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -3,7 +3,6 @@ using UnityEngine;
 public class Passages : MonoBehaviour
 {
     [SerializeField] private Transform _connector;
-    [SerializeField] private LayerMask _ignoredLayers;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
