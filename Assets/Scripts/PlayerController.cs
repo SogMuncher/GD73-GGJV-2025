@@ -117,9 +117,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _stick = GetComponent<PlayerInput>().actions["Stick"];
 
-        
     }
 
     // Update is called once per frame
@@ -147,6 +145,23 @@ public class PlayerController : MonoBehaviour
             RuntimeManager.PlayOneShot(_bounceSFX, transform.position); // Play the bounce off other player sound
 
 
+        }
+
+        if (collision.gameObject.layer == 3)
+        {
+            _isSticky = true;
+        }
+
+       
+
+        Debug.Log(collision);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 3)
+        {
+            _isSticky = false;
         }
 
         if (collision.gameObject.layer == 3)
