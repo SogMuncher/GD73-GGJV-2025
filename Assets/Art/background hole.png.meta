@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      background hole_0: 7883032430277912377
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
