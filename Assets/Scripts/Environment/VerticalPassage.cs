@@ -12,7 +12,7 @@ public class VerticalPassage : MonoBehaviour
         Debug.Log(collisionInitialX);
         Debug.Log("Collider" + collision.gameObject.name);
         // Reposition the collision object
-        Vector3 newPosition = new Vector3(collisionInitialX, _connector.position.x, _connector.position.z);
+        Vector3 newPosition = new Vector3(collisionInitialX, _connector.position.y, _connector.position.z);
         newPosition.x = collisionInitialX; // Maintain the collision object's initial X
         collision.gameObject.transform.position = newPosition;
     }
