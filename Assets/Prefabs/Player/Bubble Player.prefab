@@ -621,11 +621,11 @@ MonoBehaviour:
   _playerBounceForce: 5
   _bounceSFX:
     Guid:
-      Data1: 1277613011
-      Data2: 1298794278
-      Data3: 875174843
-      Data4: 1166712487
-    Path: event:/SFX/Bubbles/Water Plop/Water Plop
+      Data1: -879890148
+      Data2: 1292067385
+      Data3: 863978931
+      Data4: -70398069
+    Path: event:/SFX/Bubbles/Bounce
   _jumpSFX:
     Guid:
       Data1: 972232979
