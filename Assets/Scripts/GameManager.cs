@@ -42,7 +42,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]private float _maxScore = 2;
 
     [Header ("Tween")]
-    [SerializeField] private RectTransform _rectTransform;
+    [SerializeField] private RectTransform _scoreRectTransform;
+    [SerializeField] private RectTransform _pause1RectTransform;
+    [SerializeField] private RectTransform _pause2RectTransform;
     [SerializeField] private float topPosY, finalPosY;
     [SerializeField] private float tweenDuration;
 
@@ -168,12 +170,13 @@ public class GameManager : MonoBehaviour
 
     public void ScoreIntro()
     {
-        _rectTransform.DOAnchorPosY(finalPosY, tweenDuration).SetUpdate(true);
+        _scoreRectTransform.DOAnchorPosY(finalPosY, tweenDuration).SetUpdate(true);
 
         
     }
- 
-    
+  
+
+
     public IEnumerator RoundStart()
     {
         Transform CountDownTransform = RoundStartText.transform;
