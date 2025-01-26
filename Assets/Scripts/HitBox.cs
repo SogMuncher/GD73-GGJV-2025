@@ -19,8 +19,13 @@ public class HitBox : MonoBehaviour
         OnCollisionEnterEvent.Invoke(collision);
     }
 
-    public void ChangeLayerMask(LayerMask layerMask)
+    public void ChangeIncludeLayerMask(LayerMask layerMask)
     {
         _collider.includeLayers = layerMask;
+    }
+
+    public void ChangeExcludeLayerMask(LayerMask layerMask)
+    {
+        _collider.excludeLayers = layerMask;
     }
 }

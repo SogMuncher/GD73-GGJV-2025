@@ -16,8 +16,8 @@ public class DestructablePlatforms : Health
 
     protected override void Die()
     {
-        base.Die();
-
+        
+        OnDeathEvent.Invoke();
         this.gameObject.SetActive(false);
     }
 }

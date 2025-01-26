@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]
@@ -28,13 +29,19 @@ public class ThrownWeapon : MonoBehaviour
     protected HitBox _shaftHitBox;
 
     [SerializeField]
-    protected LayerMask _shaftLayerMaskWhileFlying;
+    protected LayerMask _shaftLayerMaskExcludeWhileFlying;
 
     [SerializeField]
     protected LayerMask _shaftLayerMaskWhileStuck;
 
+    [Header("Misc")]
+    [SerializeField]
+    protected float _owningPlayerInvulnerabilityTime = .5f;
 
     protected Rigidbody2D _rb;
+
+    protected GameObject _owningPlayerObject;
+    protected bool _canHitOwner = false;
 
     protected bool _isStuck = false;
     protected bool _layerMaskChangedToStuck = false;
@@ -45,22 +52,37 @@ public class ThrownWeapon : MonoBehaviour
 
     private void OnEnable()
     {
-        _rb = GetComponent<Rigidbody2D>();
 
-        _frontSpikeHitBox.OnCollisionEnterEvent.AddListener(OnSpikeCollision);
-        _backSpikeHitBox.OnCollisionEnterEvent.AddListener(OnSpikeCollision);
-        _shaftHitBox.OnCollisionEnterEvent.AddListener(OnShaftCollision);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        _rb = GetComponent<Rigidbody2D>();
+
+        _frontSpikeHitBox.OnCollisionEnterEvent.AddListener(OnSpikeCollision);
+        _backSpikeHitBox.OnCollisionEnterEvent.AddListener(OnSpikeCollision);
+        _shaftHitBox.OnCollisionEnterEvent.AddListener(OnShaftCollision);
+
+        _frontSpikeHitBox.ChangeIncludeLayerMask(_frontSpikeLayerMaskWhileFlying);
+        _backSpikeHitBox.ChangeIncludeLayerMask(_backSpikeLayerMaskWhileFlying);
+        _shaftHitBox.ChangeExcludeLayerMask(_shaftLayerMaskExcludeWhileFlying);
+
+        _backSpikeHitBox.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+        if (_owningPlayerInvulnerabilityTime > 0 && _canHitOwner == false)
+        {
+            _owningPlayerInvulnerabilityTime -= Time.deltaTime;
+        }
+        else
+        {
+            _canHitOwner = true;
+        }
+
         if (_isStuck == false)
         {
             _velocity = _rb.linearVelocity;
@@ -86,12 +108,45 @@ public class ThrownWeapon : MonoBehaviour
         }
     }
 
+    public void SetOwningPlayerObject(GameObject owner)
+    {
+        _owningPlayerObject = owner;
+    }
+
+    public bool GetIsStuck()
+    {
+        return _isStuck;
+    }
+
     protected void OnSpikeCollision(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (collision.gameObject == _owningPlayerObject && _canHitOwner == false)
+            {
+                return;
+            }
+            else
+            {
+                // damage logic
+                Debug.Log("spike player");
+                DestroyObject();
+            }
+        }
+
+        if (collision.gameObject.CompareTag("ThrownWeapon"))
+        {
+            Debug.Log("spike thrown weapon");
+            DestroyObject();
+            return;
+        }
+
+
         if (_isStuck == false)
         {
             _isStuck = true;
 
+            _frontSpikeHitBox.gameObject.SetActive(false);
             _backSpikeHitBox.gameObject.SetActive(true);
 
             _rb.bodyType = RigidbodyType2D.Kinematic;
@@ -99,17 +154,25 @@ public class ThrownWeapon : MonoBehaviour
 
             if (_layerMaskChangedToStuck == false)
             {
-
+                _frontSpikeHitBox.ChangeIncludeLayerMask(_frontSpikeLlayerMaskWhileStuck);
+                _backSpikeHitBox.ChangeIncludeLayerMask(_backSpikeLayerMaskWhileStuck);
+                _shaftHitBox.ChangeIncludeLayerMask(_shaftLayerMaskWhileStuck);
             }
         }
     }
 
     protected void OnShaftCollision(Collision2D collision)
     {
-
+        if (collision.gameObject.CompareTag("ThrownWeapon"))
+        {
+            // kill this mf
+            Debug.Log("shaft");
+            DestroyObject();
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void DestroyObject()
     {
+        Destroy(gameObject);
     }
 }
