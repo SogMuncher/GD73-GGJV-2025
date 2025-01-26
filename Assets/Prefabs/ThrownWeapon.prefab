@@ -34,6 +34,37 @@ Transform:
   - {fileID: 3499023126768713824}
   m_Father: {fileID: 8540173179725607673}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1444421405391775381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 661242858275896048}
+  m_Layer: 15
+  m_Name: TrailAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &661242858275896048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444421405391775381}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6525705849868905676}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2691685587547050328
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,6 +183,9 @@ MonoBehaviour:
       Data3: 875174843
       Data4: 1166712487
     Path: event:/SFX/Bubbles/Water Plop/Water Plop
+  _trailPrefab: {fileID: 1813119774171087128, guid: 4a027a5a223da2f4c8796ec499fa4d16, type: 3}
+  _trailAnchor: {fileID: 661242858275896048}
+  _trailObject: {fileID: 0}
   thisWeapon: {fileID: 0}
 --- !u!61 &2297569559314318966
 BoxCollider2D:
@@ -418,6 +452,7 @@ Transform:
   m_Children:
   - {fileID: 2994846502840695064}
   - {fileID: 3748037433882507947}
+  - {fileID: 661242858275896048}
   m_Father: {fileID: 8540173179725607673}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5772150791978950981

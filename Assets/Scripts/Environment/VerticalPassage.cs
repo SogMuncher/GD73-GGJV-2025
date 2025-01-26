@@ -7,7 +7,17 @@ public class VerticalPassage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        // if the object is a thrown weapon
+        bool isWeapon = false;
+        ThrownWeapon weapon = null;
+        if (collision.gameObject.layer == 15)
+        {
+            isWeapon = true;
+            weapon = collision.attachedRigidbody.GetComponent<ThrownWeapon>();
+
+            weapon.DetachParticle();
+        }
+
         if (collision.gameObject.layer != 3)
         {
             // Get the collision object's initial X position
@@ -18,6 +28,12 @@ public class VerticalPassage : MonoBehaviour
             Vector3 newPosition = new Vector3(collisionInitialX, _connector.position.y, _connector.position.z);
             newPosition.x = collisionInitialX; // Maintain the collision object's initial X
             collision.gameObject.transform.position = newPosition;
+
+        }
+
+        if (isWeapon)
+        {
+            weapon._trailObject = Instantiate(weapon._trailPrefab, weapon._trailAnchor.position, Quaternion.identity, weapon._trailAnchor);
         }
     }
 }
