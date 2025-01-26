@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -16,6 +17,12 @@ public class GameManager : MonoBehaviour
     private PlayerInput playerInput;
 
     public TextMeshProUGUI[] playerScoreTexts;
+    public TextMeshProUGUI WinText;
+
+    public UnityEvent OnWin;
+
+    
+    [SerializeField]private float _maxScore = 2;
 
     private void Awake()
     {
@@ -42,6 +49,16 @@ public class GameManager : MonoBehaviour
         {
             playerScores[playerIndex]++;
             UpdateUIScore();
+
+            if (playerScores[0] == 2)
+            {
+                Win("Player 1 wins!");
+            }
+            if (playerScores[1] == 2)
+            {
+                Win("Player 2 wins!");
+            }
+
         }
     }
 
@@ -62,5 +79,11 @@ public class GameManager : MonoBehaviour
         {
             playerScoreTexts[i].text = "Player " + (i + 1) + ": " + playerScores[i];
         }
+    }
+
+    public void Win(string winnerString)
+    {
+        OnWin.Invoke();
+        WinText.text = winnerString;
     }
 }
