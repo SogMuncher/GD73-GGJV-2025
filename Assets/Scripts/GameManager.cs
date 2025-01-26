@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     // Function to increment player score based on player index
     public void IncrementPlayerScore(int playerIndex)
     {
-        StartCoroutine(CallDestroyWeapons());
+        
         if (playerIndex >= 0 && playerIndex < playerScores.Length)
         {
             playerScores[playerIndex]++;
@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
                 playerScores[0] = 0;
                 UpdateUIScore();
                 OnRoundEnd.Invoke();
+                StartCoroutine(CallDestroyWeapons());
                 StartCoroutine(RoundStart());
             }
             if (playerScores[1] == 2)
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviour
                 playerScores[1] = 0;
                 UpdateUIScore();
                 OnRoundEnd.Invoke();
+                StartCoroutine(CallDestroyWeapons());
                 StartCoroutine(RoundStart());
             }
 
@@ -113,8 +115,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CallDestroyWeapons()
     {
-        yield return new WaitForSeconds(0.5f);
+        
         DestroyWeapons();
+        yield break;
     }
 
     // Function to get player score based on player index
