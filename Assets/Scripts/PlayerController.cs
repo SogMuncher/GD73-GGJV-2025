@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     protected float _airControl;
 
+    [SerializeField]
+    protected float _playerBounceForce = 5f;
+
     [Header("Attacking")]
     [SerializeField]
     protected GameObject _weapon;
@@ -31,6 +34,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     protected float _aimSpeed;
+
+    [SerializeField]
+    protected GameObject _thrownWeaponPrefab;
 
     //[Header("Aim Spring Settings")]
     //[SerializeField]
@@ -55,6 +61,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     protected float _springDampStrength;
 
+    [Header("Sticky Settings")]
+    [SerializeField]
+    private bool _isSticky;
+
+    [SerializeField]
+    private InputAction _stick;
+
     protected Rigidbody2D _rb;
     //protected Rigidbody2D _weaponRB;
     protected Vector2 _velocity;
@@ -72,6 +85,8 @@ public class PlayerController : MonoBehaviour
     protected Vector2 _aimInput;
     protected float _weaponRotationY;
 
+    protected GameObject _lastThrownWeapon;
+
     protected Health _health;
 
     public UnityEvent OnPaused;
@@ -87,7 +102,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        _stick = GetComponent<PlayerInput>().actions["Stick"];
     }
 
     // Update is called once per frame
@@ -103,6 +118,45 @@ public class PlayerController : MonoBehaviour
 
         _weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, 90 * _aimInput.y));
         //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, rotationZ));
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            Vector2 direction = ((collision.transform.position) - (this.transform.position)).normalized;
+
+            _rb.AddForce(-direction * _playerBounceForce, ForceMode2D.Impulse);
+
+
+        }
+
+        if (collision.gameObject.layer == 3)
+        {
+            _isSticky = true;
+        }
+
+       
+
+        Debug.Log(collision);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 3)
+        {
+            _isSticky = false;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            Vector2 direction = ((collision.transform.position) - (this.transform.position)).normalized;
+
+            _rb.AddForce(-direction * _playerBounceForce, ForceMode2D.Impulse);
+
+            
+        }
     }
 
     protected void FixedUpdate()
@@ -246,6 +300,15 @@ public class PlayerController : MonoBehaviour
 
     protected void OnFire()
     {
+        _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, transform.position, _weapon.transform.rotation);
+
+        Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
+
+        if (thrownRB != null)
+        {
+            thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
+        }
+
         Debug.Log($"Player {_playerInput.playerIndex} Fired");
     }
 
@@ -259,6 +322,29 @@ public class PlayerController : MonoBehaviour
         _rb.AddForceY(_jumpStrength, ForceMode2D.Impulse);
 
         Debug.Log($"Player {_playerInput.playerIndex} Jumped");
+    }
+    public void OnStick()
+    {
+       if(_isSticky == true)
+        {
+            _rb.constraints = RigidbodyConstraints2D.FreezePosition;
+
+        } 
+
+        
+
+        
+
+       
+    }
+
+    public void OnUnstick()
+    {
+        if(_isSticky == true)
+        {
+            _rb.constraints = RigidbodyConstraints2D.None;
+
+        }
     }
 
     private void OnDrawGizmos()
