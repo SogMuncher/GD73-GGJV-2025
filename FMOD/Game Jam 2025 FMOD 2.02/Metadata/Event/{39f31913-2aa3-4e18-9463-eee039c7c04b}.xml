@@ -53,7 +53,7 @@
 			<destination>{22467152-d884-4a9a-8e01-5e52252f52d3}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{add12ad3-a1c0-48f7-bb3c-a10163ea6452}</destination>
+			<destination>{7c6b2d33-2974-4aeb-9978-0255fafbc3c7}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{84f680e4-4582-4568-9903-44fedd7d77b4}" />
@@ -72,6 +72,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{6f01a9af-9414-413d-b25b-3b50865238fa}">
+		<relationship name="modulators">
+			<destination>{7a299a3b-e7fb-4b49-ada1-4407c41ba394}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{60d70868-085b-4c1e-85d9-55892ded2be2}</destination>
 		</relationship>
@@ -116,9 +119,15 @@
 			<destination>{6f01a9af-9414-413d-b25b-3b50865238fa}</destination>
 		</relationship>
 	</object>
+	<object class="RandomizerModulator" id="{7a299a3b-e7fb-4b49-ada1-4407c41ba394}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{60d70868-085b-4c1e-85d9-55892ded2be2}">
 		<relationship name="effects">
 			<destination>{1bb07848-91fa-49a9-98ab-e5813fad3629}</destination>
+			<destination>{0e6c447f-0adc-4db2-bef5-910bed734fdb}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{95219adf-e8e2-44b4-b4db-8b21fbc9b54a}" />
@@ -159,6 +168,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{36422acd-3af3-4bc6-abc7-0fd3709f5e8d}" />
 	<object class="MixerBusFader" id="{1bb07848-91fa-49a9-98ab-e5813fad3629}" />
+	<object class="PitchShifterEffect" id="{0e6c447f-0adc-4db2-bef5-910bed734fdb}">
+		<property name="pitch">
+			<value>1</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{5d5da925-09ad-4d50-b0da-4cf94f81ca19}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{3f9c7b93-3494-45e8-88a0-622426eb269e}" />
 	<object class="SFXReverbEffect" id="{1f680265-eb66-4888-a63a-711b7970696e}">
 		<property name="decayTime">
@@ -166,6 +183,14 @@
 		</property>
 		<property name="wetLevel">
 			<value>-10</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{5d5da925-09ad-4d50-b0da-4cf94f81ca19}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>40.5</value>
 		</property>
 	</object>
 </objects>
