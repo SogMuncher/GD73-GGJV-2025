@@ -40,10 +40,11 @@ public class GameManager : MonoBehaviour
         playerInputManager = GetComponent<PlayerInputManager>();
 
         // Initialize player scores array 
-        playerScores = new int[playerInputManager.playerCount];
-        playerRoundsWon = new int[playerInputManager.playerCount];
+        playerScores = new int[2];
+        playerRoundsWon = new int[2];
+        Debug.Log(playerInputManager.playerCount);
 
-        if (playerScoreTexts.Length != playerInputManager.playerCount)
+        if (playerScoreTexts.Length != 2)
         {
             Debug.LogError(" Number of score text fields does not match the number of platers");
             return;
