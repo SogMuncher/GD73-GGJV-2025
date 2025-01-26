@@ -66,6 +66,7 @@ public class ThrownWeapon : MonoBehaviour
     protected Vector2 _velocity;
 
     private GameManager gameManager;
+    public ThrownWeapon thisWeapon;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -83,6 +84,7 @@ public class ThrownWeapon : MonoBehaviour
         _backSpikeHitBox.gameObject.SetActive(false);
 
         gameManager = FindAnyObjectByType<GameManager>();
+        thisWeapon = GetComponent<ThrownWeapon>();
     }
 
     // Update is called once per frame
@@ -172,7 +174,7 @@ public class ThrownWeapon : MonoBehaviour
 
             _frontSpikeHitBox.gameObject.SetActive(false);
             _backSpikeHitBox.gameObject.SetActive(true);
-
+            AddThrownWeapon(thisWeapon);
             _rb.bodyType = RigidbodyType2D.Kinematic;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
@@ -196,13 +198,13 @@ public class ThrownWeapon : MonoBehaviour
         }
     }
 
-    protected void DestroyObject()
+    public void DestroyObject()
     {
         Destroy(gameObject);
     }
 
-    protected void AddThrownWeapon()
+    protected void AddThrownWeapon(ThrownWeapon weapon)
     {
-        gameManager.
+        gameManager.AddWeaponsToList(weapon);
     }
 }
