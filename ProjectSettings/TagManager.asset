@@ -57,5 +57,8 @@ TagManager:
   - name: Hazards
     uniqueID: 1413518691
     locked: 0
+  - name: Player
+    uniqueID: 3949784353
+    locked: 0
   m_RenderingLayers:
   - Default

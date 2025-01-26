@@ -1,5 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class ThrownWeapon : MonoBehaviour
@@ -37,6 +39,11 @@ public class ThrownWeapon : MonoBehaviour
     [Header("Misc")]
     [SerializeField]
     protected float _owningPlayerInvulnerabilityTime = .5f;
+
+    [Header("Impact")]
+    [SerializeField]
+    EventReference _impactSFX;
+    EventInstance _impactInstance;
 
     protected Rigidbody2D _rb;
 
@@ -120,6 +127,8 @@ public class ThrownWeapon : MonoBehaviour
 
     protected void OnSpikeCollision(Collision2D collision)
     {
+        RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
+
         if (collision.gameObject.CompareTag("Player"))
         {
             if (collision.gameObject == _owningPlayerObject && _canHitOwner == false)
