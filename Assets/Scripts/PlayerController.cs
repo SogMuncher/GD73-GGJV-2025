@@ -165,23 +165,14 @@ public class PlayerController : MonoBehaviour
             _isSticky = false;
         }
 
-        if (collision.gameObject.layer == 3)
-        {
-            _isSticky = true;
-        }
+       
 
        
 
         Debug.Log(collision);
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 3)
-        {
-            _isSticky = false;
-        }
-    }
+
 
     protected void FixedUpdate()
     {
