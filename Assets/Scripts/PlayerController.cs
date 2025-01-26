@@ -233,6 +233,14 @@ public class PlayerController : MonoBehaviour
 
     protected void CalculateSpringForces()
     {
+        if (_rayClosestHit.rigidbody.TryGetComponent<ThrownWeapon>(out ThrownWeapon thrownWeapon))
+        {
+            if (thrownWeapon.GetIsStuck() == false)
+            {
+                return;
+            }
+        }
+
         Vector2 otherVelocity = Vector2.zero;
         Rigidbody2D hitBody = _rayClosestValidRigidBody;
         if ( hitBody != null )
@@ -290,6 +298,7 @@ public class PlayerController : MonoBehaviour
     protected void OnFire()
     {
         _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, transform.position, _weapon.transform.rotation);
+        _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
 
         Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
 
