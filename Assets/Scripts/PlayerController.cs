@@ -135,10 +135,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 _startLocation;
 
-  
-
-
-
     protected void OnEnable()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -150,7 +146,6 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
         _health.OnDamagedEvent.AddListener(OnDamaged);
         _health.OnDamagedEvent.AddListener(StartKnockback);
         _startLocation = transform.position;

@@ -23,6 +23,9 @@ public class Health : MonoBehaviour
     protected bool _canBeHurt = true;
 
     public bool CanBeHurt => _canBeHurt;
+    [SerializeField] private GameObject _damagedAnim;
+    [SerializeField] private GameObject _angryAnim;
+
 
     [HideInInspector]
     public UnityEvent OnDeathEvent;
@@ -105,10 +108,13 @@ public class Health : MonoBehaviour
     protected IEnumerator InvulnerabilityCoroutine()
     {
         _canBeHurt = false;
-
+        _damagedAnim.SetActive(!_canBeHurt);
+        _angryAnim.SetActive(!_canBeHurt);
         yield return new WaitForSeconds(_invulnerabilityTime);
 
         _canBeHurt = true;
+        _damagedAnim.SetActive(!_canBeHurt);
+        _angryAnim.SetActive(!_canBeHurt);
         yield break;
     }
 
