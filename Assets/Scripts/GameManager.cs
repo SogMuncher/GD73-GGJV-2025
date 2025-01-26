@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour
             //}
 
             
-            playerScoreTexts[i].text = "Player " + (i + 1) + ": " + playerScores[i];
+            playerScoreTexts[i].text = "Player " + (i + 1) + " HP: " + (5 - playerScores[i]);
             Transform ScoreTransform = playerScoreTexts[i].transform;
             //ScoreTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
         }
