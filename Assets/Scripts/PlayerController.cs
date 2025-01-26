@@ -91,6 +91,8 @@ public class PlayerController : MonoBehaviour
 
     public UnityEvent OnPaused;
 
+    
+
     protected void OnEnable()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -103,6 +105,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _stick = GetComponent<PlayerInput>().actions["Stick"];
+
+        
     }
 
     // Update is called once per frame
@@ -341,6 +345,7 @@ public class PlayerController : MonoBehaviour
         if(_isSticky == true)
         {
             _rb.constraints = RigidbodyConstraints2D.None;
+            _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
     }
