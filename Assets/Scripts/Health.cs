@@ -10,13 +10,13 @@ using FMODUnity;
 public class Health : MonoBehaviour
 {
     [SerializeField]
-    private float _maxHealth;
+    private float _maxHealth = 5f;
 
     [SerializeField]
-    private float _startingHealth;
+    private float _startingHealth = 3f;
 
     [SerializeField, ReadOnly]
-    private float _currentHealth;
+    private float _currentHealth = 3f;
 
     [HideInInspector]
     public UnityEvent OnDeathEvent;
@@ -28,11 +28,24 @@ public class Health : MonoBehaviour
     [SerializeField] 
     EventReference _popSFX;
 
+    [HideInInspector]
+    public UnityEvent OnDamagedEvent;
+
     private PlayerInput _playerInput;
 
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
+    }
+
+    private void Start()
+    {
+        _currentHealth = _startingHealth;
+    }
+
+    public void ResetHealth()
+    {
+        _currentHealth = _startingHealth;
     }
 
     public float GetCurrentHealth()
@@ -53,8 +66,8 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         _currentHealth -= damageAmount;
-         RuntimeManager.PlayOneShot("_takeDamageSFX", transform.position); // Play take damage sfx 
-        
+        OnDamagedEvent.Invoke();
+
         if (_currentHealth <= 0)
         {
             RuntimeManager.PlayOneShot("_popSFX", transform.position); // Play pop sound when health reaches 0
