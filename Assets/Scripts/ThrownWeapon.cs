@@ -59,6 +59,9 @@ public class ThrownWeapon : MonoBehaviour
     public Transform _trailAnchor;
     public GameObject _trailObject;
 
+    [SerializeField]
+    protected GameObject _clashParticlePrefab;
+
     protected Rigidbody2D _rb;
 
     protected GameObject _owningPlayerObject;
@@ -70,6 +73,8 @@ public class ThrownWeapon : MonoBehaviour
     protected bool _isFlipped = false;
 
     protected Vector2 _velocity;
+
+    protected Vector3 _lastHitLocation;
 
     private GameManager gameManager;
     public ThrownWeapon thisWeapon;
@@ -162,7 +167,7 @@ public class ThrownWeapon : MonoBehaviour
                     RuntimeManager.PlayOneShot(_takeDamageSFX, transform.position); // Play take damage sfx when spike hits player
                     health.TakeDamage(1f, transform.position);
                 }
-
+                _lastHitLocation = collision.GetContact(0).point;
                 DestroyObject();
             }
         }
@@ -171,6 +176,7 @@ public class ThrownWeapon : MonoBehaviour
         {
             RuntimeManager.PlayOneShot(_spikeToSpikeSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide
             Debug.Log("spike thrown weapon");
+            _lastHitLocation = collision.GetContact(0).point;
             DestroyObject();
             return;
         }
@@ -202,6 +208,7 @@ public class ThrownWeapon : MonoBehaviour
         {
             // kill this mf
             Debug.Log("shaft");
+            _lastHitLocation = collision.GetContact(0).point;
             DestroyObject();
         }
     }
@@ -220,6 +227,8 @@ public class ThrownWeapon : MonoBehaviour
         {
             _trailObject.transform.parent = null;
         }
+
+        Instantiate(_clashParticlePrefab, _lastHitLocation, Quaternion.identity);
 
         Destroy(gameObject);
     }
