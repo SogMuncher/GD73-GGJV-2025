@@ -1,18 +1,19 @@
 using UnityEngine;
 
-public class Passages : MonoBehaviour
+public class VerticalPassage : MonoBehaviour
 {
+
     [SerializeField] private Transform _connector;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Get the collision object's initial X position
-        float collisionInitialY = collision.gameObject.transform.position.y;
-        Debug.Log(collisionInitialY);
+        float collisionInitialX = collision.gameObject.transform.position.x;
+        Debug.Log(collisionInitialX);
         Debug.Log("Collider" + collision.gameObject.name);
         // Reposition the collision object
-        Vector3 newPosition = new Vector3(_connector.position.x, collisionInitialY, _connector.position.z);
-        newPosition.y = collisionInitialY; // Maintain the collision object's initial X
+        Vector3 newPosition = new Vector3(collisionInitialX, _connector.position.x, _connector.position.z);
+        newPosition.x = collisionInitialX; // Maintain the collision object's initial X
         collision.gameObject.transform.position = newPosition;
     }
 }
