@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     protected float _playerBounceForce = 5f;
 
     [SerializeField]
+    EventReference _bounceSFX;
+
+    [SerializeField]
     EventReference _jumpSFX;
     EventInstance _jumpSFXInstance;
 
@@ -140,6 +143,8 @@ public class PlayerController : MonoBehaviour
             Vector2 direction = ((collision.transform.position) - (this.transform.position)).normalized;
 
             _rb.AddForce(-direction * _playerBounceForce, ForceMode2D.Impulse);
+
+            RuntimeManager.PlayOneShot(_bounceSFX, transform.position); // Play the bounce off other player sound
 
 
         }
