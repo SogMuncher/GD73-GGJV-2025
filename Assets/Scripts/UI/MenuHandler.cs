@@ -17,8 +17,8 @@ public class MenuHandler : MonoBehaviour
         Application.Quit();
     }
 
-    public void OnSelect(InputAction.CallbackContext context)
+    public void ResumeTime() 
     {
-       
+       Time.timeScale = 1f;
     }
 }
