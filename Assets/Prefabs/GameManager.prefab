@@ -1138,6 +1138,13 @@ MonoBehaviour:
       Data3: 1095183280
       Data4: -916365880
     Path: event:/Countdown
+  _roundStartSFX:
+    Guid:
+      Data1: -717682821
+      Data2: 1208427050
+      Data3: 58672262
+      Data4: -1281305035
+    Path: event:/Round Start
   _maxScore: 5
   _scoreRectTransform: {fileID: 0}
   _pause1RectTransform: {fileID: 0}

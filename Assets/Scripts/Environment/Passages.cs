@@ -8,7 +8,6 @@ public class Passages : MonoBehaviour
     {
         if(collision.gameObject.layer != 3)
         {
-
             // Get the collision object's initial X position
             float collisionInitialY = collision.gameObject.transform.position.y;
             Debug.Log(collisionInitialY);
