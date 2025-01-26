@@ -56,5 +56,8 @@ TagManager:
   - name: Hazards
     uniqueID: 1413518691
     locked: 0
+  - name: FrontDecoration
+    uniqueID: 286533213
+    locked: 0
   m_RenderingLayers:
   - Default
