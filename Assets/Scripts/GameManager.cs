@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] EventReference _winSFX;
     [SerializeField] EventReference _countdownSFX;
+    
+    [SerializeField] EventReference _roundStartSFX;
 
     
     [SerializeField]private float _maxScore = 2;
@@ -179,6 +181,8 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator RoundStart()
     {
+        RuntimeManager.PlayOneShot(_roundStartSFX, transform.position); //Play round start sound
+        
         Transform CountDownTransform = RoundStartText.transform;
         Time.timeScale = 0f;
         RoundStartText.text = "Round Starting in";
