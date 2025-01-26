@@ -30,6 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7846725418539080919}
+  - {fileID: 5592549869833505219}
   - {fileID: 1054053575870978939}
   - {fileID: 5250830785965602809}
   m_Father: {fileID: 6562995676205638332}
@@ -121,6 +122,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1895589666911653211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5592549869833505219}
+  m_Layer: 10
+  m_Name: ThrowWeaponSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5592549869833505219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895589666911653211}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.38268343, y: 0.92387956, z: -0, w: 0}
+  m_LocalPosition: {x: 0.26, y: 0.2, z: 0}
+  m_LocalScale: {x: 1.4999999, y: 1.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8736142392452314665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3025151379226246530
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +251,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7846725418539080919}
   - component: {fileID: 2629043422766796208}
+  - component: {fileID: 5808856294230022713}
+  - component: {fileID: 536875723449874904}
   m_Layer: 0
   m_Name: player1spear
   m_TagString: Untagged
@@ -235,8 +269,8 @@ Transform:
   m_GameObject: {fileID: 3064984788642988677}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0.92387956, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
-  m_LocalScale: {x: 1.2499998, y: 1.25, z: 1.2500004}
+  m_LocalPosition: {x: 0.26, y: 0.2, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8736142392452314665}
@@ -296,6 +330,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &5808856294230022713
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3064984788642988677}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 10
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &536875723449874904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3064984788642988677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 844ed36597f96d64fb4a0edc5bd8aa55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectToFollow: {fileID: 881098138845070590}
+  _anchorPositionOffset: {x: 0.3, y: 0.2, z: 0}
+  _followStrength: 200
+  _followDampStrength: 10
 --- !u!1 &4136378268206318730
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +460,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &7915175243847821112
+--- !u!1 &4863520888203420703
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,37 +468,88 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 887822982016587084}
-  - component: {fileID: 8448190119608026015}
-  m_Layer: 0
-  m_Name: Bubble_0
+  - component: {fileID: 1981761761739537336}
+  - component: {fileID: 8361380293460495168}
+  m_Layer: 10
+  m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &887822982016587084
+--- !u!4 &1981761761739537336
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7915175243847821112}
+  m_GameObject: {fileID: 4863520888203420703}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1678728019295922676}
+  m_Father: {fileID: 6562995676205638332}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8361380293460495168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863520888203420703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab1a3bba80a5d442bd95ca7d4d76922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSquash: {x: 1.5, y: 0.5, z: 0}
+  _speedForMaxSquash: 20
+  _rb: {fileID: 7006715837357233703}
+  _counterRotationTransform: {fileID: 1678728019295922676}
+  _spinStrength: 0.01
+  _angularDampening: 0.99
+--- !u!1 &7193681690592756869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1678728019295922676}
+  - component: {fileID: 794191017644118540}
+  m_Layer: 0
+  m_Name: player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1678728019295922676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7193681690592756869}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6562995676205638332}
+  m_Father: {fileID: 1981761761739537336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8448190119608026015
+--- !u!212 &794191017644118540
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7915175243847821112}
+  m_GameObject: {fileID: 7193681690592756869}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -456,15 +584,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -345182943
-  m_SortingLayer: 7
+  m_SortingLayerID: 337064255
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5712959122012955994, guid: da1795ad4ac5aec4d9c5e4e297040f8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f74106f57e517de4d8af7caee86f3547, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -504,7 +632,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 887822982016587084}
+  - {fileID: 1981761761739537336}
   - {fileID: 8736142392452314665}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -640,6 +768,7 @@ MonoBehaviour:
   _throwStrength: 20
   _aimSpeed: 1.25
   _thrownWeaponPrefab: {fileID: 2691685587547050328, guid: bc5495dd58430da479e3d2a48cf5fa52, type: 3}
+  _thrownWeaponSpawnPoint: {fileID: 5592549869833505219}
   _throwSFX:
     Guid:
       Data1: -54249715
@@ -652,8 +781,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 32777
   _springRestHeight: 0.8
-  _springStrength: 100
-  _springDampStrength: 10
+  _springStrength: 50
+  _springDampStrength: 5
   _isSticky: 0
   _stick:
     m_Name: Stick

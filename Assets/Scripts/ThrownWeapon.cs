@@ -35,7 +35,7 @@ public class ThrownWeapon : MonoBehaviour
     protected LayerMask _shaftLayerMaskExcludeWhileFlying;
 
     [SerializeField]
-    protected LayerMask _shaftLayerMaskWhileStuck;
+    protected LayerMask _shaftLayerMaskExcludeWhileStuck;
 
     [Header("Misc")]
     [SerializeField]
@@ -182,7 +182,7 @@ public class ThrownWeapon : MonoBehaviour
             {
                 _frontSpikeHitBox.ChangeIncludeLayerMask(_frontSpikeLlayerMaskWhileStuck);
                 _backSpikeHitBox.ChangeIncludeLayerMask(_backSpikeLayerMaskWhileStuck);
-                _shaftHitBox.ChangeIncludeLayerMask(_shaftLayerMaskWhileStuck);
+                _shaftHitBox.ChangeExcludeLayerMask(_shaftLayerMaskExcludeWhileStuck);
             }
 
         }
