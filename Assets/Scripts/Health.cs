@@ -4,17 +4,25 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using FMOD.Studio;
+using System.Collections;
 
 public class Health : MonoBehaviour
 {
     [SerializeField]
     private float _maxHealth = 5f;
+    public float MaxHealth => _maxHealth;
 
     [SerializeField]
     private float _startingHealth = 3f;
 
     [SerializeField, ReadOnly]
     private float _currentHealth = 3f;
+
+    [SerializeField]
+    protected float _invulnerabilityTime = 1f;
+    protected bool _canBeHurt = true;
+
+    public bool CanBeHurt => _canBeHurt;
 
     [HideInInspector]
     public UnityEvent OnDeathEvent;
@@ -30,7 +38,7 @@ public class Health : MonoBehaviour
     private int _playerIndex;
 
     [HideInInspector]
-    public UnityEvent OnDamagedEvent;
+    public UnityEvent<Vector3> OnDamagedEvent;
 
     private PlayerInput _playerInput;
 
@@ -64,16 +72,37 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, Vector3 damagerPosition)
     {
+        if (_canBeHurt == false)
+        {
+            return;   
+        }
+
         _currentHealth -= damageAmount;
-        OnDamagedEvent.Invoke();
+        OnDamagedEvent.Invoke(damagerPosition);
 
         if (_currentHealth <= 0)
         {
             RuntimeManager.PlayOneShot(_popSFX, transform.position);
             Die();
         }
+        else
+        {
+            // after taking damage start invulnerability tinme ONLY IF NOT DEAD
+            StartCoroutine(InvulnerabilityCoroutine());
+        }
+    }
+
+
+    protected IEnumerator InvulnerabilityCoroutine()
+    {
+        _canBeHurt = false;
+
+        yield return new WaitForSeconds(_invulnerabilityTime);
+
+        _canBeHurt = true;
+        yield break;
     }
 
     protected virtual void Die()
