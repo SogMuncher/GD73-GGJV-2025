@@ -47,6 +47,10 @@ public class ThrownWeapon : MonoBehaviour
     
     [SerializeField]
     EventReference _spikeToSpikeSFX;
+    
+    [SerializeField]
+    EventReference _takeDamageSFX;
+    EventInstance _takeDamageInstance;
 
     protected Rigidbody2D _rb;
 
@@ -134,6 +138,7 @@ public class ThrownWeapon : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
+            RuntimeManager.PlayOneShot(_takeDamageSFX, transform.position); // Play take damage sfx when spike hits player
             if (collision.gameObject == _owningPlayerObject && _canHitOwner == false)
             {
                 return;
