@@ -143,7 +143,14 @@ MonoBehaviour:
       Data2: 1255680467
       Data3: 806513806
       Data4: 864292989
-    Path: event:/SFX/Impact/Sword Hit/Spike To Spike
+    Path: event:/SFX/Impact/Spike To Spike
+  _takeDamageSFX:
+    Guid:
+      Data1: 1277613011
+      Data2: 1298794278
+      Data3: 875174843
+      Data4: 1166712487
+    Path: event:/SFX/Bubbles/Water Plop/Water Plop
 --- !u!1 &5462793544920467373
 GameObject:
   m_ObjectHideFlags: 0
