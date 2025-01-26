@@ -49,6 +49,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Stick",
+                    "type": "Button",
+                    "id": "9f2569f4-bb12-48cf-97f6-a1a957231c0d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Unstick",
+                    "type": "Button",
+                    "id": "c9ff4126-c0c7-47f2-ae8e-53f1b2b964cb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -91,17 +109,6 @@
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Generic Controller Scheme",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4d645e67-c628-4f81-931d-333e45b03afe",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "AxisDeadzone",
                     "groups": ";Generic Controller Scheme",
                     "action": "Jump",
                     "isComposite": false,
@@ -159,6 +166,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c53deb6-dadd-4fb8-8937-add78adcfe67",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f465ce34-36af-48ac-b130-fb196afeceb6",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Unstick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

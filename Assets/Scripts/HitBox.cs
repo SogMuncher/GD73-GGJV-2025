@@ -1,0 +1,26 @@
+using UnityEngine;
+using UnityEngine.Events;
+
+[RequireComponent (typeof(Collider2D))]
+public class HitBox : MonoBehaviour
+{
+    [HideInInspector]
+    public UnityEvent<Collision2D> OnCollisionEnterEvent;
+
+    protected Collider2D _collider;
+
+    private void OnEnable()
+    {
+        _collider = GetComponent<Collider2D>();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        OnCollisionEnterEvent.Invoke(collision);
+    }
+
+    public void ChangeLayerMask(LayerMask layerMask)
+    {
+        _collider.includeLayers = layerMask;
+    }
+}
