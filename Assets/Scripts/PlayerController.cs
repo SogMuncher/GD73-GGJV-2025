@@ -57,6 +57,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     protected GameObject _thrownWeaponPrefab;
 
+    [SerializeField]
+    protected Transform _thrownWeaponSpawnPoint;
+
     //[Header("Aim Spring Settings")]
     //[SerializeField]
     //protected float _aimSpringStrength;
@@ -347,7 +350,7 @@ public class PlayerController : MonoBehaviour
         {
             _currentAmmo--;
 
-            _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, transform.position, _weapon.transform.rotation);
+            _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, _thrownWeaponSpawnPoint.position, _weapon.transform.rotation);
             _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
 
             Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
@@ -425,6 +428,8 @@ public class PlayerController : MonoBehaviour
         _weapon.SetActive(true);
         _currentAmmo = _maxAmmo;
         _isReloading = false;
+
+        StartCoroutine(ThrowCooldownCoroutine());
         yield break;
     }
 
@@ -432,7 +437,19 @@ public class PlayerController : MonoBehaviour
     {
         _throwIsOnCooldown = true;
 
-        yield return new WaitForSeconds(_throwCooldownTime);
+        float time = 0f;
+
+        while (time < _throwCooldownTime)
+        {
+            _weapon.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, time / _throwCooldownTime);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        _weapon.transform.localScale = Vector3.one;
+
+        //yield return new WaitForSeconds(_throwCooldownTime);
 
         _throwIsOnCooldown = false;
         yield break;

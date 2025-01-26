@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using TMPro;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     // PlayerInputManager reference
     private PlayerInputManager playerInputManager;
     private PlayerInput playerInput;
+    private List<ThrownWeapon> thrownWeapon = new List<ThrownWeapon>();
 
     public TextMeshProUGUI[] playerScoreTexts;
     public TextMeshProUGUI[] playerRoundsWonTexts;
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
     // Function to increment player score based on player index
     public void IncrementPlayerScore(int playerIndex)
     {
+        StartCoroutine(CallDestroyWeapons());
         if (playerIndex >= 0 && playerIndex < playerScores.Length)
         {
             playerScores[playerIndex]++;
@@ -82,19 +85,16 @@ public class GameManager : MonoBehaviour
                 UpdateUIScore();
                 OnRoundEnd.Invoke();
                 StartCoroutine(RoundStart());
-
-
-
             }
 
             Debug.Log(playerScores[0]);
             Debug.Log(playerScores[1]);
-
         }
     }
 
     public void IncrementPlayerRoundsWon(int playerIndex)
     {
+        
         if (playerIndex >= 0 && playerIndex < playerScores.Length)
         {
             playerRoundsWon[playerIndex]++;
@@ -108,8 +108,13 @@ public class GameManager : MonoBehaviour
             {
                 Win("Player 2's really LIKE that");
             }
-
         }
+    }
+
+    private IEnumerator CallDestroyWeapons()
+    {
+        yield return new WaitForSeconds(0.5f);
+        DestroyWeapons();
     }
 
     // Function to get player score based on player index
@@ -190,5 +195,22 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
 
         yield break;
+    }
+
+    public void AddWeaponsToList(ThrownWeapon weapon)
+    {
+        thrownWeapon.Add(weapon);
+    }
+
+    private void DestroyWeapons()
+    {
+        foreach (ThrownWeapon weapon in thrownWeapon)
+        {
+            if (weapon != null)
+            {
+                weapon.DestroyObject();
+            }
+        }
+        thrownWeapon.Clear();
     }
 }
