@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(RoundStart());
         ScoreIntro();
+
+        
     }
 
     // Function to increment player score based on player index
@@ -174,9 +176,11 @@ public class GameManager : MonoBehaviour
     
     public IEnumerator RoundStart()
     {
-        
+        Transform CountDownTransform = RoundStartText.transform;
         Time.timeScale = 0f;
         RoundStartText.text = "Round Starting in";
+        CountDownTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
+
 
         RuntimeManager.PlayOneShot(_countdownSFX, transform.position); //Play countdown sound
 
@@ -184,22 +188,29 @@ public class GameManager : MonoBehaviour
 
 
         RoundStartText.text = "3";
+        CountDownTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
+
 
         yield return new WaitForSecondsRealtime(_roundStartTimer);
 
 
         RoundStartText.text = "2";
+        CountDownTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
 
         yield return new WaitForSecondsRealtime(_roundStartTimer);
 
 
 
         RoundStartText.text = "1";
+        CountDownTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
+
 
         yield return new WaitForSecondsRealtime(_roundStartTimer);
 
 
         RoundStartText.text = "Fight";
+        CountDownTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
+
 
         Time.timeScale = 1f;
 
