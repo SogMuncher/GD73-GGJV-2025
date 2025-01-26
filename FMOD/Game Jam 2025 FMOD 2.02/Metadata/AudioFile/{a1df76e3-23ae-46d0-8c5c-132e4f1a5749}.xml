@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a1df76e3-23ae-46d0-8c5c-132e4f1a5749}">
+		<property name="assetPath">
+			<value>Water Plop_02 8bit.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.45600000000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5960e3ec-e478-4d13-bc2c-f125b1d6cf87}</destination>
+		</relationship>
+	</object>
+</objects>
