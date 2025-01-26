@@ -1011,26 +1011,10 @@ MonoBehaviour:
   playerRoundsWonTexts:
   - {fileID: 3471563190425320603}
   - {fileID: 3915613233014430493}
-  P1WinText: {fileID: 0}
-  P2WinText: {fileID: 0}
+  WonText: {fileID: 0}
   RoundStartText: {fileID: 1536096179491731664}
   _roundStartTimer: 1
-  OnP1Win:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnP2Win:
+  OnWin:
     m_PersistentCalls:
       m_Calls: []
   OnRoundEnd:

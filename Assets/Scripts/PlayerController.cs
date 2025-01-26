@@ -71,6 +71,9 @@ public class PlayerController : MonoBehaviour
     EventReference _throwSFX;
     EventInstance _throwSFXInstance;
 
+    [SerializeField]
+    EventReference _reloadSFX;
+
     [Header("Spring Settings")]
     [SerializeField]
     protected float _rayMaxDistance;
@@ -428,6 +431,8 @@ public class PlayerController : MonoBehaviour
         _weapon.SetActive(true);
         _currentAmmo = _maxAmmo;
         _isReloading = false;
+        RuntimeManager.PlayOneShot(_reloadSFX, transform.position); // Play reload sound when ammo is max ammo
+
 
         StartCoroutine(ThrowCooldownCoroutine());
         yield break;

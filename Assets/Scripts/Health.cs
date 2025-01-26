@@ -71,7 +71,7 @@ public class Health : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            RuntimeManager.PlayOneShot("_popSFX", transform.position); // Play pop sound when health reaches 0
+            RuntimeManager.PlayOneShot(_popSFX, transform.position);
             Die();
         }
     }

@@ -776,6 +776,13 @@ MonoBehaviour:
       Data3: -2110805588
       Data4: -1296817943
     Path: event:/SFX/Spike Throw/Spike Throw
+  _reloadSFX:
+    Guid:
+      Data1: -705360180
+      Data2: 1080344534
+      Data3: -279977538
+      Data4: 1598991483
+    Path: event:/SFX/Spike Reload
   _rayMaxDistance: 1
   _rayLayerMask:
     serializedVersion: 2
@@ -828,6 +835,7 @@ MonoBehaviour:
       Data3: 1643696810
       Data4: 500737094
     Path: event:/SFX/Bubbles/Water Plop/Water Plop 8bit
+  _playerIndex: 0
   OnDamagedEvent:
     m_PersistentCalls:
       m_Calls: []

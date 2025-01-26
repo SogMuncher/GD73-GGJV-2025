@@ -140,7 +140,7 @@ public class ThrownWeapon : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            RuntimeManager.PlayOneShot(_takeDamageSFX, transform.position); // Play take damage sfx when spike hits player
+            
             if (collision.gameObject == _owningPlayerObject && _canHitOwner == false)
             {
                 return;
@@ -152,6 +152,7 @@ public class ThrownWeapon : MonoBehaviour
 
                 if (collision.rigidbody.gameObject.TryGetComponent(out Health health))
                 {
+                    RuntimeManager.PlayOneShot(_takeDamageSFX, transform.position); // Play take damage sfx when spike hits player
                     health.TakeDamage(1f);
                 }
 
