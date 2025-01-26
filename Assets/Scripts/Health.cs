@@ -82,6 +82,13 @@ public class Health : MonoBehaviour
         _currentHealth -= damageAmount;
         OnDamagedEvent.Invoke(damagerPosition);
 
+        int playerIndex = _playerInput.playerIndex;
+
+        if (GameManager.instance != null && playerIndex >= 0)
+        {
+            GameManager.instance.IncrementPlayerScore(_playerIndex);
+        }
+
         if (_currentHealth <= 0)
         {
             RuntimeManager.PlayOneShot(_popSFX, transform.position);
@@ -109,12 +116,6 @@ public class Health : MonoBehaviour
     {
         //death logic here
         OnDeathEvent.Invoke();
-        int playerIndex = _playerInput.playerIndex;
-
-        if (GameManager.instance != null && playerIndex >= 0)
-        {
-            GameManager.instance.IncrementPlayerScore(_playerIndex);
-        }
         
     }
 }

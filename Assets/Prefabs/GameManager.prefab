@@ -771,6 +771,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _pause1RectTransform: {fileID: 0}
+  _pause2RectTransform: {fileID: 0}
+  SidePosXp1: 0
+  finalPosXp1: 0
+  SidePosXp2: 0
+  finalPosXp2: 0
+  tweenDuration: 0
 --- !u!1 &2816790899208928937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,7 +1138,13 @@ MonoBehaviour:
       Data3: 1095183280
       Data4: -916365880
     Path: event:/Countdown
-  _maxScore: 2
+  _maxScore: 5
+  _scoreRectTransform: {fileID: 0}
+  _pause1RectTransform: {fileID: 0}
+  _pause2RectTransform: {fileID: 0}
+  topPosY: 0
+  finalPosY: 0
+  tweenDuration: 0
 --- !u!114 &8231546465857718472
 MonoBehaviour:
   m_ObjectHideFlags: 0

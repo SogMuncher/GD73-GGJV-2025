@@ -490,6 +490,14 @@ public class PlayerController : MonoBehaviour
 
     protected IEnumerator DamageOnKnockbackCoroutine()
     {
+        if (_health.GetCurrentHealth() == 0)
+        {
+            _rb.constraints = RigidbodyConstraints2D.None;
+            _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            ResetTransform();
+            yield break;
+        }
+
         _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         Vector3 startingPosition = transform.position;
 
@@ -497,6 +505,14 @@ public class PlayerController : MonoBehaviour
         while (time < _hitFreezeTime)
         {
             transform.position = startingPosition + new Vector3(Random.Range(-_hitShakeStrength, _hitShakeStrength), Random.Range(-_hitShakeStrength, _hitShakeStrength), 0);
+
+            if (_health.GetCurrentHealth() == 0 || _health.GetCurrentHealth() == _health.MaxHealth)
+            {
+                _rb.constraints = RigidbodyConstraints2D.None;
+                _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                ResetTransform();
+                yield break;
+            }
 
             time += Time.deltaTime;
             yield return null;
