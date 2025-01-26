@@ -1,8 +1,11 @@
+using FMODUnity;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using FMOD.Studio;
+using FMODUnity;
 
 public class Health : MonoBehaviour
 {
@@ -17,6 +20,13 @@ public class Health : MonoBehaviour
 
     [HideInInspector]
     public UnityEvent OnDeathEvent;
+    
+    [SerializeField]
+    EventReference _takeDamageSFX;
+    EventInstance _takeDamageInstance;
+
+    [SerializeField] 
+    EventReference _popSFX;
 
     private PlayerInput _playerInput;
 
@@ -45,6 +55,7 @@ public class Health : MonoBehaviour
         _currentHealth -= damageAmount;
         if (_currentHealth <= 0)
         {
+            RuntimeManager.PlayOneShot("_popSFX", transform.position); // Play pop sound when health reaches 0
             Die();
         }
     }

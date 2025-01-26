@@ -531,6 +531,13 @@ MonoBehaviour:
   _jumpCost: 0
   _airControl: 0
   _playerBounceForce: 5
+  _bounceSFX:
+    Guid:
+      Data1: 1277613011
+      Data2: 1298794278
+      Data3: 875174843
+      Data4: 1166712487
+    Path: event:/SFX/Bubbles/Water Plop/Water Plop
   _jumpSFX:
     Guid:
       Data1: 972232979
@@ -587,3 +594,17 @@ MonoBehaviour:
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls: []
+  _takeDamageSFX:
+    Guid:
+      Data1: 1277613011
+      Data2: 1298794278
+      Data3: 875174843
+      Data4: 1166712487
+    Path: event:/SFX/Bubbles/Water Plop/Water Plop
+  _popSFX:
+    Guid:
+      Data1: -1120981607
+      Data2: 1329142409
+      Data3: 1643696810
+      Data4: 500737094
+    Path: event:/SFX/Bubbles/Water Plop/Water Plop 8bit
