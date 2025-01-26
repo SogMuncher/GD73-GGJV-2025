@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.Events;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class ThrownWeapon : MonoBehaviour
@@ -34,7 +35,7 @@ public class ThrownWeapon : MonoBehaviour
     protected LayerMask _shaftLayerMaskExcludeWhileFlying;
 
     [SerializeField]
-    protected LayerMask _shaftLayerMaskWhileStuck;
+    protected LayerMask _shaftLayerMaskExcludeWhileStuck;
 
     [Header("Misc")]
     [SerializeField]
@@ -64,10 +65,8 @@ public class ThrownWeapon : MonoBehaviour
 
     protected Vector2 _velocity;
 
-    private void OnEnable()
-    {
-
-    }
+    private GameManager gameManager;
+    public ThrownWeapon thisWeapon;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -83,6 +82,9 @@ public class ThrownWeapon : MonoBehaviour
         _shaftHitBox.ChangeExcludeLayerMask(_shaftLayerMaskExcludeWhileFlying);
 
         _backSpikeHitBox.gameObject.SetActive(false);
+
+        gameManager = FindAnyObjectByType<GameManager>();
+        thisWeapon = GetComponent<ThrownWeapon>();
     }
 
     // Update is called once per frame
@@ -172,7 +174,7 @@ public class ThrownWeapon : MonoBehaviour
 
             _frontSpikeHitBox.gameObject.SetActive(false);
             _backSpikeHitBox.gameObject.SetActive(true);
-
+            AddThrownWeapon(thisWeapon);
             _rb.bodyType = RigidbodyType2D.Kinematic;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
@@ -180,8 +182,9 @@ public class ThrownWeapon : MonoBehaviour
             {
                 _frontSpikeHitBox.ChangeIncludeLayerMask(_frontSpikeLlayerMaskWhileStuck);
                 _backSpikeHitBox.ChangeIncludeLayerMask(_backSpikeLayerMaskWhileStuck);
-                _shaftHitBox.ChangeIncludeLayerMask(_shaftLayerMaskWhileStuck);
+                _shaftHitBox.ChangeExcludeLayerMask(_shaftLayerMaskExcludeWhileStuck);
             }
+
         }
     }
 
@@ -195,8 +198,13 @@ public class ThrownWeapon : MonoBehaviour
         }
     }
 
-    protected void DestroyObject()
+    public void DestroyObject()
     {
         Destroy(gameObject);
+    }
+
+    protected void AddThrownWeapon(ThrownWeapon weapon)
+    {
+        gameManager.AddWeaponsToList(weapon);
     }
 }

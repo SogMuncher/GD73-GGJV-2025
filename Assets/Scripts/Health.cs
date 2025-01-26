@@ -26,6 +26,9 @@ public class Health : MonoBehaviour
     [SerializeField] 
     EventReference _popSFX;
 
+    [SerializeField]
+    private int _playerIndex;
+
     [HideInInspector]
     public UnityEvent OnDamagedEvent;
 
@@ -81,7 +84,7 @@ public class Health : MonoBehaviour
 
         if (GameManager.instance != null && playerIndex >= 0)
         {
-            GameManager.instance.IncrementPlayerScore(playerIndex);
+            GameManager.instance.IncrementPlayerScore(_playerIndex);
         }
         
     }

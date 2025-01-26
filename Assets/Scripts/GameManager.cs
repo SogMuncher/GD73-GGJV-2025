@@ -1,9 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -17,17 +19,16 @@ public class GameManager : MonoBehaviour
     // PlayerInputManager reference
     private PlayerInputManager playerInputManager;
     private PlayerInput playerInput;
+    private List<ThrownWeapon> thrownWeapon = new List<ThrownWeapon>();
 
     public TextMeshProUGUI[] playerScoreTexts;
     public TextMeshProUGUI[] playerRoundsWonTexts;
-    public TextMeshProUGUI P1WinText;
-    public TextMeshProUGUI P2WinText;
+    public TextMeshProUGUI WonText;
     public TextMeshProUGUI RoundStartText;
 
     [SerializeField] private float _roundStartTimer = 1f;
 
-    public UnityEvent OnP1Win;
-    public UnityEvent OnP2Win;
+    public UnityEvent OnWin;
 
     public UnityEvent OnRoundEnd;
 
@@ -41,10 +42,11 @@ public class GameManager : MonoBehaviour
         playerInputManager = GetComponent<PlayerInputManager>();
 
         // Initialize player scores array 
-        playerScores = new int[playerInputManager.playerCount];
-        playerRoundsWon = new int[playerInputManager.playerCount];
+        playerScores = new int[2];
+        playerRoundsWon = new int[2];
+        Debug.Log(playerInputManager.playerCount);
 
-        if (playerScoreTexts.Length != playerInputManager.playerCount)
+        if (playerScoreTexts.Length != 2)
         {
             Debug.LogError(" Number of score text fields does not match the number of platers");
             return;
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
     // Function to increment player score based on player index
     public void IncrementPlayerScore(int playerIndex)
     {
+        StartCoroutine(CallDestroyWeapons());
         if (playerIndex >= 0 && playerIndex < playerScores.Length)
         {
             playerScores[playerIndex]++;
@@ -82,24 +85,36 @@ public class GameManager : MonoBehaviour
                 UpdateUIScore();
                 OnRoundEnd.Invoke();
                 StartCoroutine(RoundStart());
-
-
-
             }
 
             Debug.Log(playerScores[0]);
             Debug.Log(playerScores[1]);
-
         }
     }
 
     public void IncrementPlayerRoundsWon(int playerIndex)
     {
+        
         if (playerIndex >= 0 && playerIndex < playerScores.Length)
         {
             playerRoundsWon[playerIndex]++;
             UpdateUIScore();
+
+            if (playerRoundsWon[0] == 2f)
+            {
+                Win("Player 1 is the GOAT!");
+            }
+            if (playerRoundsWon[1] == 2f)
+            {
+                Win("Player 2's really LIKE that");
+            }
         }
+    }
+
+    private IEnumerator CallDestroyWeapons()
+    {
+        yield return new WaitForSeconds(0.5f);
+        DestroyWeapons();
     }
 
     // Function to get player score based on player index
@@ -127,16 +142,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void P1Win(string winnerString)
-    {
-        OnP1Win.Invoke();
-        P1WinText.text = winnerString;
-    }
-    public void P2Win(string winnerString)
-    {
-        OnP2Win.Invoke();
-        P2WinText.text = winnerString;
-    }
+ 
     
     public IEnumerator RoundStart()
     {
@@ -172,5 +178,39 @@ public class GameManager : MonoBehaviour
 
         yield break;
 
+    }
+    public void Win(string winText)
+    {
+        OnWin.Invoke();
+        WonText.text = winText;
+        StartCoroutine(WinScreen());
+    }
+    public IEnumerator WinScreen()
+    {
+        
+        yield return new WaitForSeconds(2f);
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(4f);
+
+        SceneManager.LoadScene("MainMenu");
+
+        yield break;
+    }
+
+    public void AddWeaponsToList(ThrownWeapon weapon)
+    {
+        thrownWeapon.Add(weapon);
+    }
+
+    private void DestroyWeapons()
+    {
+        foreach (ThrownWeapon weapon in thrownWeapon)
+        {
+            if (weapon != null)
+            {
+                weapon.DestroyObject();
+            }
+        }
+        thrownWeapon.Clear();
     }
 }
