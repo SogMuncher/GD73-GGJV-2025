@@ -156,9 +156,9 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < playerScores.Length; i++)
         {
-            playerScoreTexts[i].text = "Player " + (i + 1) + ": " + playerScores[i];
+            playerScoreTexts[i].text = "Player " + (i + 1); //+ ": " + playerScores[i];
             Transform ScoreTransform = playerScoreTexts[i].transform;
-            ScoreTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
+            //ScoreTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
 
         }
 
@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         {
             playerRoundsWonTexts[i].text = "Rounds Won: " + playerRoundsWon[i];
             Transform RoundsTransform = playerRoundsWonTexts[i].transform;
-            RoundsTransform.transform.DOPunchScale(new Vector3(2f,2f,2f), 0.2f, 0, 0.1f).SetUpdate(true);
+            //RoundsTransform.transform.DOPunchScale(new Vector3(2f,2f,2f), 0.2f, 0, 0.1f).SetUpdate(true);
         }
     }
 
