@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{8ea92298-9219-47fb-90d1-7dd328d4fea7}">
+		<property name="name">
+			<value>Spike Throw</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3cfd2e34-9655-4541-ab42-bc96d1620255}</destination>
+		</relationship>
+	</object>
+</objects>
