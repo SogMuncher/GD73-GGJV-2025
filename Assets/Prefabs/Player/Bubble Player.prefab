@@ -195,7 +195,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -345182943
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.8050314, g: 0.55260795, b: 0.3164431, a: 1}
@@ -282,7 +282,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -345182943
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0.8039216, g: 0.5529412, b: 0.31764707, a: 1}
@@ -369,7 +369,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -345182943
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -5712959122012955994, guid: da1795ad4ac5aec4d9c5e4e297040f8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -533,11 +533,11 @@ MonoBehaviour:
   _playerBounceForce: 5
   _bounceSFX:
     Guid:
-      Data1: 1277613011
-      Data2: 1298794278
-      Data3: 875174843
-      Data4: 1166712487
-    Path: event:/SFX/Bubbles/Water Plop/Water Plop
+      Data1: -879890148
+      Data2: 1292067385
+      Data3: 863978931
+      Data4: -70398069
+    Path: event:/SFX/Bubbles/Bounce
   _jumpSFX:
     Guid:
       Data1: 972232979
@@ -608,3 +608,6 @@ MonoBehaviour:
       Data3: 1643696810
       Data4: 500737094
     Path: event:/SFX/Bubbles/Water Plop/Water Plop 8bit
+  OnDamagedEvent:
+    m_PersistentCalls:
+      m_Calls: []
