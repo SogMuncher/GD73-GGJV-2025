@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] EventReference _winSFX;
     [SerializeField] EventReference _countdownSFX;
+    
+    [SerializeField] EventReference _roundStartSFX;
 
     
     [SerializeField]private float _maxScore = 5;
