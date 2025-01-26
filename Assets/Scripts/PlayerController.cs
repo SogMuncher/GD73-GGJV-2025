@@ -58,6 +58,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     protected float _springDampStrength;
 
+    [Header("Sticky Settings")]
+    [SerializeField]
+    private bool _isSticky;
+
+    [SerializeField]
+    private InputAction _stick;
+
     protected Rigidbody2D _rb;
     //protected Rigidbody2D _weaponRB;
     protected Vector2 _velocity;
@@ -90,7 +97,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        _stick = GetComponent<PlayerInput>().actions["Stick"];
     }
 
     // Update is called once per frame
@@ -115,7 +122,24 @@ public class PlayerController : MonoBehaviour
 
             _rb.AddForce(-direction * _playerBounceForce, ForceMode2D.Impulse);
 
-            
+
+        }
+
+        if (collision.gameObject.layer == 3)
+        {
+            _isSticky = true;
+        }
+
+       
+
+        Debug.Log(collision);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 3)
+        {
+            _isSticky = false;
         }
     }
 
@@ -273,6 +297,29 @@ public class PlayerController : MonoBehaviour
         _rb.AddForceY(_jumpStrength, ForceMode2D.Impulse);
 
         Debug.Log($"Player {_playerInput.playerIndex} Jumped");
+    }
+    public void OnStick()
+    {
+       if(_isSticky == true)
+        {
+            _rb.constraints = RigidbodyConstraints2D.FreezePosition;
+
+        } 
+
+        
+
+        
+
+       
+    }
+
+    public void OnUnstick()
+    {
+        if(_isSticky == true)
+        {
+            _rb.constraints = RigidbodyConstraints2D.None;
+
+        }
     }
 
     private void OnDrawGizmos()
