@@ -181,6 +181,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator RoundStart()
     {
+        RuntimeManager.PlayOneShot(_roundStartSFX, transform.position); //Play round start sound
         yield return new WaitForSeconds(0.5f);
         Transform CountDownTransform = RoundStartText.transform;
         Time.timeScale = 0f;
