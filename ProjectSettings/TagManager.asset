@@ -57,6 +57,9 @@ TagManager:
   - name: Hazards
     uniqueID: 1413518691
     locked: 0
+  - name: FrontDecorations
+    uniqueID: 3510292575
+    locked: 0
   - name: Player
     uniqueID: 3949784353
     locked: 0
