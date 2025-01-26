@@ -53,6 +53,12 @@ public class ThrownWeapon : MonoBehaviour
     EventReference _takeDamageSFX;
     EventInstance _takeDamageInstance;
 
+    [SerializeField]
+    public GameObject _trailPrefab;
+    [SerializeField]
+    public Transform _trailAnchor;
+    public GameObject _trailObject;
+
     protected Rigidbody2D _rb;
 
     protected GameObject _owningPlayerObject;
@@ -85,6 +91,7 @@ public class ThrownWeapon : MonoBehaviour
 
         gameManager = FindAnyObjectByType<GameManager>();
         thisWeapon = GetComponent<ThrownWeapon>();
+        _trailObject = Instantiate(_trailPrefab, _trailAnchor.position, Quaternion.identity, _trailAnchor);
     }
 
     // Update is called once per frame
@@ -199,8 +206,21 @@ public class ThrownWeapon : MonoBehaviour
         }
     }
 
+    public void DetachParticle()
+    {
+        if (_trailObject != null)
+        {
+            _trailObject.transform.parent = null;
+        }
+    }
+
     public void DestroyObject()
     {
+        if (_trailObject != null)
+        {
+            _trailObject.transform.parent = null;
+        }
+
         Destroy(gameObject);
     }
 

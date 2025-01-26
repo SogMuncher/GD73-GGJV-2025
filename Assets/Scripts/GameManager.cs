@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] EventReference _roundStartSFX;
 
+    [SerializeField] EventReference _roundEndSFX;
+
     
     [SerializeField]private float _maxScore = 5;
 
@@ -88,21 +90,23 @@ public class GameManager : MonoBehaviour
 
             if (playerScores[0] == _maxScore)
             {
+                RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play round end sound
+                OnRoundEnd.Invoke();
 
                 IncrementPlayerRoundsWon(playerIndex);
                 playerScores[0] = 0;
                 UpdateUIScore();
-                OnRoundEnd.Invoke();
                 StartCoroutine(CallDestroyWeapons());
                 StartCoroutine(RoundStart());
             }
             if (playerScores[1] == _maxScore)
             {
+                RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play round end sound
+                OnRoundEnd.Invoke();
                 
                 IncrementPlayerRoundsWon(playerIndex);
                 playerScores[1] = 0;
                 UpdateUIScore();
-                OnRoundEnd.Invoke();
                 StartCoroutine(CallDestroyWeapons());
                 StartCoroutine(RoundStart());
             }
@@ -182,7 +186,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator RoundStart()
     {
         RuntimeManager.PlayOneShot(_roundStartSFX, transform.position); //Play round start sound
-        
+        yield return new WaitForSeconds(0.5f);
         Transform CountDownTransform = RoundStartText.transform;
         Time.timeScale = 0f;
         RoundStartText.text = "Round Starting in";
