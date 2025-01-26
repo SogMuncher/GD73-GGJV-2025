@@ -7,6 +7,8 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using FMODUnity;
+using FMOD.Studio;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,6 +33,9 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnWin;
 
     public UnityEvent OnRoundEnd;
+
+    [SerializeField] EventReference _winSFX;
+    [SerializeField] EventReference _countdownSFX;
 
     
     [SerializeField]private float _maxScore = 2;
@@ -152,7 +157,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         RoundStartText.text = "Round Starting in";
 
+        RuntimeManager.PlayOneShot(_countdownSFX, transform.position); //Play countdown sound
+
         yield return new WaitForSecondsRealtime(_roundStartTimer + 1f);
+
 
         RoundStartText.text = "3";
 
@@ -190,6 +198,7 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator WinScreen()
     {
+        RuntimeManager.PlayOneShot(_winSFX, transform.position); //Play win sound
         
         yield return new WaitForSeconds(2f);
         Time.timeScale = 0f;

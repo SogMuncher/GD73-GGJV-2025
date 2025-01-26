@@ -1044,6 +1044,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _winSFX:
+    Guid:
+      Data1: -264861942
+      Data2: 1086038832
+      Data3: 786821008
+      Data4: -1642267726
+    Path: event:/Music/Discovery Hit
+  _countdownSFX:
+    Guid:
+      Data1: -1765272029
+      Data2: 1329245134
+      Data3: 1095183280
+      Data4: -916365880
+    Path: event:/Countdown
   _maxScore: 2
 --- !u!114 &8231546465857718472
 MonoBehaviour:
