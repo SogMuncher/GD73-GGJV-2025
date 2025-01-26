@@ -118,6 +118,8 @@ public class PlayerController : MonoBehaviour
 
     public UnityEvent OnPaused;
 
+    private Vector3 _startLocation;
+
     
 
     protected void OnEnable()
@@ -133,6 +135,7 @@ public class PlayerController : MonoBehaviour
     {
 
         _health.OnDamagedEvent.AddListener(OnDamaged);
+        _startLocation = transform.position;
     }
 
     // Update is called once per frame
@@ -456,5 +459,10 @@ public class PlayerController : MonoBehaviour
             OnPaused.Invoke();
 
         
+    }
+
+    public void ResetTransform()
+    {
+        transform.position = _startLocation;
     }
 }
