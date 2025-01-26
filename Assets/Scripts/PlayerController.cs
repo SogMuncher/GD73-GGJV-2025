@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     protected float _aimSpeed;
 
+    [SerializeField]
+    protected GameObject _thrownWeaponPrefab;
+
     //[Header("Aim Spring Settings")]
     //[SerializeField]
     //protected float _aimSpringStrength;
@@ -81,6 +84,8 @@ public class PlayerController : MonoBehaviour
     protected float _moveInput;
     protected Vector2 _aimInput;
     protected float _weaponRotationY;
+
+    protected GameObject _lastThrownWeapon;
 
     protected Health _health;
 
@@ -295,6 +300,15 @@ public class PlayerController : MonoBehaviour
 
     protected void OnFire()
     {
+        _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, transform.position, _weapon.transform.rotation);
+
+        Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
+
+        if (thrownRB != null)
+        {
+            thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
+        }
+
         Debug.Log($"Player {_playerInput.playerIndex} Fired");
     }
 
