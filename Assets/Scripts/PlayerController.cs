@@ -388,6 +388,7 @@ public class PlayerController : MonoBehaviour
        if(_isSticky == true)
         {
             _rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            
 
         } 
 
@@ -402,10 +403,10 @@ public class PlayerController : MonoBehaviour
     {
         if(_isSticky == true)
         {
-            _rb.constraints = RigidbodyConstraints2D.None;
-            _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
+            _rb.constraints = RigidbodyConstraints2D.None;
+            _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     protected void OnDamaged()
