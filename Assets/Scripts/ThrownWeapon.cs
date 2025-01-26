@@ -147,6 +147,12 @@ public class ThrownWeapon : MonoBehaviour
             {
                 // damage logic
                 Debug.Log("spike player");
+
+                if (collision.rigidbody.gameObject.TryGetComponent(out Health health))
+                {
+                    health.TakeDamage(1f);
+                }
+
                 DestroyObject();
             }
         }

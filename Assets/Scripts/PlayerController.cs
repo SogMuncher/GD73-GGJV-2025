@@ -117,9 +117,8 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _stick = GetComponent<PlayerInput>().actions["Stick"];
 
-        
+        _health.OnDamagedEvent.AddListener(OnDamaged);
     }
 
     // Update is called once per frame
@@ -165,7 +164,15 @@ public class PlayerController : MonoBehaviour
         {
             _isSticky = false;
         }
+
+       
+
+       
+
+        Debug.Log(collision);
     }
+
+
 
     protected void FixedUpdate()
     {
@@ -252,11 +259,14 @@ public class PlayerController : MonoBehaviour
 
     protected void CalculateSpringForces()
     {
-        if (_rayClosestHit.rigidbody.TryGetComponent<ThrownWeapon>(out ThrownWeapon thrownWeapon))
+        if (_rayClosestHit.rigidbody != null)
         {
-            if (thrownWeapon.GetIsStuck() == false)
+            if (_rayClosestHit.rigidbody.TryGetComponent<ThrownWeapon>(out ThrownWeapon thrownWeapon))
             {
-                return;
+                if (thrownWeapon.GetIsStuck() == false)
+                {
+                    return;
+                }
             }
         }
 
@@ -365,6 +375,11 @@ public class PlayerController : MonoBehaviour
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
+    }
+
+    protected void OnDamaged()
+    {
+        // logic here for when damaged, bounce??
     }
 
     private void OnDrawGizmos()
