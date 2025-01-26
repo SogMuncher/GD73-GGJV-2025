@@ -44,6 +44,9 @@ public class ThrownWeapon : MonoBehaviour
     [SerializeField]
     EventReference _impactSFX;
     EventInstance _impactInstance;
+    
+    [SerializeField]
+    EventReference _spikeToSpikeSFX;
 
     protected Rigidbody2D _rb;
 
@@ -145,6 +148,7 @@ public class ThrownWeapon : MonoBehaviour
 
         if (collision.gameObject.CompareTag("ThrownWeapon"))
         {
+            RuntimeManager.PlayOneShot(_spikeToSpikeSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide
             Debug.Log("spike thrown weapon");
             DestroyObject();
             return;
