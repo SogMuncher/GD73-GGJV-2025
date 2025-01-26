@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -20,14 +21,12 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI[] playerScoreTexts;
     public TextMeshProUGUI[] playerRoundsWonTexts;
-    public TextMeshProUGUI P1WinText;
-    public TextMeshProUGUI P2WinText;
+    public TextMeshProUGUI WonText;
     public TextMeshProUGUI RoundStartText;
 
     [SerializeField] private float _roundStartTimer = 1f;
 
-    public UnityEvent OnP1Win;
-    public UnityEvent OnP2Win;
+    public UnityEvent OnWin;
 
     public UnityEvent OnRoundEnd;
 
@@ -99,6 +98,16 @@ public class GameManager : MonoBehaviour
         {
             playerRoundsWon[playerIndex]++;
             UpdateUIScore();
+
+            if (playerRoundsWon[0] == 2f)
+            {
+                Win("Player 1 is the GOAT!");
+            }
+            if (playerRoundsWon[1] == 2f)
+            {
+                Win("Player 2's really LIKE that");
+            }
+
         }
     }
 
@@ -127,16 +136,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void P1Win(string winnerString)
-    {
-        OnP1Win.Invoke();
-        P1WinText.text = winnerString;
-    }
-    public void P2Win(string winnerString)
-    {
-        OnP2Win.Invoke();
-        P2WinText.text = winnerString;
-    }
+ 
     
     public IEnumerator RoundStart()
     {
@@ -172,5 +172,22 @@ public class GameManager : MonoBehaviour
 
         yield break;
 
+    }
+    public void Win(string winText)
+    {
+        OnWin.Invoke();
+        WonText.text = winText;
+        StartCoroutine(WinScreen());
+    }
+    public IEnumerator WinScreen()
+    {
+        
+        yield return new WaitForSeconds(2f);
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(4f);
+
+        SceneManager.LoadScene("MainMenu");
+
+        yield break;
     }
 }
