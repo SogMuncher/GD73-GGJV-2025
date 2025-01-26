@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] EventReference _countdownSFX;
 
     
-    [SerializeField]private float _maxScore = 2;
+    [SerializeField]private float _maxScore = 5;
 
     [Header ("Tween")]
     [SerializeField] private RectTransform _scoreRectTransform;
@@ -59,11 +59,11 @@ public class GameManager : MonoBehaviour
         playerRoundsWon = new int[2];
         Debug.Log(playerInputManager.playerCount);
 
-        if (playerScoreTexts.Length != 2)
-        {
-            Debug.LogError(" Number of score text fields does not match the number of platers");
-            return;
-        }
+        //if (playerScoreTexts.Length != 2)
+        //{
+        //    Debug.LogError(" Number of score text fields does not match the number of platers");
+        //    return;
+        //}
 
         
     }
@@ -79,12 +79,12 @@ public class GameManager : MonoBehaviour
     public void IncrementPlayerScore(int playerIndex)
     {
         
-        if (playerIndex >= 0 && playerIndex < playerScores.Length)
+        if (playerIndex >= 0)
         {
             playerScores[playerIndex]++;
             UpdateUIScore();
 
-            if (playerScores[0] == 2)
+            if (playerScores[0] == _maxScore)
             {
 
                 IncrementPlayerRoundsWon(playerIndex);
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(CallDestroyWeapons());
                 StartCoroutine(RoundStart());
             }
-            if (playerScores[1] == 2)
+            if (playerScores[1] == _maxScore)
             {
                 
                 IncrementPlayerRoundsWon(playerIndex);
@@ -114,17 +114,17 @@ public class GameManager : MonoBehaviour
     public void IncrementPlayerRoundsWon(int playerIndex)
     {
         
-        if (playerIndex >= 0 && playerIndex < playerScores.Length)
+        if (playerIndex >= 0)
         {
             playerRoundsWon[playerIndex]++;
             UpdateUIScore();
             
 
-            if (playerRoundsWon[0] == 2f)
+            if (playerRoundsWon[0] == 3f)
             {
                 Win("Player 1 is the GOAT!");
             }
-            if (playerRoundsWon[1] == 2f)
+            if (playerRoundsWon[1] == 3f)
             {
                 Win("Player 2's really LIKE that");
             }
