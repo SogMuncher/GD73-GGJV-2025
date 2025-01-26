@@ -746,7 +746,7 @@ MonoBehaviour:
   _jumpStrength: 5
   _jumpCost: 0
   _airControl: 0
-  _playerBounceForce: 5
+  _playerBounceForce: 10
   _bounceSFX:
     Guid:
       Data1: -879890148
@@ -800,6 +800,8 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  _hitFreezeTime: 0.25
+  _hitShakeStrength: 0.3
   OnPaused:
     m_PersistentCalls:
       m_Calls: []
@@ -815,9 +817,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 679b1d3f9c715b34d981d603a0d64c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 0
-  _startingHealth: 0
-  _currentHealth: 0
+  _maxHealth: 5
+  _startingHealth: 5
+  _currentHealth: 5
+  _invulnerabilityTime: 1
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls: []

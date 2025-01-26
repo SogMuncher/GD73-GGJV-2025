@@ -153,7 +153,7 @@ public class ThrownWeapon : MonoBehaviour
                 if (collision.rigidbody.gameObject.TryGetComponent(out Health health))
                 {
                     RuntimeManager.PlayOneShot(_takeDamageSFX, transform.position); // Play take damage sfx when spike hits player
-                    health.TakeDamage(1f);
+                    health.TakeDamage(1f, transform.position);
                 }
 
                 DestroyObject();

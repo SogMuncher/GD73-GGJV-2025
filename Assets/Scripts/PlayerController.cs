@@ -98,6 +98,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private InputAction _stick;
 
+    [Header("Misc")]
+    [SerializeField]
+    protected float _hitFreezeTime = .25f;
+
+    [SerializeField]
+    protected float _hitShakeStrength = 1f;
+
     protected Rigidbody2D _rb;
     //protected Rigidbody2D _weaponRB;
     protected Vector2 _velocity;
@@ -116,6 +123,7 @@ public class PlayerController : MonoBehaviour
     protected float _weaponRotationY;
 
     protected GameObject _lastThrownWeapon;
+    protected Vector3 _lastWeaponCollisionPosition;
 
     protected int _currentAmmo = 3;
     protected bool _isReloading;
@@ -144,6 +152,7 @@ public class PlayerController : MonoBehaviour
     {
 
         _health.OnDamagedEvent.AddListener(OnDamaged);
+        _health.OnDamagedEvent.AddListener(StartKnockback);
         _startLocation = transform.position;
     }
 
@@ -179,9 +188,25 @@ public class PlayerController : MonoBehaviour
             _isSticky = true;
         }
 
-       
+        //if (collision.gameObject.layer == 15)
+        //{
+        //    _lastWeaponCollisionPosition = collision.transform.position;
+
+        //    if (_health.CanBeHurt == false)
+        //    {
+        //        return;
+        //    }
+
+        //}
 
         Debug.Log(collision);
+    }
+
+    public void StartKnockback(Vector3 position)
+    {
+        _lastWeaponCollisionPosition = position;
+
+        StartCoroutine(DamageOnKnockbackCoroutine());
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -418,7 +443,7 @@ public class PlayerController : MonoBehaviour
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
-    protected void OnDamaged()
+    protected void OnDamaged(Vector3 position)
     {
         // logic here for when damaged, bounce??
     }
@@ -460,6 +485,35 @@ public class PlayerController : MonoBehaviour
         //yield return new WaitForSeconds(_throwCooldownTime);
 
         _throwIsOnCooldown = false;
+        yield break;
+    }
+
+    protected IEnumerator DamageOnKnockbackCoroutine()
+    {
+        _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        Vector3 startingPosition = transform.position;
+
+        float time = 0f;
+        while (time < _hitFreezeTime)
+        {
+            transform.position = startingPosition + new Vector3(Random.Range(-_hitShakeStrength, _hitShakeStrength), Random.Range(-_hitShakeStrength, _hitShakeStrength), 0);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        _rb.constraints = RigidbodyConstraints2D.None;
+        _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        if (_health.GetCurrentHealth() != _health.MaxHealth)
+        {
+            transform.position = startingPosition;
+
+            Vector2 direction = ((_lastWeaponCollisionPosition) - (this.transform.position)).normalized;
+
+            _rb.AddForce(-direction * _playerBounceForce, ForceMode2D.Impulse);
+        }
+
         yield break;
     }
 
