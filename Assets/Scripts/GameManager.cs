@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using FMODUnity;
 using FMOD.Studio;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,6 +41,11 @@ public class GameManager : MonoBehaviour
     
     [SerializeField]private float _maxScore = 2;
 
+    [Header ("Tween")]
+    [SerializeField] private RectTransform _rectTransform;
+    [SerializeField] private float topPosY, finalPosY;
+    [SerializeField] private float tweenDuration;
+
     private void Awake()
     {
         instance = this;
@@ -62,6 +68,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(RoundStart());
+        ScoreIntro();
     }
 
     // Function to increment player score based on player index
@@ -99,6 +106,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     public void IncrementPlayerRoundsWon(int playerIndex)
     {
         
@@ -106,6 +114,7 @@ public class GameManager : MonoBehaviour
         {
             playerRoundsWon[playerIndex]++;
             UpdateUIScore();
+            
 
             if (playerRoundsWon[0] == 2f)
             {
@@ -142,14 +151,25 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < playerScores.Length; i++)
         {
             playerScoreTexts[i].text = "Player " + (i + 1) + ": " + playerScores[i];
+            Transform ScoreTransform = playerScoreTexts[i].transform;
+            ScoreTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
+
         }
 
         for (int i = 0; i < playerRoundsWon.Length; i++)
         {
             playerRoundsWonTexts[i].text = "Rounds Won: " + playerRoundsWon[i];
+            Transform RoundsTransform = playerRoundsWonTexts[i].transform;
+            RoundsTransform.transform.DOPunchScale(new Vector3(2f,2f,2f), 0.2f, 0, 0.1f).SetUpdate(true);
         }
     }
 
+    public void ScoreIntro()
+    {
+        _rectTransform.DOAnchorPosY(finalPosY, tweenDuration).SetUpdate(true);
+
+        
+    }
  
     
     public IEnumerator RoundStart()
