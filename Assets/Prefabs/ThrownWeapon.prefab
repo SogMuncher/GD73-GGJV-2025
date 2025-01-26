@@ -186,6 +186,7 @@ MonoBehaviour:
   _trailPrefab: {fileID: 1813119774171087128, guid: 4a027a5a223da2f4c8796ec499fa4d16, type: 3}
   _trailAnchor: {fileID: 661242858275896048}
   _trailObject: {fileID: 0}
+  _clashParticlePrefab: {fileID: 7462766234518659814, guid: d050bd2eda14d14459fca167a6abf882, type: 3}
   thisWeapon: {fileID: 0}
 --- !u!61 &2297569559314318966
 BoxCollider2D:
