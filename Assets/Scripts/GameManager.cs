@@ -154,6 +154,7 @@ public class GameManager : MonoBehaviour
     
     public IEnumerator RoundStart()
     {
+        
         Time.timeScale = 0f;
         RoundStartText.text = "Round Starting in";
 
