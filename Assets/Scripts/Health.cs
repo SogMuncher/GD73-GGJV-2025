@@ -53,6 +53,8 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         _currentHealth -= damageAmount;
+         RuntimeManager.PlayOneShot("_takeDamageSFX", transform.position); // Play take damage sfx 
+        
         if (_currentHealth <= 0)
         {
             RuntimeManager.PlayOneShot("_popSFX", transform.position); // Play pop sound when health reaches 0
