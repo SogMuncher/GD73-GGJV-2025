@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.Events;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class ThrownWeapon : MonoBehaviour
@@ -64,10 +65,7 @@ public class ThrownWeapon : MonoBehaviour
 
     protected Vector2 _velocity;
 
-    private void OnEnable()
-    {
-
-    }
+    private GameManager gameManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -83,6 +81,8 @@ public class ThrownWeapon : MonoBehaviour
         _shaftHitBox.ChangeExcludeLayerMask(_shaftLayerMaskExcludeWhileFlying);
 
         _backSpikeHitBox.gameObject.SetActive(false);
+
+        gameManager = FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -182,6 +182,7 @@ public class ThrownWeapon : MonoBehaviour
                 _backSpikeHitBox.ChangeIncludeLayerMask(_backSpikeLayerMaskWhileStuck);
                 _shaftHitBox.ChangeIncludeLayerMask(_shaftLayerMaskWhileStuck);
             }
+
         }
     }
 
@@ -198,5 +199,10 @@ public class ThrownWeapon : MonoBehaviour
     protected void DestroyObject()
     {
         Destroy(gameObject);
+    }
+
+    protected void AddThrownWeapon()
+    {
+        gameManager.
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using TMPro;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     // PlayerInputManager reference
     private PlayerInputManager playerInputManager;
     private PlayerInput playerInput;
+    private List<ThrownWeapon> thrownWeapon = new List<ThrownWeapon>();
 
     public TextMeshProUGUI[] playerScoreTexts;
     public TextMeshProUGUI[] playerRoundsWonTexts;
