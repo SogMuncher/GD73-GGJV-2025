@@ -3,9 +3,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using FMOD.Studio;
-using FMODUnity;
 
 public class Health : MonoBehaviour
 {

@@ -50,14 +50,14 @@ public class GameManager : MonoBehaviour
             playerScores[playerIndex]++;
             UpdateUIScore();
 
-            if (playerScores[0] == 2)
+          /*  if (playerScores[0] == 2)
             {
                 Win("Player 1 wins!");
             }
             if (playerScores[1] == 2)
             {
                 Win("Player 2 wins!");
-            }
+            }*/
 
         }
     }
@@ -84,6 +84,6 @@ public class GameManager : MonoBehaviour
     public void Win(string winnerString)
     {
         OnWin.Invoke();
-        WinText.text = winnerString;
+     //   WinText.text = winnerString;
     }
 }
