@@ -86,21 +86,21 @@ public class GameManager : MonoBehaviour
 
             if (playerScores[0] == _maxScore)
             {
+                OnRoundEnd.Invoke();
 
                 IncrementPlayerRoundsWon(playerIndex);
                 playerScores[0] = 0;
                 UpdateUIScore();
-                OnRoundEnd.Invoke();
                 StartCoroutine(CallDestroyWeapons());
                 StartCoroutine(RoundStart());
             }
             if (playerScores[1] == _maxScore)
             {
+                OnRoundEnd.Invoke();
                 
                 IncrementPlayerRoundsWon(playerIndex);
                 playerScores[1] = 0;
                 UpdateUIScore();
-                OnRoundEnd.Invoke();
                 StartCoroutine(CallDestroyWeapons());
                 StartCoroutine(RoundStart());
             }
@@ -179,6 +179,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator RoundStart()
     {
+        yield return new WaitForSeconds(0.5f);
         Transform CountDownTransform = RoundStartText.transform;
         Time.timeScale = 0f;
         RoundStartText.text = "Round Starting in";
