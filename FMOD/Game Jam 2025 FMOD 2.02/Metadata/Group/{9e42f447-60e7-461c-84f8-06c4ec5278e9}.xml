@@ -4,6 +4,9 @@
 		<property name="name">
 			<value>Music</value>
 		</property>
+		<property name="maxInstances">
+			<value>8</value>
+		</property>
 		<relationship name="masters">
 			<destination>{b083c652-3b2a-4573-8c8e-a1ecf441b367}</destination>
 		</relationship>
@@ -20,8 +23,14 @@
 	<object class="MixerBusEffectChain" id="{efc6383a-14e7-45e6-9477-6fd89bdb1cb0}">
 		<relationship name="effects">
 			<destination>{ced71e56-1a56-4db5-8bf6-d96a5ab6569e}</destination>
+			<destination>{c4f7879e-a94f-4f07-aaf1-18c275550928}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{140ed605-d0c3-4e06-9258-49d7aed3f856}" />
 	<object class="MixerBusFader" id="{ced71e56-1a56-4db5-8bf6-d96a5ab6569e}" />
+	<object class="MultibandEqEffect" id="{c4f7879e-a94f-4f07-aaf1-18c275550928}">
+		<property name="frequencyA">
+			<value>22000</value>
+		</property>
+	</object>
 </objects>
