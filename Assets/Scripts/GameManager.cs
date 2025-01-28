@@ -51,9 +51,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float topPosY, finalPosY;
     [SerializeField] private float tweenDuration;
 
-    //[Header("Hearts")]
-    //[SerializeField] private GameObject[] _heartsP1;  
-    //[SerializeField] private GameObject[] _heartsP2;  
+    [SerializeField] private GameObject _winPanelP1;
+    [SerializeField] private GameObject _winPanelP2;
+
+    [Header("Health Track")]
+    [SerializeField] private Health _p1;
+    [SerializeField] private GameObject[] _heartsP1;  
+    [SerializeField] private Health _p2;
+    [SerializeField] private GameObject[] _heartsP2;  
+
 
     private void Awake()
     {
@@ -72,16 +78,104 @@ public class GameManager : MonoBehaviour
         //    return;
         //}
 
-        
     }
     private void Start()
     {
         StartCoroutine(RoundStart());
-        ScoreIntro();
-
-        
+        ScoreIntro();        
     }
 
+    public void UpdatePlayerHealth(int playerIndex)
+    {
+        if (playerIndex >= 0)
+        {
+            if (playerIndex == 0)
+            {
+                _heartsP1[_p1.GetCurrentHealth()].SetActive(false);
+                if (_p1.GetCurrentHealth() <= 0)
+                {
+                    OnRoundEnd.Invoke();
+                    IncrementPlayerRoundsWon(1);
+                    StartCoroutine(CallDestroyWeapons());
+                    StartCoroutine(RoundStart());
+                    foreach (GameObject heart in _heartsP1)
+                    {
+                        if (heart != null)
+                        {
+                            heart.SetActive(true);
+                        }
+                    }
+
+                    foreach (GameObject heart in _heartsP2)
+                    {
+                        if (heart != null)
+                        {
+                            heart.SetActive(true);
+                        }
+                    }
+                }
+            }
+
+            if (playerIndex == 1)
+            {
+                _heartsP2[_p2.GetCurrentHealth()].SetActive(false);
+
+                if (_p2.GetCurrentHealth() <= 0)
+                {
+                    OnRoundEnd.Invoke();
+                    IncrementPlayerRoundsWon(0);
+                    StartCoroutine(CallDestroyWeapons());
+                    StartCoroutine(RoundStart());
+                    foreach (GameObject heart in _heartsP1)
+                    {
+                        if (heart != null)
+                        {
+                            heart.SetActive(true);
+                        }
+                    }
+
+                    foreach (GameObject heart in _heartsP2)
+                    {
+                        if (heart != null)
+                        {
+                            heart.SetActive(true);
+                        }
+                    }
+                }
+            }
+            
+
+            ////playerScores[playerIndex]++;
+            //UpdateUIScore();
+
+            //if (playerScores[0] == _maxScore)
+            //{
+            //    OnRoundEnd.Invoke();
+
+            //    IncrementPlayerRoundsWon(1);
+            //    playerScores[0] = 0;
+            //    UpdateUIScore();
+            //    StartCoroutine(CallDestroyWeapons());
+            //    StartCoroutine(RoundStart());
+            //}
+            //if (playerScores[1] == _maxScore)
+            //{
+            //    OnRoundEnd.Invoke();
+
+            //    IncrementPlayerRoundsWon(0);
+            //    playerScores[1] = 0;
+            //    UpdateUIScore();
+            //    StartCoroutine(CallDestroyWeapons());
+            //    StartCoroutine(RoundStart());
+            //}
+
+            //Debug.Log(playerScores[0]);
+            //Debug.Log(playerScores[1]);
+        }
+    }
+
+
+    
     // Function to increment player score based on player index
     public void IncrementPlayerScore(int playerIndex)
     {
@@ -130,10 +224,12 @@ public class GameManager : MonoBehaviour
             if (playerRoundsWon[0] == 3f)
             {
                 Win("Player 1 is the GOAT!");
+                _winPanelP1.SetActive(true);
             }
             if (playerRoundsWon[1] == 3f)
             {
                 Win("Player 2's really LIKE that");
+                _winPanelP2.SetActive(true);
             }
         }
     }
@@ -159,7 +255,7 @@ public class GameManager : MonoBehaviour
     
     public void UpdateUIScore()
     {
-        for (int i = 0; i < playerScores.Length; i++)
+        /*for (int i = 0; i < playerScores.Length; i++)
         {
             //if (i  == 0)
             //{
@@ -181,7 +277,7 @@ public class GameManager : MonoBehaviour
             playerScoreTexts[i].text = "Player " + (i + 1) + " HP: " + (5 - playerScores[i]);
             Transform ScoreTransform = playerScoreTexts[i].transform;
             //ScoreTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
-        }
+        }*/
 
         for (int i = 0; i < playerRoundsWon.Length; i++)
         {
@@ -193,12 +289,14 @@ public class GameManager : MonoBehaviour
 
     public void ScoreIntro()
     {
-        _scoreRectTransform.DOAnchorPosY(finalPosY, tweenDuration).SetUpdate(true);
-
-        
+        StartCoroutine(ScoreIntroRoutine());        
     }
-  
 
+    private IEnumerator ScoreIntroRoutine()
+    {
+        yield return new WaitForSeconds(_roundStartTimer);
+        _scoreRectTransform.DOAnchorPosY(finalPosY, tweenDuration).SetUpdate(true);
+    }
 
     public IEnumerator RoundStart()
     {

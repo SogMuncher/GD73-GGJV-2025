@@ -9,14 +9,14 @@ using System.Collections;
 public class Health : MonoBehaviour
 {
     [SerializeField]
-    private float _maxHealth = 5f;
-    public float MaxHealth => _maxHealth;
+    private int _maxHealth = 5;
+    public int MaxHealth => _maxHealth;
 
     [SerializeField]
-    private float _startingHealth = 3f;
+    private int _startingHealth = 3;
 
     [SerializeField, ReadOnly]
-    private float _currentHealth = 3f;
+    private int _currentHealth = 3;
 
     [SerializeField]
     protected float _invulnerabilityTime = 1f;
@@ -60,12 +60,12 @@ public class Health : MonoBehaviour
         _currentHealth = _startingHealth;
     }
 
-    public float GetCurrentHealth()
+    public int GetCurrentHealth()
     {
         return _currentHealth;
     }
 
-    public void AddHealth(float addAmount)
+    public void AddHealth(int addAmount)
     {
         _currentHealth += addAmount;
 
@@ -75,7 +75,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damageAmount, Vector3 damagerPosition)
+    public void TakeDamage(int damageAmount, Vector3 damagerPosition)
     {
         if (_canBeHurt == false)
         {
@@ -89,7 +89,8 @@ public class Health : MonoBehaviour
 
         if (GameManager.instance != null && playerIndex >= 0)
         {
-            GameManager.instance.IncrementPlayerScore(_playerIndex);
+            //GameManager.instance.IncrementPlayerScore(_playerIndex);
+            GameManager.instance.UpdatePlayerHealth(_playerIndex);
         }
 
         if (_currentHealth <= 0)

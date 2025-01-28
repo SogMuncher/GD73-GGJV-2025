@@ -82,6 +82,12 @@ public class ThrownWeapon : MonoBehaviour
     public ThrownWeapon thisWeapon;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        thisWeapon = GetComponent<ThrownWeapon>();
+
+    }
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -97,8 +103,10 @@ public class ThrownWeapon : MonoBehaviour
         _backSpikeHitBox.gameObject.SetActive(false);
 
         gameManager = FindAnyObjectByType<GameManager>();
-        thisWeapon = GetComponent<ThrownWeapon>();
         _trailObject = Instantiate(_trailPrefab, _trailAnchor.position, Quaternion.identity, _trailAnchor);
+
+        AddThrownWeapon(thisWeapon);
+
     }
 
     // Update is called once per frame
@@ -167,7 +175,7 @@ public class ThrownWeapon : MonoBehaviour
                 if (collision.attachedRigidbody.gameObject.TryGetComponent(out Health health))
                 {
                     RuntimeManager.PlayOneShot(_takeDamageSFX, transform.position); // Play take damage sfx when spike hits player
-                    health.TakeDamage(1f, transform.position);
+                    health.TakeDamage(1, transform.position);
                 }
                 _lastHitLocation = collision.ClosestPoint(transform.position);
                 DestroyObject();
@@ -196,7 +204,6 @@ public class ThrownWeapon : MonoBehaviour
 
             _frontSpikeHitBox.gameObject.SetActive(false);
             _backSpikeHitBox.gameObject.SetActive(true);
-            AddThrownWeapon(thisWeapon);
             _rb.bodyType = RigidbodyType2D.Kinematic;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
