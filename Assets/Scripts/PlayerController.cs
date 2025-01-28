@@ -190,8 +190,8 @@ public class PlayerController : MonoBehaviour
 
         Quaternion lerpedRotation = Quaternion.Slerp(_weapon.transform.rotation, goalRotation, aimSpeed * Time.unscaledDeltaTime);
 
-        float rotationY = Mathf.Lerp(currentRotation.y, goalRotation.y, aimSpeed * Time.unscaledDeltaTime);
-        float rotationZ = Mathf.Lerp(currentRotation.z, goalRotation.z, aimSpeed * Time.unscaledDeltaTime);
+        float rotationY = Mathf.Lerp(currentRotation.y, goalRotation.y, aimSpeed * Time.deltaTime);
+        float rotationZ = Mathf.Lerp(currentRotation.z, goalRotation.z, aimSpeed * Time.deltaTime);
 
         //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, 90 * _aimInput.y));
         //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, rotationZ + 90));

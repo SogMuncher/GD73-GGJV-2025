@@ -94,7 +94,7 @@ public class ThrownWeapon : MonoBehaviour
 
         _frontSpikeHitBox.OnTriggerEnterEvent.AddListener(OnSpikeCollision);
         _backSpikeHitBox.OnTriggerEnterEvent.AddListener(OnSpikeCollision);
-        _shaftHitBox.OnTriggerEnterEvent.AddListener(OnShaftCollision);
+        _shaftHitBox.OnCollisionEnterEvent.AddListener(OnShaftCollision);
 
         _frontSpikeHitBox.ChangeIncludeLayerMask(_frontSpikeLayerMaskWhileFlying);
         _backSpikeHitBox.ChangeIncludeLayerMask(_backSpikeLayerMaskWhileFlying);
@@ -217,15 +217,15 @@ public class ThrownWeapon : MonoBehaviour
         }
     }
 
-    protected void OnShaftCollision(Collider2D collision)
+    protected void OnShaftCollision(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ThrownWeapon"))
         {
             // kill this mf
             Debug.Log("shaft");
-            _lastHitLocation = collision.ClosestPoint(transform.position);
+            _lastHitLocation = collision.GetContact(0).point;
 
-            if (collision.attachedRigidbody.gameObject != null && collision.attachedRigidbody.TryGetComponent(out ThrownWeapon otherWeapon))
+            if (collision.rigidbody.gameObject != null && collision.rigidbody.TryGetComponent(out ThrownWeapon otherWeapon))
             {
                 otherWeapon.DestroyObject();
             }

@@ -7,6 +7,9 @@ public class HitBox : MonoBehaviour
     [HideInInspector]
     public UnityEvent<Collider2D> OnTriggerEnterEvent;
 
+    [HideInInspector]
+    public UnityEvent<Collision2D> OnCollisionEnterEvent;
+
     protected Collider2D _collider;
 
     private void OnEnable()
@@ -16,7 +19,7 @@ public class HitBox : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        OnCollisionEnterEvent.Invoke(collision);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
