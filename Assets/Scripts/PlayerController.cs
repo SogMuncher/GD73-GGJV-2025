@@ -159,8 +159,8 @@ public class PlayerController : MonoBehaviour
         // so values dont need to be huge in the inspector
         float aimSpeed = _aimSpeed * 10;
 
-        float rotationY = Mathf.Lerp(currentRotation.y, goalRotation.y, aimSpeed * Time.deltaTime);
-        float rotationZ = Mathf.Lerp(currentRotation.z, goalRotation.z, aimSpeed * Time.deltaTime);
+        float rotationY = Mathf.Lerp(currentRotation.y, goalRotation.y, aimSpeed * Time.unscaledDeltaTime);
+        float rotationZ = Mathf.Lerp(currentRotation.z, goalRotation.z, aimSpeed * Time.unscaledDeltaTime);
 
         _weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, 90 * _aimInput.y));
         //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, rotationZ));
@@ -402,6 +402,11 @@ public class PlayerController : MonoBehaviour
 
     protected void OnJump()
     {
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+
         if (_rb.linearVelocityY < 0)
         {
             _rb.linearVelocityY = 0f;
@@ -417,15 +422,7 @@ public class PlayerController : MonoBehaviour
        if(_isSticky == true)
         {
             _rb.constraints = RigidbodyConstraints2D.FreezePosition;
-            
-
         } 
-
-        
-
-        
-
-       
     }
 
     public void OnUnstick()
