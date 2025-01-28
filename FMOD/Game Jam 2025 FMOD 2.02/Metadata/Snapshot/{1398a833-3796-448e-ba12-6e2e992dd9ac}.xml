@@ -99,10 +99,10 @@
 			<value>-100</value>
 		</property>
 		<property name="attackTime">
-			<value>720</value>
+			<value>2200</value>
 		</property>
 		<property name="attackShape">
-			<value>-0.130026549</value>
+			<value>-0.274880379</value>
 		</property>
 		<property name="decayTime">
 			<value>3400</value>
@@ -124,6 +124,9 @@
 		<property name="initialValue">
 			<value>-100</value>
 		</property>
+		<property name="attackTime">
+			<value>2200</value>
+		</property>
 		<property name="attackShape">
 			<value>-0.463001132</value>
 		</property>
@@ -144,11 +147,14 @@
 		<property name="initialValue">
 			<value>-100</value>
 		</property>
+		<property name="attackTime">
+			<value>2200</value>
+		</property>
 		<property name="attackShape">
 			<value>-0.274880379</value>
 		</property>
 		<property name="releaseTime">
-			<value>880</value>
+			<value>740</value>
 		</property>
 		<property name="releaseShape">
 			<value>0.342218131</value>
