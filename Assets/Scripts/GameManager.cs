@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             {
                 OnRoundEnd.Invoke();
 
-                IncrementPlayerRoundsWon(playerIndex);
+                IncrementPlayerRoundsWon(1);
                 playerScores[0] = 0;
                 UpdateUIScore();
                 StartCoroutine(CallDestroyWeapons());
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
             {
                 OnRoundEnd.Invoke();
                 
-                IncrementPlayerRoundsWon(playerIndex);
+                IncrementPlayerRoundsWon(0);
                 playerScores[1] = 0;
                 UpdateUIScore();
                 StartCoroutine(CallDestroyWeapons());

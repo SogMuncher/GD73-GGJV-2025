@@ -27,7 +27,7 @@ public class VerticalPassage : MonoBehaviour
             // Reposition the collision object
             Vector3 newPosition = new Vector3(collisionInitialX, _connector.position.y, _connector.position.z);
             newPosition.x = collisionInitialX; // Maintain the collision object's initial X
-            collision.gameObject.transform.position = newPosition;
+            collision.attachedRigidbody.gameObject.transform.position = newPosition;
 
         }
 

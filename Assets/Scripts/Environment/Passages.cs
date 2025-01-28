@@ -26,7 +26,7 @@ public class Passages : MonoBehaviour
             // Reposition the collision object
             Vector3 newPosition = new Vector3(_connector.position.x, collisionInitialY, _connector.position.z);
             newPosition.y = collisionInitialY; // Maintain the collision object's initial X
-            collision.gameObject.transform.position = newPosition;
+            collision.attachedRigidbody.gameObject.transform.position = newPosition;
 
         }
 

@@ -218,15 +218,13 @@ public class ThrownWeapon : MonoBehaviour
         if (_trailObject != null)
         {
             _trailObject.transform.parent = null;
+            Destroy(_trailObject, _trailObject.GetComponent<ParticleSystem>().main.duration);
         }
     }
 
     public void DestroyObject()
     {
-        if (_trailObject != null)
-        {
-            _trailObject.transform.parent = null;
-        }
+        DetachParticle();
 
         Instantiate(_clashParticlePrefab, _lastHitLocation, Quaternion.identity);
 

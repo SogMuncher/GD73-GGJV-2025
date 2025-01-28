@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8736142392452314665
 Transform:
   m_ObjectHideFlags: 0
@@ -29,8 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7846725418539080919}
-  - {fileID: 5592549869833505219}
+  - {fileID: 1234870123216036356}
   - {fileID: 1054053575870978939}
   - {fileID: 5250830785965602809}
   m_Father: {fileID: 6562995676205638332}
@@ -146,12 +145,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895589666911653211}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0.92387956, z: -0, w: 0}
-  m_LocalPosition: {x: 0.26, y: 0.2, z: 0}
-  m_LocalScale: {x: 1.4999999, y: 1.5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8736142392452314665}
+  m_Father: {fileID: 7846725418539080919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3025151379226246530
 GameObject:
@@ -254,7 +253,7 @@ GameObject:
   - component: {fileID: 5808856294230022713}
   - component: {fileID: 536875723449874904}
   m_Layer: 0
-  m_Name: player1spear
+  m_Name: Spear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,12 +267,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3064984788642988677}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0.92387956, z: -0, w: 0}
-  m_LocalPosition: {x: 0.26, y: 0.2, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8736142392452314665}
+  m_Children:
+  - {fileID: 5592549869833505219}
+  m_Father: {fileID: 1234870123216036356}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 45}
 --- !u!212 &2629043422766796208
 SpriteRenderer:
@@ -369,8 +369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844ed36597f96d64fb4a0edc5bd8aa55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectToFollow: {fileID: 881098138845070590}
-  _anchorPositionOffset: {x: 0.3, y: 0.2, z: 0}
+  _objectToFollow: {fileID: 5563373781013253416}
+  _anchorPositionOffset: {x: 0, y: 0, z: 0}
   _followStrength: 200
   _followDampStrength: 10
 --- !u!1 &4136378268206318730
@@ -623,6 +623,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &5563373781013253416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1234870123216036356}
+  m_Layer: 0
+  m_Name: WeaponFollowPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1234870123216036356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5563373781013253416}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.38268343, y: 0.92387956, z: -0, w: 0}
+  m_LocalPosition: {x: 0.26, y: 0.2, z: 0}
+  m_LocalScale: {x: 1.4999999, y: 1.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7846725418539080919}
+  m_Father: {fileID: 8736142392452314665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7193681690592756869
 GameObject:
   m_ObjectHideFlags: 0
