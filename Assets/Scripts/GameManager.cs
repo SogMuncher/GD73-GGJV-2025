@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private GameObject[] _heartsP1;  
     //[SerializeField] private GameObject[] _heartsP2;  
 
+    [SerializeField] private GameObject _winPanelP1;
+    [SerializeField] private GameObject _winPanelP2;
+
     private void Awake()
     {
         instance = this;
@@ -77,9 +80,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(RoundStart());
-        ScoreIntro();
-
-        
+        ScoreIntro();        
     }
 
     // Function to increment player score based on player index
@@ -130,10 +131,12 @@ public class GameManager : MonoBehaviour
             if (playerRoundsWon[0] == 3f)
             {
                 Win("Player 1 is the GOAT!");
+                _winPanelP1.SetActive(true);
             }
             if (playerRoundsWon[1] == 3f)
             {
                 Win("Player 2's really LIKE that");
+                _winPanelP2.SetActive(true);
             }
         }
     }
@@ -197,8 +200,6 @@ public class GameManager : MonoBehaviour
 
         
     }
-  
-
 
     public IEnumerator RoundStart()
     {
