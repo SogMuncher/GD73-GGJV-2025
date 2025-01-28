@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class HitBox : MonoBehaviour
 {
     [HideInInspector]
-    public UnityEvent<Collision2D> OnCollisionEnterEvent;
+    public UnityEvent<Collider2D> OnTriggerEnterEvent;
 
     protected Collider2D _collider;
 
@@ -16,7 +16,12 @@ public class HitBox : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        OnCollisionEnterEvent.Invoke(collision);
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        OnTriggerEnterEvent.Invoke(collision);
     }
 
     public void ChangeIncludeLayerMask(LayerMask layerMask)

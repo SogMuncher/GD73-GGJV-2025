@@ -76,6 +76,8 @@ public class ThrownWeapon : MonoBehaviour
 
     protected Vector3 _lastHitLocation;
 
+    protected bool isDestroying = false;
+
     private GameManager gameManager;
     public ThrownWeapon thisWeapon;
 
@@ -84,9 +86,9 @@ public class ThrownWeapon : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
 
-        _frontSpikeHitBox.OnCollisionEnterEvent.AddListener(OnSpikeCollision);
-        _backSpikeHitBox.OnCollisionEnterEvent.AddListener(OnSpikeCollision);
-        _shaftHitBox.OnCollisionEnterEvent.AddListener(OnShaftCollision);
+        _frontSpikeHitBox.OnTriggerEnterEvent.AddListener(OnSpikeCollision);
+        _backSpikeHitBox.OnTriggerEnterEvent.AddListener(OnSpikeCollision);
+        _shaftHitBox.OnTriggerEnterEvent.AddListener(OnShaftCollision);
 
         _frontSpikeHitBox.ChangeIncludeLayerMask(_frontSpikeLayerMaskWhileFlying);
         _backSpikeHitBox.ChangeIncludeLayerMask(_backSpikeLayerMaskWhileFlying);
@@ -146,7 +148,7 @@ public class ThrownWeapon : MonoBehaviour
         return _isStuck;
     }
 
-    protected void OnSpikeCollision(Collision2D collision)
+    protected void OnSpikeCollision(Collider2D collision)
     {
         RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
 
@@ -162,12 +164,12 @@ public class ThrownWeapon : MonoBehaviour
                 // damage logic
                 Debug.Log("spike player");
 
-                if (collision.rigidbody.gameObject.TryGetComponent(out Health health))
+                if (collision.attachedRigidbody.gameObject.TryGetComponent(out Health health))
                 {
                     RuntimeManager.PlayOneShot(_takeDamageSFX, transform.position); // Play take damage sfx when spike hits player
                     health.TakeDamage(1f, transform.position);
                 }
-                _lastHitLocation = collision.GetContact(0).point;
+                _lastHitLocation = collision.ClosestPoint(transform.position);
                 DestroyObject();
             }
         }
@@ -176,7 +178,13 @@ public class ThrownWeapon : MonoBehaviour
         {
             RuntimeManager.PlayOneShot(_spikeToSpikeSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide
             Debug.Log("spike thrown weapon");
-            _lastHitLocation = collision.GetContact(0).point;
+            _lastHitLocation = collision.ClosestPoint(transform.position);
+
+            if (collision.attachedRigidbody.gameObject != null && collision.attachedRigidbody.TryGetComponent(out ThrownWeapon otherWeapon))
+            {
+                otherWeapon.DestroyObject();
+            }
+
             DestroyObject();
             return;
         }
@@ -202,13 +210,19 @@ public class ThrownWeapon : MonoBehaviour
         }
     }
 
-    protected void OnShaftCollision(Collision2D collision)
+    protected void OnShaftCollision(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ThrownWeapon"))
         {
             // kill this mf
             Debug.Log("shaft");
-            _lastHitLocation = collision.GetContact(0).point;
+            _lastHitLocation = collision.ClosestPoint(transform.position);
+
+            if (collision.attachedRigidbody.gameObject != null && collision.attachedRigidbody.TryGetComponent(out ThrownWeapon otherWeapon))
+            {
+                otherWeapon.DestroyObject();
+            }
+
             DestroyObject();
         }
     }
@@ -224,7 +238,19 @@ public class ThrownWeapon : MonoBehaviour
 
     public void DestroyObject()
     {
+        if (isDestroying == true)
+        {
+            return;
+        }
+
+        isDestroying = true;
+
         DetachParticle();
+
+        if (_lastHitLocation == Vector3.zero)
+        {
+            _lastHitLocation = transform.position;
+        }
 
         Instantiate(_clashParticlePrefab, _lastHitLocation, Quaternion.identity);
 

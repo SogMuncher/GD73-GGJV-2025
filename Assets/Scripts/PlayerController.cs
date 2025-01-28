@@ -61,6 +61,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     protected Transform _thrownWeaponSpawnPoint;
 
+    [SerializeField]
+    protected Follower _weaponFollowerScript;
+
+    [SerializeField]
+    protected GameObject _weaponFollowerDefaultPosition;
+
+    [SerializeField]
+    protected GameObject _weaponFollowerChargePosition;
+
     //[Header("Aim Spring Settings")]
     //[SerializeField]
     //protected float _aimSpringStrength;
@@ -120,12 +129,15 @@ public class PlayerController : MonoBehaviour
     protected PlayerInput _playerInput;
     protected float _moveInput;
     protected Vector2 _aimInput;
+    protected Vector2 _lastValidAimInput;
+    protected Vector3 _lastValidMouseViewportPoint;
     protected float _weaponRotationY;
 
     protected GameObject _lastThrownWeapon;
     protected Vector3 _lastWeaponCollisionPosition;
 
     protected int _currentAmmo = 3;
+    protected bool _isPressingFire = false;
     protected bool _isReloading;
     protected bool _throwIsOnCooldown;
 
@@ -154,16 +166,36 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        Vector3 goalRotation = new Vector3(0, _weaponRotationY, 90 * _aimInput.y);
+        //if (_playerInput.currentControlScheme == "Mouse And Keyboard")
+        //{
+        //    Vector3 playerPositionInViewportPoint = Camera.main.WorldToViewportPoint(transform.position);
+        //    // convert to vector2
+        //    Vector2 playerPos = new Vector2(playerPositionInViewportPoint.x, playerPositionInViewportPoint.y);
+        //    Vector2 mousePos = new Vector2(_lastValidMouseViewportPoint.x, _lastValidMouseViewportPoint.y);
+
+        //    Vector2 dirFromPlayerToMouseBeforeNormalization = mousePos - playerPos;
+        //    Vector2 dirFromPlayerToMouse = ((mousePos) - (playerPos)).normalized;
+
+        //    _aimInput = dirFromPlayerToMouse;
+        //    _lastValidAimInput = _aimInput;
+        //}
+
+        bool weaponIsFlipped = _weaponRotationY == 180;
+        Quaternion zRotation = Quaternion.LookRotation(weaponIsFlipped? Vector3.back:Vector3.forward, new Vector3(_aimInput.x, _aimInput.y, 0));
+        Quaternion goalRotation = Quaternion.Euler(new Vector3(0, _weaponRotationY, zRotation.eulerAngles.z + 90));
+        //Vector3 goalRotation = new Vector3(0, _weaponRotationY, 90 * _aimInput.y);
         Vector3 currentRotation = _weapon.transform.rotation.eulerAngles;
         // so values dont need to be huge in the inspector
         float aimSpeed = _aimSpeed * 10;
 
+        Quaternion lerpedRotation = Quaternion.Slerp(_weapon.transform.rotation, goalRotation, aimSpeed * Time.unscaledDeltaTime);
+
         float rotationY = Mathf.Lerp(currentRotation.y, goalRotation.y, aimSpeed * Time.unscaledDeltaTime);
         float rotationZ = Mathf.Lerp(currentRotation.z, goalRotation.z, aimSpeed * Time.unscaledDeltaTime);
 
-        _weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, 90 * _aimInput.y));
-        //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, rotationZ));
+        //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, 90 * _aimInput.y));
+        //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, rotationZ + 90));
+        _weapon.transform.rotation = lerpedRotation;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -354,7 +386,38 @@ public class PlayerController : MonoBehaviour
 
     protected void OnAim(InputValue inputValue)
     {
-        _aimInput = inputValue.Get<Vector2>();
+        if (_playerInput.currentControlScheme == "Mouse And Keyboard")
+        {
+            // convert positions to viewport point (does not care about resolution)
+            Vector3 playerPositionInViewportPoint = Camera.main.WorldToViewportPoint(transform.position);
+            Vector3 mousePositionInViewportPoint = Camera.main.ScreenToViewportPoint(inputValue.Get<Vector2>());
+
+            _lastValidMouseViewportPoint = mousePositionInViewportPoint;
+
+            // convert to vector2
+            Vector2 playerPos = new Vector2(playerPositionInViewportPoint.x, playerPositionInViewportPoint.y);
+            Vector2 mousePos = new Vector2(mousePositionInViewportPoint.x, mousePositionInViewportPoint.y);
+
+            Vector2 dirFromPlayerToMouseBeforeNormalization = mousePos - playerPos;
+            Vector2 dirFromPlayerToMouse = ((mousePos) - (playerPos)).normalized;
+
+            _aimInput = dirFromPlayerToMouse;
+            _lastValidAimInput = _aimInput;
+
+            //Debug.Log($"Player Viewport: {playerPositionInViewportPoint}, Mouse Viewport: {mousePositionInViewportPoint}, Player Vector2: {playerPos}, Mouse Vector2: {mousePos},Direction Before Normalization: {dirFromPlayerToMouseBeforeNormalization}, Direction: {dirFromPlayerToMouse}");
+        }
+        else if (_playerInput.currentControlScheme == "Generic Controller Scheme")
+        {
+            if (inputValue.Get<Vector2>() != Vector2.zero)
+            {
+                _aimInput = inputValue.Get<Vector2>();
+                _lastValidAimInput = _aimInput;
+            }
+            else
+            {
+                _aimInput = _lastValidAimInput;
+            }
+        }
 
         if (_aimInput.x < 0)
         {
@@ -367,13 +430,24 @@ public class PlayerController : MonoBehaviour
 
         //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, _weaponRotationY, 90 * _aimInput.y));
 
-        Debug.Log($"Player {_playerInput.playerIndex} Aim Input: {_aimInput}");
+        //Debug.Log($"Player {_playerInput.playerIndex} Aim Input: {_aimInput}");
     }
 
     protected void OnFire()
     {
-        if (_currentAmmo > 0 && _throwIsOnCooldown == false)
+        _isPressingFire = !_isPressingFire;
+
+        // the player is holding the fire button while being able to fire
+        if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
         {
+            _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
+        }
+
+        // the player has let go of the fire button while being able to fire
+        else if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == false)
+        {
+            _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
+
             _currentAmmo--;
 
             _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, _thrownWeaponSpawnPoint.position, _weapon.transform.rotation);

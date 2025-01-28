@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
         RuntimeManager.PlayOneShot(_roundStartSFX, transform.position); //Play round start sound
         yield return new WaitForSeconds(0.5f);
         Transform CountDownTransform = RoundStartText.transform;
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         RoundStartText.text = "Round Starting in";
         CountDownTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
 

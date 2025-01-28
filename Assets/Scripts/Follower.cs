@@ -31,6 +31,11 @@ public class Follower : MonoBehaviour
         
     }
 
+    public void ChangeFollowObject(GameObject gameObject)
+    {
+        _objectToFollow = gameObject;
+    }
+
     protected void FixedUpdate()
     {
         _velocity = _rb.linearVelocity;
