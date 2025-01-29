@@ -53,11 +53,13 @@ public class Health : MonoBehaviour
     private void Start()
     {
         _currentHealth = _startingHealth;
+        _takeDamageInstance = RuntimeManager.CreateInstance(_takeDamageSFX); //create an instance of the take damage SFX
     }
 
     public void ResetHealth()
     {
         _currentHealth = _startingHealth;
+        _takeDamageInstance.setParameterByName("Damage", _startingHealth);
     }
 
     public int GetCurrentHealth()
@@ -91,11 +93,13 @@ public class Health : MonoBehaviour
         {
             //GameManager.instance.IncrementPlayerScore(_playerIndex);
             GameManager.instance.UpdatePlayerHealth(_playerIndex);
+            
+            _takeDamageInstance.setParameterByName("Damage", _currentHealth); // set the takedamage SFX parameter to the current health
+            _takeDamageInstance.start(); //play takedamage SFX on hit
         }
-
+      
         if (_currentHealth <= 0)
         {
-            RuntimeManager.PlayOneShot(_popSFX, transform.position);
             Die();
         }
         else
@@ -122,6 +126,8 @@ public class Health : MonoBehaviour
     protected virtual void Die()
     {
         //death logic here
+        RuntimeManager.PlayOneShot(_popSFX);
+        _takeDamageInstance.release(); //stop the take damage SFX - prevents from creating multiple instances of the same sound
         OnDeathEvent.Invoke();
         
     }
