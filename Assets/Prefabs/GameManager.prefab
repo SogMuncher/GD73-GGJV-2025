@@ -1465,6 +1465,13 @@ MonoBehaviour:
       Data3: 58672262
       Data4: -1281305035
     Path: event:/Round Start
+  _roundEndSFX:
+    Guid:
+      Data1: -1543968410
+      Data2: 1156476577
+      Data3: -792270150
+      Data4: -1818550648
+    Path: event:/Music/Round End
   _maxScore: 5
   _scoreRectTransform: {fileID: 2203216718857873445}
   _pause1RectTransform: {fileID: 0}

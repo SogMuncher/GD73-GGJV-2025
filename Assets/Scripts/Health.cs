@@ -96,15 +96,16 @@ public class Health : MonoBehaviour
             
             _takeDamageInstance.setParameterByName("Damage", _currentHealth); // set the takedamage SFX parameter to the current health
             _takeDamageInstance.start(); //play takedamage SFX on hit
+
         }
-      
+
         if (_currentHealth <= 0)
         {
             Die();
         }
         else
         {
-            // after taking damage start invulnerability tinme ONLY IF NOT DEAD
+            // after taking damage start invulnerability time ONLY IF NOT DEAD
             StartCoroutine(InvulnerabilityCoroutine());
         }
     }

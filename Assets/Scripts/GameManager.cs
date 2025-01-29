@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] EventReference _roundStartSFX;
 
+    [SerializeField] EventReference _roundEndSFX;
+
 
     [SerializeField] private float _maxScore = 5;
 
@@ -94,6 +96,7 @@ public class GameManager : MonoBehaviour
                 _heartsP1[_p1.GetCurrentHealth()].SetActive(false);
                 if (_p1.GetCurrentHealth() <= 0)
                 {
+                    RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play win sound
                     OnRoundEnd.Invoke();
                     IncrementPlayerRoundsWon(1);
                     StartCoroutine(CallDestroyWeapons());
@@ -122,6 +125,7 @@ public class GameManager : MonoBehaviour
 
                 if (_p2.GetCurrentHealth() <= 0)
                 {
+                    RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play win sound
                     OnRoundEnd.Invoke();
                     IncrementPlayerRoundsWon(0);
                     StartCoroutine(CallDestroyWeapons());
