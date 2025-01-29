@@ -12,30 +12,30 @@ public class ThrownWeapon : MonoBehaviour
     protected HitBox _frontSpikeHitBox;
 
     [SerializeField]
-    protected LayerMask _frontSpikeLayerMaskWhileFlying;
+    protected LayerMask _frontSpikeExcludeWhileFlying;
 
     [SerializeField]
-    protected LayerMask _frontSpikeLlayerMaskWhileStuck;
+    protected LayerMask _frontSpikeExcludeWhileStuck;
 
     [Header("Back")]
     [SerializeField]
     protected HitBox _backSpikeHitBox;
 
     [SerializeField]
-    protected LayerMask _backSpikeLayerMaskWhileFlying;
+    protected LayerMask _backSpikeExcludeWhileFlying;
 
     [SerializeField]
-    protected LayerMask _backSpikeLayerMaskWhileStuck;
+    protected LayerMask _backSpikeExcludeWhileStuck;
 
     [Header("Shaft")]
     [SerializeField]
     protected HitBox _shaftHitBox;
 
     [SerializeField]
-    protected LayerMask _shaftLayerMaskExcludeWhileFlying;
+    protected LayerMask _shaftExcludeWhileFlying;
 
     [SerializeField]
-    protected LayerMask _shaftLayerMaskExcludeWhileStuck;
+    protected LayerMask _shaftExcludeWhileStuck;
 
     [Header("Misc")]
     [SerializeField]
@@ -96,9 +96,9 @@ public class ThrownWeapon : MonoBehaviour
         _backSpikeHitBox.OnTriggerEnterEvent.AddListener(OnSpikeCollision);
         _shaftHitBox.OnCollisionEnterEvent.AddListener(OnShaftCollision);
 
-        _frontSpikeHitBox.ChangeIncludeLayerMask(_frontSpikeLayerMaskWhileFlying);
-        _backSpikeHitBox.ChangeIncludeLayerMask(_backSpikeLayerMaskWhileFlying);
-        _shaftHitBox.ChangeExcludeLayerMask(_shaftLayerMaskExcludeWhileFlying);
+        _frontSpikeHitBox.ChangeExcludeLayerMask(_frontSpikeExcludeWhileFlying);
+        _backSpikeHitBox.ChangeExcludeLayerMask(_backSpikeExcludeWhileFlying);
+        _shaftHitBox.ChangeExcludeLayerMask(_shaftExcludeWhileFlying);
 
         _backSpikeHitBox.gameObject.SetActive(false);
 
@@ -158,7 +158,12 @@ public class ThrownWeapon : MonoBehaviour
 
     protected void OnSpikeCollision(Collider2D collision)
     {
-        RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
+
+        // if the collision was with a teleporter
+        if (collision.gameObject.layer == 16)
+        {
+            return;
+        }
 
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -177,6 +182,9 @@ public class ThrownWeapon : MonoBehaviour
                     RuntimeManager.PlayOneShot(_takeDamageSFX, transform.position); // Play take damage sfx when spike hits player
                     health.TakeDamage(1, transform.position);
                 }
+
+                RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
+
                 _lastHitLocation = collision.ClosestPoint(transform.position);
                 DestroyObject();
             }
@@ -185,6 +193,9 @@ public class ThrownWeapon : MonoBehaviour
         if (collision.gameObject.CompareTag("ThrownWeapon"))
         {
             RuntimeManager.PlayOneShot(_spikeToSpikeSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide
+
+            RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
+
             Debug.Log("spike thrown weapon");
             _lastHitLocation = collision.ClosestPoint(transform.position);
 
@@ -197,9 +208,10 @@ public class ThrownWeapon : MonoBehaviour
             return;
         }
 
-
         if (_isStuck == false)
         {
+            RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
+
             _isStuck = true;
 
             _frontSpikeHitBox.gameObject.SetActive(false);
@@ -209,9 +221,9 @@ public class ThrownWeapon : MonoBehaviour
 
             if (_layerMaskChangedToStuck == false)
             {
-                _frontSpikeHitBox.ChangeIncludeLayerMask(_frontSpikeLlayerMaskWhileStuck);
-                _backSpikeHitBox.ChangeIncludeLayerMask(_backSpikeLayerMaskWhileStuck);
-                _shaftHitBox.ChangeExcludeLayerMask(_shaftLayerMaskExcludeWhileStuck);
+                _frontSpikeHitBox.ChangeExcludeLayerMask(_frontSpikeExcludeWhileStuck);
+                _backSpikeHitBox.ChangeExcludeLayerMask(_backSpikeExcludeWhileStuck);
+                _shaftHitBox.ChangeExcludeLayerMask(_shaftExcludeWhileStuck);
             }
 
         }
@@ -219,6 +231,12 @@ public class ThrownWeapon : MonoBehaviour
 
     protected void OnShaftCollision(Collision2D collision)
     {
+        // if the collision was with a teleporter
+        if (collision.gameObject.layer == 16)
+        {
+            return;
+        }
+
         if (collision.gameObject.CompareTag("ThrownWeapon"))
         {
             // kill this mf

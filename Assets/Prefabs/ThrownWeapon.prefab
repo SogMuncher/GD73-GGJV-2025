@@ -141,26 +141,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _frontSpikeHitBox: {fileID: 4041154627262784650}
-  _frontSpikeLayerMaskWhileFlying:
+  _frontSpikeExcludeWhileFlying:
     serializedVersion: 2
-    m_Bits: 33801
-  _frontSpikeLlayerMaskWhileStuck:
+    m_Bits: 54
+  _frontSpikeExcludeWhileStuck:
     serializedVersion: 2
-    m_Bits: 33792
+    m_Bits: 66623
   _backSpikeHitBox: {fileID: 4250089894394022154}
-  _backSpikeLayerMaskWhileFlying:
+  _backSpikeExcludeWhileFlying:
     serializedVersion: 2
-    m_Bits: 0
-  _backSpikeLayerMaskWhileStuck:
+    m_Bits: 4294967295
+  _backSpikeExcludeWhileStuck:
     serializedVersion: 2
-    m_Bits: 33792
+    m_Bits: 65599
   _shaftHitBox: {fileID: 6433114949036500350}
-  _shaftLayerMaskExcludeWhileFlying:
+  _shaftExcludeWhileFlying:
     serializedVersion: 2
-    m_Bits: 1087
-  _shaftLayerMaskExcludeWhileStuck:
+    m_Bits: 66623
+  _shaftExcludeWhileStuck:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 65599
   _owningPlayerInvulnerabilityTime: 0.5
   _impactSFX:
     Guid:
@@ -1015,7 +1015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6820488168352653880
 Transform:
   m_ObjectHideFlags: 0
@@ -1025,7 +1025,7 @@ Transform:
   m_GameObject: {fileID: 9145123304389730205}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.849, y: 0.001, z: 0}
+  m_LocalPosition: {x: 0.851, y: 0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1104,7 +1104,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -1114,7 +1114,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1807,8 +1807,8 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 100
-      mode: 0
-      spread: 0
+      mode: 2
+      spread: 0.33
       speed:
         serializedVersion: 2
         minMaxState: 0
@@ -1921,7 +1921,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3080,7 +3080,7 @@ ParticleSystem:
     m_Curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3185,7 +3185,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_Range: {x: 0, y: 1}
+    m_Range: {x: 5, y: 0}
   ForceModule:
     enabled: 0
     x:
