@@ -81,6 +81,8 @@ public class ThrownWeapon : MonoBehaviour
     private GameManager gameManager;
     public ThrownWeapon thisWeapon;
 
+    [SerializeField] private GameObject _flickeringSprite;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -225,6 +227,8 @@ public class ThrownWeapon : MonoBehaviour
                 _backSpikeHitBox.ChangeExcludeLayerMask(_backSpikeExcludeWhileStuck);
                 _shaftHitBox.ChangeExcludeLayerMask(_shaftExcludeWhileStuck);
             }
+
+            _flickeringSprite.SetActive(true);
 
         }
     }

@@ -311,6 +311,24 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Point(Mouse)"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""cf0c46df-e7d3-4ce6-9b0b-566edc52dde5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Click(Mouse)"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""b18e3146-4026-49f9-a8cd-252c451fede7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -458,6 +476,61 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""b0906f7a-38f6-4540-bb76-7e6392275aab"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""aaafb6e3-0768-4df0-a3f1-7f6a3816ed3d"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9ef41928-a005-493a-84be-6b948a3284f6"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7d6000a8-88e0-4a00-9a56-7995b0fa62b6"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""b60163ab-f9d1-42ee-ade6-70bed46fc8dd"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""8a7de7c1-a48c-4aa6-affe-68c9811d881a"",
                     ""path"": ""<Keyboard>/escape"",
@@ -478,8 +551,36 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""01c8e55a-ca3b-4cc5-bd2b-7667cf26a849"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Point(Mouse)"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94bd1f2c-fe22-4c56-98fc-9746c75c2a5a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click(Mouse)"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Idle"",
+            ""id"": ""3be41af4-826f-4f3c-9a06-6f3ec788248f"",
+            ""actions"": [],
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": [
@@ -526,12 +627,17 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
         m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
+        m_UI_PointMouse = m_UI.FindAction("Point(Mouse)", throwIfNotFound: true);
+        m_UI_ClickMouse = m_UI.FindAction("Click(Mouse)", throwIfNotFound: true);
+        // Idle
+        m_Idle = asset.FindActionMap("Idle", throwIfNotFound: true);
     }
 
     ~@IA_Gameplay()
     {
         UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, IA_Gameplay.Gameplay.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, IA_Gameplay.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Idle.enabled, "This will cause a leak and performance issues, IA_Gameplay.Idle.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -690,6 +796,8 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Select;
     private readonly InputAction m_UI_Navigate;
     private readonly InputAction m_UI_Back;
+    private readonly InputAction m_UI_PointMouse;
+    private readonly InputAction m_UI_ClickMouse;
     public struct UIActions
     {
         private @IA_Gameplay m_Wrapper;
@@ -697,6 +805,8 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         public InputAction @Select => m_Wrapper.m_UI_Select;
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
         public InputAction @Back => m_Wrapper.m_UI_Back;
+        public InputAction @PointMouse => m_Wrapper.m_UI_PointMouse;
+        public InputAction @ClickMouse => m_Wrapper.m_UI_ClickMouse;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -715,6 +825,12 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @Back.started += instance.OnBack;
             @Back.performed += instance.OnBack;
             @Back.canceled += instance.OnBack;
+            @PointMouse.started += instance.OnPointMouse;
+            @PointMouse.performed += instance.OnPointMouse;
+            @PointMouse.canceled += instance.OnPointMouse;
+            @ClickMouse.started += instance.OnClickMouse;
+            @ClickMouse.performed += instance.OnClickMouse;
+            @ClickMouse.canceled += instance.OnClickMouse;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -728,6 +844,12 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @Back.started -= instance.OnBack;
             @Back.performed -= instance.OnBack;
             @Back.canceled -= instance.OnBack;
+            @PointMouse.started -= instance.OnPointMouse;
+            @PointMouse.performed -= instance.OnPointMouse;
+            @PointMouse.canceled -= instance.OnPointMouse;
+            @ClickMouse.started -= instance.OnClickMouse;
+            @ClickMouse.performed -= instance.OnClickMouse;
+            @ClickMouse.canceled -= instance.OnClickMouse;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -745,6 +867,44 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Idle
+    private readonly InputActionMap m_Idle;
+    private List<IIdleActions> m_IdleActionsCallbackInterfaces = new List<IIdleActions>();
+    public struct IdleActions
+    {
+        private @IA_Gameplay m_Wrapper;
+        public IdleActions(@IA_Gameplay wrapper) { m_Wrapper = wrapper; }
+        public InputActionMap Get() { return m_Wrapper.m_Idle; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(IdleActions set) { return set.Get(); }
+        public void AddCallbacks(IIdleActions instance)
+        {
+            if (instance == null || m_Wrapper.m_IdleActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_IdleActionsCallbackInterfaces.Add(instance);
+        }
+
+        private void UnregisterCallbacks(IIdleActions instance)
+        {
+        }
+
+        public void RemoveCallbacks(IIdleActions instance)
+        {
+            if (m_Wrapper.m_IdleActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IIdleActions instance)
+        {
+            foreach (var item in m_Wrapper.m_IdleActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_IdleActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public IdleActions @Idle => new IdleActions(this);
     private int m_GenericControllerSchemeSchemeIndex = -1;
     public InputControlScheme GenericControllerSchemeScheme
     {
@@ -778,5 +938,10 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
+        void OnPointMouse(InputAction.CallbackContext context);
+        void OnClickMouse(InputAction.CallbackContext context);
+    }
+    public interface IIdleActions
+    {
     }
 }

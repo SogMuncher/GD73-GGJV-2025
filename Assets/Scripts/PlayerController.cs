@@ -56,7 +56,9 @@ public class PlayerController : MonoBehaviour
     protected float _aimSpeed;
 
     [SerializeField]
-    protected GameObject _thrownWeaponPrefab;
+    protected GameObject _thrownWeaponPrefabP1;
+    [SerializeField]
+    protected GameObject _thrownWeaponPrefabP2;
 
     [SerializeField]
     protected Transform _thrownWeaponSpawnPoint;
@@ -144,6 +146,8 @@ public class PlayerController : MonoBehaviour
     protected Health _health;
 
     public UnityEvent OnPaused;
+    public UnityEvent OnPauseStopped;
+    private bool _isPaused = false;
 
     private Vector3 _startLocation;
 
@@ -450,7 +454,16 @@ public class PlayerController : MonoBehaviour
 
             _currentAmmo--;
 
-            _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, _thrownWeaponSpawnPoint.position, _weapon.transform.rotation);
+            if (_playerInput.playerIndex == 0)
+            {
+                _lastThrownWeapon = Instantiate(_thrownWeaponPrefabP1, _thrownWeaponSpawnPoint.position, _weapon.transform.rotation);
+            }
+
+            if ( _playerInput.playerIndex == 1)
+            {
+                _lastThrownWeapon = Instantiate(_thrownWeaponPrefabP2, _thrownWeaponSpawnPoint.position, _weapon.transform.rotation);
+            }
+
             _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
 
             Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
@@ -617,10 +630,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause()
     {
-       
+        _isPaused = !_isPaused;    
+        if (!_isPaused )
+        {
             OnPaused.Invoke();
+        }
 
-        
+        if (_isPaused )
+        {
+            OnPauseStopped.Invoke();
+        }
     }
 
     public void ResetTransform()

@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
 
     // PlayerInputManager reference
     private PlayerInputManager playerInputManager;
-    private PlayerInput playerInput;
+    [SerializeField]
+    private PlayerInput[] _playersInput;
     private List<ThrownWeapon> thrownWeapon = new List<ThrownWeapon>();
 
     public TextMeshProUGUI[] playerScoreTexts;
@@ -304,6 +305,13 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator RoundStart()
     {
+        //SwitchMap("Idle");
+        for (int i = 0; i < _playersInput.Length; i++)
+        {
+            PlayerInput playerInput = _playersInput[i];
+            playerInput.DeactivateInput();
+        }
+
         RuntimeManager.PlayOneShot(_roundStartSFX, transform.position); //Play round start sound
         yield return new WaitForSeconds(0.5f);
         Transform CountDownTransform = RoundStartText.transform;
@@ -348,6 +356,12 @@ public class GameManager : MonoBehaviour
 
         RoundStartText.text = "";
 
+        //SwitchMap("Gameplay");
+        for (int i = 0; i < _playersInput.Length; i++)
+        {
+            PlayerInput playerInput = _playersInput[i];
+            playerInput.ActivateInput();
+        }
 
         yield break;
 
@@ -386,5 +400,14 @@ public class GameManager : MonoBehaviour
             }
         }
         thrownWeapon.Clear();
+    }
+
+    public void SwitchMap(string newMap)
+    {
+        for (int i = 0; i < _playersInput.Length; i++)
+        {
+            PlayerInput playerInput = _playersInput[i];
+            playerInput.SwitchCurrentActionMap(newMap);
+        }
     }
 }
