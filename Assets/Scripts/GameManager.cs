@@ -323,7 +323,7 @@ public class GameManager : MonoBehaviour
         Transform CountDownTransform = RoundStartText.transform;
         //Time.timeScale = 0f;
 
-        RoundStartText.text = "Best to 5 Rounds";
+        RoundStartText.text = "Best of 5 Rounds";
         CountDownTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
 
         yield return new WaitForSecondsRealtime(_roundStartTimer + 1.25f);
@@ -358,7 +358,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(_roundStartTimer);
 
 
-        RoundStartText.text = "Fight";
+        RoundStartText.text = "Fight!";
         CountDownTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
 
 

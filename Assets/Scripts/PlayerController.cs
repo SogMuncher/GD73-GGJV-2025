@@ -50,9 +50,7 @@ public class PlayerController : MonoBehaviour
     protected float _aimSpeed;
 
     [SerializeField]
-    protected GameObject _thrownWeaponPrefabP1;
-    [SerializeField]
-    protected GameObject _thrownWeaponPrefabP2;
+    protected GameObject _thrownWeaponPrefab;
 
     [SerializeField]
     protected Transform _thrownWeaponSpawnPoint;
@@ -448,15 +446,7 @@ public class PlayerController : MonoBehaviour
 
             _currentAmmo--;
 
-            if (_playerInput.playerIndex == 0)
-            {
-                _lastThrownWeapon = Instantiate(_thrownWeaponPrefabP2, _thrownWeaponSpawnPoint.position, _weaponVisual.transform.rotation);
-            }
-
-            else if ( _playerInput.playerIndex == 1)
-            {
-                _lastThrownWeapon = Instantiate(_thrownWeaponPrefabP1, _thrownWeaponSpawnPoint.position, _weaponVisual.transform.rotation);
-            }
+            _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, _thrownWeaponSpawnPoint.position, _weaponVisual.transform.rotation);
 
             _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
 
@@ -639,6 +629,7 @@ public class PlayerController : MonoBehaviour
     public void ResetTransform()
     {
         transform.position = _startLocation;
+        _rb.linearVelocity = Vector2.zero;
     }
 
     

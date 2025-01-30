@@ -45,9 +45,12 @@ public class ThrownWeapon : MonoBehaviour
 
     [Header("Impact")]
     [SerializeField]
+    protected GameObject _clashParticlePrefab;
+    
+    [SerializeField]
     EventReference _impactSFX;
     EventInstance _impactInstance;
-    
+
     [SerializeField]
     EventReference _spikeToSpikeSFX;
     
@@ -55,14 +58,25 @@ public class ThrownWeapon : MonoBehaviour
     EventReference _takeDamageSFX;
     EventInstance _takeDamageInstance;
 
+    [Header("Misc")]
     [SerializeField]
     public GameObject _trailPrefab;
+
     [SerializeField]
     public Transform _trailAnchor;
     public GameObject _trailObject;
 
+    [SerializeField] 
+    protected GameObject _flickeringSprite;
+    protected Color _flickeringSpriteStartColor;
+
+    [SerializeField] 
+    protected float _detectionRange = 4f;
+
     [SerializeField]
-    protected GameObject _clashParticlePrefab;
+    protected AnimationCurve _flickeringColorLerpAlpha;
+    protected GameObject _player1;
+    protected GameObject _player2;
 
     protected Rigidbody2D _rb;
 
@@ -83,12 +97,7 @@ public class ThrownWeapon : MonoBehaviour
     protected GameManager gameManager;
     protected ThrownWeapon thisWeapon;
 
-    [SerializeField] private GameObject _flickeringSprite;
     //private GameObject[] _players = new GameObject[2];
-    private GameObject _player1;
-    private GameObject _player2;
-    [SerializeField] private float _detectionRange = 4f;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected void Awake()
@@ -113,6 +122,8 @@ public class ThrownWeapon : MonoBehaviour
 
         gameManager = FindAnyObjectByType<GameManager>();
         _trailObject = Instantiate(_trailPrefab, _trailAnchor.position, Quaternion.identity, _trailAnchor);
+
+        _flickeringSpriteStartColor = _flickeringSprite.GetComponent<SpriteRenderer>().color;
 
         AddThrownWeapon(thisWeapon);
 
@@ -178,12 +189,22 @@ public class ThrownWeapon : MonoBehaviour
         //    }
         //}
 
-        float distanceToP1 = Vector3.Distance(this.transform.position, _player1.transform.position);
-        float distanceToP2 = Vector3.Distance(this.transform.position, _player2.transform.position);
+        float distanceToP1 = Vector3.Distance(_flickeringSprite.transform.position, _player1.transform.position);
+        float distanceToP2 = Vector3.Distance(_flickeringSprite.transform.position, _player2.transform.position);
 
-        if (distanceToP1 <= _detectionRange || distanceToP2 <= _detectionRange)
+        float closestPlayerDistance = Mathf.Min(distanceToP1, distanceToP2);
+
+        if (closestPlayerDistance <= _detectionRange)
         {
             _flickeringSprite.SetActive(true);
+            Color currentColor = _flickeringSprite.GetComponent<SpriteRenderer>().color;
+            float lerpedDistance = Mathf.Lerp(1, 0, closestPlayerDistance / _detectionRange);
+            float lerpedScale = Mathf.Clamp(Mathf.Lerp(1.0625f, 1.2f, _flickeringSprite.GetComponent<Animator>().GetFloat("ScaleAlpha") * lerpedDistance), 1, 2);
+            float alphaOverDistance = _flickeringSprite.GetComponent<Animator>().GetFloat("ColourAlpha") * lerpedDistance;
+
+            _flickeringSprite.GetComponent<Animator>().SetFloat("FlickerSpeed", Mathf.Lerp(.6f, .025f, closestPlayerDistance / _detectionRange));
+            _flickeringSprite.GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(_flickeringSpriteStartColor.r, _flickeringSpriteStartColor.g, _flickeringSpriteStartColor.b, alphaOverDistance), new Color(1, 0, 0, alphaOverDistance), lerpedDistance);
+            _flickeringSprite.transform.localScale = new Vector3(lerpedScale, lerpedScale, 1);
         }
         else
         {
@@ -211,7 +232,8 @@ public class ThrownWeapon : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.CompareTag("Player"))
+        // if the collision was with a player
+        if (collision.gameObject.layer == 10)
         {
             
             if (collision.gameObject == _owningPlayerObject && _canHitOwner == false)
@@ -333,20 +355,20 @@ public class ThrownWeapon : MonoBehaviour
         gameManager.AddWeaponsToList(weapon);
     }
 
-    protected void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out SpearDetector bubble))
-        {
-            //_players.Add(bubble);
-            _flickeringSprite.SetActive(true);
-        }
-    }
+    //protected void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.TryGetComponent(out SpearDetector bubble))
+    //    {
+    //        //_players.Add(bubble);
+    //        _flickeringSprite.SetActive(true);
+    //    }
+    //}
 
-    protected void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out SpearDetector bubble))
-        {
-            _flickeringSprite.SetActive(false);
-        }
-    }
+    //protected void OnTriggerExit2D(Collider2D other)
+    //{
+    //    if (other.TryGetComponent(out SpearDetector bubble))
+    //    {
+    //        _flickeringSprite.SetActive(false);
+    //    }
+    //}
 }
