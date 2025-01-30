@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - SpearDetector
   - ThrownWeapon
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX
