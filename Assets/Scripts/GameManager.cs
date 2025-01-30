@@ -61,7 +61,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Health _p1;
     [SerializeField] private GameObject[] _heartsP1;  
     [SerializeField] private Health _p2;
-    [SerializeField] private GameObject[] _heartsP2;  
+    [SerializeField] private GameObject[] _heartsP2;
+
+    [Header("Controls")]
+    [SerializeField] GameObject _controlsObject;
+    [SerializeField] Image _keyboard;
+    [SerializeField] Image _gamepad;
+    [SerializeField] private float _fadeTime = 3f;
 
 
     private void Awake()
@@ -356,6 +362,8 @@ public class GameManager : MonoBehaviour
 
         RoundStartText.text = "";
 
+        StartCoroutine(FadeOut());
+
         //SwitchMap("Gameplay");
         for (int i = 0; i < _playersInput.Length; i++)
         {
@@ -409,5 +417,19 @@ public class GameManager : MonoBehaviour
             PlayerInput playerInput = _playersInput[i];
             playerInput.SwitchCurrentActionMap(newMap);
         }
+    }
+
+    private IEnumerator FadeOut()
+    {
+        float timer = _fadeTime;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            _keyboard.color = new Color(_keyboard.color.r, _keyboard.color.g, _keyboard.color.b, timer / _fadeTime);
+            _gamepad.color = new Color(_gamepad.color.r, _gamepad.color.g, _gamepad.color.b, timer / _fadeTime);
+            yield return null;
+            //_controlsObject.SetActive(false);
+        }
+        yield break;
     }
 }
