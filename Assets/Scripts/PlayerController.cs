@@ -21,12 +21,6 @@ public class PlayerController : MonoBehaviour
     protected float _jumpStrength;
 
     [SerializeField]
-    protected float _jumpCost;
-
-    [SerializeField]
-    protected float _airControl;
-
-    [SerializeField]
     protected float _playerBounceForce = 5f;
 
     [SerializeField]
@@ -38,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attacking")]
     [SerializeField]
-    protected GameObject _weapon;
+    protected GameObject _weaponVisual;
 
     [SerializeField]
     protected int _maxAmmo = 3;
@@ -160,7 +154,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected void Start()
     {
         _health.OnDamagedEvent.AddListener(OnDamaged);
         _health.OnDamagedEvent.AddListener(StartKnockback);
@@ -188,20 +182,20 @@ public class PlayerController : MonoBehaviour
         Quaternion zRotation = Quaternion.LookRotation(weaponIsFlipped? Vector3.back:Vector3.forward, new Vector3(_aimInput.x, _aimInput.y, 0));
         Quaternion goalRotation = Quaternion.Euler(new Vector3(0, _weaponRotationY, zRotation.eulerAngles.z + 90));
         //Vector3 goalRotation = new Vector3(0, _weaponRotationY, 90 * _aimInput.y);
-        Vector3 currentRotation = _weapon.transform.rotation.eulerAngles;
+        Vector3 currentRotation = _weaponVisual.transform.rotation.eulerAngles;
         // so values dont need to be huge in the inspector
         float aimSpeed = _aimSpeed * 10;
 
-        Quaternion lerpedRotation = Quaternion.Slerp(_weapon.transform.rotation, goalRotation, aimSpeed * Time.unscaledDeltaTime);
+        Quaternion lerpedRotation = Quaternion.Slerp(_weaponVisual.transform.rotation, goalRotation, aimSpeed * Time.unscaledDeltaTime);
 
         float rotationY = Mathf.Lerp(currentRotation.y, goalRotation.y, aimSpeed * Time.deltaTime);
         float rotationZ = Mathf.Lerp(currentRotation.z, goalRotation.z, aimSpeed * Time.deltaTime);
 
         //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, 90 * _aimInput.y));
         //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, rotationZ + 90));
-        _weapon.transform.rotation = lerpedRotation;
+        _weaponVisual.transform.rotation = lerpedRotation;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 10)
         {
@@ -240,7 +234,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(DamageOnKnockbackCoroutine());
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    protected void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 3)
         {
@@ -531,11 +525,11 @@ public class PlayerController : MonoBehaviour
     {
         _isReloading = true;
 
-        _weapon.SetActive(false);
+        _weaponVisual.SetActive(false);
 
         yield return new WaitForSeconds(_reloadTime);
 
-        _weapon.SetActive(true);
+        _weaponVisual.SetActive(true);
         _currentAmmo = _maxAmmo;
         _isReloading = false;
         RuntimeManager.PlayOneShot(_reloadSFX, transform.position); // Play reload sound when ammo is max ammo
@@ -553,13 +547,13 @@ public class PlayerController : MonoBehaviour
 
         while (time < _throwCooldownTime)
         {
-            _weapon.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, time / _throwCooldownTime);
+            _weaponVisual.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, time / _throwCooldownTime);
 
             time += Time.deltaTime;
             yield return null;
         }
 
-        _weapon.transform.localScale = Vector3.one;
+        _weaponVisual.transform.localScale = Vector3.one;
 
         //yield return new WaitForSeconds(_throwCooldownTime);
 
@@ -612,7 +606,7 @@ public class PlayerController : MonoBehaviour
         yield break;
     }
 
-    private void OnDrawGizmos()
+    protected void OnDrawGizmos()
     {
         if (_isGrounded == true)
         {

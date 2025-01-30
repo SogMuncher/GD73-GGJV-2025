@@ -80,8 +80,8 @@ public class ThrownWeapon : MonoBehaviour
 
     protected bool isDestroying = false;
 
-    private GameManager gameManager;
-    public ThrownWeapon thisWeapon;
+    protected GameManager gameManager;
+    protected ThrownWeapon thisWeapon;
 
     [SerializeField] private GameObject _flickeringSprite;
     //private PlayerController[] _players;
@@ -92,13 +92,13 @@ public class ThrownWeapon : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Awake()
+    protected void Awake()
     {
         thisWeapon = GetComponent<ThrownWeapon>();
         //_players.Add(FindObjectOfType<PlayerController>());
     }
 
-    void Start()
+    protected void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
 
@@ -120,7 +120,7 @@ public class ThrownWeapon : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (_owningPlayerInvulnerabilityTime > 0 && _canHitOwner == false)
         {
@@ -315,7 +315,7 @@ public class ThrownWeapon : MonoBehaviour
         gameManager.AddWeaponsToList(weapon);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out SpearDetector bubble))
         {
@@ -324,7 +324,7 @@ public class ThrownWeapon : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    protected void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent(out SpearDetector bubble))
         {
