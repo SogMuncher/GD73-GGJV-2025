@@ -5611,6 +5611,88 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1234870123216036356}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6222663165346280730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1563639435023353737}
+  - component: {fileID: 8934686563916969883}
+  - component: {fileID: 830688321445920268}
+  m_Layer: 17
+  m_Name: StickySpearDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1563639435023353737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222663165346280730}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6562995676205638332}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &8934686563916969883
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222663165346280730}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 5
+--- !u!114 &830688321445920268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222663165346280730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcdaee05965d2944bbb0872510c5117d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionRadius: 5
 --- !u!1 &7193681690592756869
 GameObject:
   m_ObjectHideFlags: 0
@@ -10679,6 +10761,7 @@ Transform:
   m_Children:
   - {fileID: 1981761761739537336}
   - {fileID: 8736142392452314665}
+  - {fileID: 1563639435023353737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &7006715837357233703
@@ -10812,7 +10895,8 @@ MonoBehaviour:
   _throwCooldownTime: 0.25
   _throwStrength: 20
   _aimSpeed: 1.25
-  _thrownWeaponPrefab: {fileID: 2691685587547050328, guid: bc5495dd58430da479e3d2a48cf5fa52, type: 3}
+  _thrownWeaponPrefabP1: {fileID: 0}
+  _thrownWeaponPrefabP2: {fileID: 0}
   _thrownWeaponSpawnPoint: {fileID: 5592549869833505219}
   _weaponFollowerScript: {fileID: 536875723449874904}
   _weaponFollowerDefaultPosition: {fileID: 5932338174707523700}
@@ -10851,6 +10935,9 @@ MonoBehaviour:
   _hitFreezeTime: 0.25
   _hitShakeStrength: 0.3
   OnPaused:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPauseStopped:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &8224858477618745791

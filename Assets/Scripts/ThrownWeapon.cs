@@ -3,6 +3,8 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class ThrownWeapon : MonoBehaviour
@@ -82,12 +84,18 @@ public class ThrownWeapon : MonoBehaviour
     public ThrownWeapon thisWeapon;
 
     [SerializeField] private GameObject _flickeringSprite;
+    //private PlayerController[] _players;
+    //[SerializeField] private float _detectionRange = 3f;
+    //private List<PlayerController> _players;
+    //private float _distanceToPlayer;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         thisWeapon = GetComponent<ThrownWeapon>();
-
+        //_players.Add(FindObjectOfType<PlayerController>());
     }
 
     void Start()
@@ -146,6 +154,24 @@ public class ThrownWeapon : MonoBehaviour
             }
 
         }
+
+        //foreach (PlayerController player in _players)
+        //{
+        //    if (_players != null)
+        //    {
+        //        float distance = Vector3.Distance(this.transform.position, player.transform.position);
+        //        _distanceToPlayer = distance;
+        //    }
+        //}
+
+        //if (_distanceToPlayer <= _detectionRange)
+        //{
+        //    _flickeringSprite.SetActive(true);
+        //}
+        //else
+        //{
+        //    _flickeringSprite.SetActive(false);
+        //}
     }
 
     public void SetOwningPlayerObject(GameObject owner)
@@ -228,8 +254,6 @@ public class ThrownWeapon : MonoBehaviour
                 _shaftHitBox.ChangeExcludeLayerMask(_shaftExcludeWhileStuck);
             }
 
-            _flickeringSprite.SetActive(true);
-
         }
     }
 
@@ -289,5 +313,22 @@ public class ThrownWeapon : MonoBehaviour
     protected void AddThrownWeapon(ThrownWeapon weapon)
     {
         gameManager.AddWeaponsToList(weapon);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out SpearDetector bubble))
+        {
+            //_players.Add(bubble);
+            _flickeringSprite.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out SpearDetector bubble))
+        {
+            _flickeringSprite.SetActive(false);
+        }
     }
 }
