@@ -292,7 +292,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < playerRoundsWon.Length; i++)
         {
-            playerRoundsWonTexts[i].text = "Rounds Won: " + playerRoundsWon[i];
+            playerRoundsWonTexts[i].text = "Rounds Won: " + playerRoundsWon[i] + " / 3";
             Transform RoundsTransform = playerRoundsWonTexts[i].transform;
             //RoundsTransform.transform.DOPunchScale(new Vector3(2f,2f,2f), 0.2f, 0, 0.1f).SetUpdate(true);
         }
@@ -322,6 +322,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Transform CountDownTransform = RoundStartText.transform;
         //Time.timeScale = 0f;
+
+        RoundStartText.text = "Best to 5 Rounds";
+        CountDownTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
+
+        yield return new WaitForSecondsRealtime(_roundStartTimer + 1.25f);
+
         RoundStartText.text = "Round Starting in";
         CountDownTransform.transform.DOPunchScale(new Vector3(2f, 2f, 2f), 0.2f, 0, 0.1f).SetUpdate(true);
 
