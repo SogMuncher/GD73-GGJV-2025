@@ -190,6 +190,7 @@ MonoBehaviour:
   _clashParticlePrefab: {fileID: 7462766234518659814, guid: d050bd2eda14d14459fca167a6abf882, type: 3}
   thisWeapon: {fileID: 0}
   _flickeringSprite: {fileID: 6453527469281479661}
+  _detectionRange: 6
 --- !u!61 &2297569559314318966
 BoxCollider2D:
   m_ObjectHideFlags: 0

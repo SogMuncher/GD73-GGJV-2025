@@ -84,18 +84,17 @@ public class ThrownWeapon : MonoBehaviour
     public ThrownWeapon thisWeapon;
 
     [SerializeField] private GameObject _flickeringSprite;
-    //private PlayerController[] _players;
-    //[SerializeField] private float _detectionRange = 3f;
-    //private List<PlayerController> _players;
-    //private float _distanceToPlayer;
-
+    //private GameObject[] _players = new GameObject[2];
+    private GameObject _player1;
+    private GameObject _player2;
+    [SerializeField] private float _detectionRange = 4f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         thisWeapon = GetComponent<ThrownWeapon>();
-        //_players.Add(FindObjectOfType<PlayerController>());
+
     }
 
     void Start()
@@ -117,7 +116,14 @@ public class ThrownWeapon : MonoBehaviour
 
         AddThrownWeapon(thisWeapon);
 
-    }
+        //for (int i = 0; i < _players.Length; i++)
+        //{
+        //    _players[i] = GameObject.FindGameObjectWithTag("SpearDetector");
+        //}
+
+        _player1 = GameObject.FindGameObjectWithTag("Player1");
+        _player2 = GameObject.FindGameObjectWithTag("Player2");
+   }
 
     // Update is called once per frame
     void Update()
@@ -155,23 +161,35 @@ public class ThrownWeapon : MonoBehaviour
 
         }
 
-        //foreach (PlayerController player in _players)
+        //foreach (GameObject player in _players)
         //{
-        //    if (_players != null)
+        //    if (player != null)
         //    {
         //        float distance = Vector3.Distance(this.transform.position, player.transform.position);
-        //        _distanceToPlayer = distance;
+
+        //        if (distance <= _detectionRange)
+        //        {
+        //            _flickeringSprite.SetActive(true);
+        //        }
+        //        else
+        //        {
+        //            _flickeringSprite.SetActive(false);
+        //        }
         //    }
         //}
 
-        //if (_distanceToPlayer <= _detectionRange)
-        //{
-        //    _flickeringSprite.SetActive(true);
-        //}
-        //else
-        //{
-        //    _flickeringSprite.SetActive(false);
-        //}
+        float distanceToP1 = Vector3.Distance(this.transform.position, _player1.transform.position);
+        float distanceToP2 = Vector3.Distance(this.transform.position, _player2.transform.position);
+
+        if (distanceToP1 <= _detectionRange || distanceToP2 <= _detectionRange)
+        {
+            _flickeringSprite.SetActive(true);
+        }
+        else
+        {
+            _flickeringSprite.SetActive(false);
+        }
+
     }
 
     public void SetOwningPlayerObject(GameObject owner)
@@ -315,20 +333,20 @@ public class ThrownWeapon : MonoBehaviour
         gameManager.AddWeaponsToList(weapon);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out SpearDetector bubble))
-        {
-            //_players.Add(bubble);
-            _flickeringSprite.SetActive(true);
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.TryGetComponent(out SpearDetector bubble))
+    //    {
+    //        //_players.Add(bubble);
+    //        _flickeringSprite.SetActive(true);
+    //    }
+    //}
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out SpearDetector bubble))
-        {
-            _flickeringSprite.SetActive(false);
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D other)
+    //{
+    //    if (other.TryGetComponent(out SpearDetector bubble))
+    //    {
+    //        _flickeringSprite.SetActive(false);
+    //    }
+    //}
 }
