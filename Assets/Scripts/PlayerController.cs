@@ -456,12 +456,12 @@ public class PlayerController : MonoBehaviour
 
             if (_playerInput.playerIndex == 0)
             {
-                _lastThrownWeapon = Instantiate(_thrownWeaponPrefabP1, _thrownWeaponSpawnPoint.position, _weapon.transform.rotation);
+                _lastThrownWeapon = Instantiate(_thrownWeaponPrefabP2, _thrownWeaponSpawnPoint.position, _weapon.transform.rotation);
             }
 
-            if ( _playerInput.playerIndex == 1)
+            else if ( _playerInput.playerIndex == 1)
             {
-                _lastThrownWeapon = Instantiate(_thrownWeaponPrefabP2, _thrownWeaponSpawnPoint.position, _weapon.transform.rotation);
+                _lastThrownWeapon = Instantiate(_thrownWeaponPrefabP1, _thrownWeaponSpawnPoint.position, _weapon.transform.rotation);
             }
 
             _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
