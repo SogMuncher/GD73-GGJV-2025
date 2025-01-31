@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ReligiousStar_0: -7173621122344941659
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

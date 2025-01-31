@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SailorMoon_0: 3677291797045746736
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

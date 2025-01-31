@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FatterStar_02_0: -3970821328758082669
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

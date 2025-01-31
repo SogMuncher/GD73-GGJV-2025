@@ -189,7 +189,7 @@ MonoBehaviour:
   _trailAnchor: {fileID: 661242858275896048}
   _trailObject: {fileID: 0}
   _flickeringSprite: {fileID: 6453527469281479661}
-  _detectionRange: 6
+  _detectionRange: 8
   _flickeringColorLerpAlpha:
     serializedVersion: 2
     m_Curve:

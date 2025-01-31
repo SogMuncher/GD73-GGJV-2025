@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ImaginePAc-Man_0: -6684020999918329446
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CircularTri-Fecta_0: -4613115588202070363
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

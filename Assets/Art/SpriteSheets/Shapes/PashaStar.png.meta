@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PashaStar_0: -8224759061833305897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
