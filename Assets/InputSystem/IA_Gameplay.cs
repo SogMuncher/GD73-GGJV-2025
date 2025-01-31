@@ -295,6 +295,15 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""b38b577e-ccb5-4cac-9275-ede54342d29a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Navigate"",
                     ""type"": ""PassThrough"",
                     ""id"": ""99e18421-6baa-4a21-b1f1-167d6fe4c81b"",
@@ -373,6 +382,28 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Mouse And Keyboard"",
                     ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab5b47e2-0c6d-46ac-a90b-a1f77589420f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb04779d-c646-4a43-9591-87e46ef52885"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -658,6 +689,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
+        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
         m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
         m_UI_PointMouse = m_UI.FindAction("Point(Mouse)", throwIfNotFound: true);
@@ -827,6 +859,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_Select;
+    private readonly InputAction m_UI_Pause;
     private readonly InputAction m_UI_Navigate;
     private readonly InputAction m_UI_Back;
     private readonly InputAction m_UI_PointMouse;
@@ -836,6 +869,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         private @IA_Gameplay m_Wrapper;
         public UIActions(@IA_Gameplay wrapper) { m_Wrapper = wrapper; }
         public InputAction @Select => m_Wrapper.m_UI_Select;
+        public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
         public InputAction @Back => m_Wrapper.m_UI_Back;
         public InputAction @PointMouse => m_Wrapper.m_UI_PointMouse;
@@ -852,6 +886,9 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
             @Navigate.started += instance.OnNavigate;
             @Navigate.performed += instance.OnNavigate;
             @Navigate.canceled += instance.OnNavigate;
@@ -871,6 +908,9 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
             @Navigate.started -= instance.OnNavigate;
             @Navigate.performed -= instance.OnNavigate;
             @Navigate.canceled -= instance.OnNavigate;
@@ -969,6 +1009,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnSelect(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
         void OnPointMouse(InputAction.CallbackContext context);

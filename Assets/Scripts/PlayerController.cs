@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
 
     public UnityEvent OnPaused;
     public UnityEvent OnPauseStopped;
-    private bool _isPaused = false;
+    private bool _isPaused;
 
     private Vector3 _startLocation;
 
@@ -157,6 +157,7 @@ public class PlayerController : MonoBehaviour
         _health.OnDamagedEvent.AddListener(OnDamaged);
         _health.OnDamagedEvent.AddListener(StartKnockback);
         _startLocation = transform.position;
+        _isPaused = false;
     }
 
     // Update is called once per frame
@@ -614,17 +615,24 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause()
     {
-        _isPaused = !_isPaused;    
-        if (!_isPaused )
+        if (!_isPaused)
         {
             OnPaused.Invoke();
         }
 
-        if (_isPaused )
+        if (_isPaused)
         {
             OnPauseStopped.Invoke();
         }
+
+        _isPaused = !_isPaused;
     }
+
+    public void SwitchIsPaused()
+    {
+        _isPaused = !_isPaused;
+    }
+
 
     public void ResetTransform()
     {

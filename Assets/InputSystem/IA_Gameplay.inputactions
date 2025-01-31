@@ -273,6 +273,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "b38b577e-ccb5-4cac-9275-ede54342d29a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Navigate",
                     "type": "PassThrough",
                     "id": "99e18421-6baa-4a21-b1f1-167d6fe4c81b",
@@ -351,6 +360,28 @@
                     "processors": "",
                     "groups": ";Mouse And Keyboard",
                     "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab5b47e2-0c6d-46ac-a90b-a1f77589420f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb04779d-c646-4a43-9591-87e46ef52885",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
