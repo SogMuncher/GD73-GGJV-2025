@@ -6,6 +6,7 @@ using FMODUnity;
 using FMOD.Studio;
 using System.Collections;
 using DG.Tweening;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput), typeof(Health))]
 public class PlayerController : MonoBehaviour
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
     protected GameObject _weaponVisual;
 
     [SerializeField]
-    protected int _maxAmmo = 3;
+    protected float _maxAmmo = 3;
 
     [SerializeField]
     protected float _reloadTime = 2f;
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
     //[SerializeField]
     //protected float _aimSpringDampStrength;
 
-    [SerializeField]  
+    [SerializeField]
     EventReference _throwSFX;
     EventInstance _throwSFXInstance;
 
@@ -139,7 +140,7 @@ public class PlayerController : MonoBehaviour
     protected GameObject _lastThrownWeapon;
     protected Vector3 _lastWeaponCollisionPosition;
 
-    protected int _currentAmmo = 3;
+    protected float _currentAmmo = 3;
     protected bool _isPressingFire = false;
     protected bool _isPressingDown = false;
     protected bool _isReloading;
@@ -152,6 +153,9 @@ public class PlayerController : MonoBehaviour
     private bool _isPaused;
 
     private Vector3 _startLocation;
+
+    [SerializeField] protected Image _ammo;
+    [SerializeField] protected Image _reloading;
 
     protected void OnEnable()
     {
@@ -203,7 +207,9 @@ public class PlayerController : MonoBehaviour
         //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, 90 * _aimInput.y));
         //_weapon.transform.rotation = Quaternion.Euler(new Vector3(0, rotationY, rotationZ + 90));
         _weaponVisual.transform.rotation = lerpedRotation;
+
     }
+
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 10)
@@ -249,10 +255,6 @@ public class PlayerController : MonoBehaviour
         {
             _isSticky = false;
         }
-
-       
-
-       
 
         Debug.Log(collision);
     }
@@ -480,6 +482,10 @@ public class PlayerController : MonoBehaviour
         }
 
         Debug.Log($"Player {_playerInput.playerIndex} Fired");
+
+        _ammo.fillAmount = (_currentAmmo / _maxAmmo);
+        Debug.Log("player ammo:" + _currentAmmo);
+
     }
 
     protected void OnJump()
@@ -551,10 +557,20 @@ public class PlayerController : MonoBehaviour
 
         _weaponVisual.SetActive(false);
 
-        yield return new WaitForSeconds(_reloadTime);
+        //yield return new WaitForSeconds(_reloadTime);
+
+        float timer = 0;
+        while (timer < _reloadTime)
+        {
+            timer += Time.deltaTime;
+            _reloading.fillAmount = timer / _reloadTime;
+            yield return null;
+        }
 
         _weaponVisual.SetActive(true);
         _currentAmmo = _maxAmmo;
+        _ammo.fillAmount = (_currentAmmo / _maxAmmo);
+        _reloading.fillAmount = 0;
         _isReloading = false;
         RuntimeManager.PlayOneShot(_reloadSFX, transform.position); // Play reload sound when ammo is max ammo
 
