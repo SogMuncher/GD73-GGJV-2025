@@ -8,6 +8,7 @@ TagManager:
   - ThrownWeapon
   - Player1
   - Player2
+  - Current
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - ThrownWeapon
   - Teleporter
   - SpearDetector
-  - 
+  - Current
   - 
   - 
   - 

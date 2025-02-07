@@ -285,7 +285,12 @@ public class ThrownWeapon : MonoBehaviour
             return;
         }
 
-        if (_isStuck == false)
+        if (collision.gameObject.layer == 18)
+        {
+            return;
+        }
+
+            if (_isStuck == false)
         {
             RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
 
