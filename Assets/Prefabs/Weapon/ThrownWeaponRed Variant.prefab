@@ -10,12 +10,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2691685587547050328, guid: 7ecfc5cacf2e48643b5e4738a6fc26cc, type: 3}
       propertyPath: m_Name
-      value: ThrownWeaponRed Variant Variant
+      value: ThrownWeaponRed Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4225223097376783498, guid: 7ecfc5cacf2e48643b5e4738a6fc26cc, type: 3}
+      propertyPath: _spriteWhenGrounded
+      value: 
+      objectReference: {fileID: 21300000, guid: 7afb0e0c03bd38c42b51c5cd84272d2b, type: 3}
     - target: {fileID: 6979408515021679943, guid: 7ecfc5cacf2e48643b5e4738a6fc26cc, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 91131daec35b7df4baa8fce9b28e6b68, type: 3}
+      objectReference: {fileID: 21300000, guid: 603b8b2f1055f644cb71323a136ce755, type: 3}
     - target: {fileID: 8540173179725607673, guid: 7ecfc5cacf2e48643b5e4738a6fc26cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

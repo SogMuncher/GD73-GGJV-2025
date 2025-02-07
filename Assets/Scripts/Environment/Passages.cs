@@ -43,7 +43,7 @@ public class Passages : MonoBehaviour
 
         if (isWeapon)
         {
-            weapon._trailObject = Instantiate(weapon._trailPrefab, weapon._trailAnchor.position, Quaternion.identity, weapon._trailAnchor);
+            weapon.TrailObject = Instantiate(weapon.TrailPrefab, weapon.TrailAnchor.position, Quaternion.identity, weapon.TrailAnchor);
         }
     }
 }

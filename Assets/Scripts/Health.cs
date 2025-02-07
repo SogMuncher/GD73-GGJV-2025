@@ -29,6 +29,9 @@ public class Health : MonoBehaviour
 
     [HideInInspector]
     public UnityEvent OnDeathEvent;
+
+    [SerializeField]
+    protected ParticleSystem _onDamageParticleSystem;
     
     [SerializeField]
     EventReference _takeDamageSFX;
@@ -101,6 +104,7 @@ public class Health : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
+            _onDamageParticleSystem.Play();
             Die();
         }
         else
@@ -116,6 +120,7 @@ public class Health : MonoBehaviour
         _canBeHurt = false;
         _damagedAnim.SetActive(!_canBeHurt);
         _angryAnim.SetActive(!_canBeHurt);
+        _onDamageParticleSystem.Play();
         yield return new WaitForSeconds(_invulnerabilityTime);
 
         _canBeHurt = true;

@@ -21,6 +21,12 @@ public class PlayerController : MonoBehaviour
     protected float _jumpStrength;
 
     [SerializeField]
+    protected float _standardGravity = .45f;
+
+    [SerializeField]
+    protected float _fastFallGravity = 1.5f;
+
+    [SerializeField]
     protected float _playerBounceForce = 5f;
 
     [SerializeField]
@@ -108,6 +114,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     protected float _hitShakeStrength = 1f;
 
+    [SerializeField]
+    protected ParticleSystem _fastFallParticleSystem;
+
     protected Rigidbody2D _rb;
     //protected Rigidbody2D _weaponRB;
     protected Vector2 _velocity;
@@ -132,6 +141,7 @@ public class PlayerController : MonoBehaviour
 
     protected int _currentAmmo = 3;
     protected bool _isPressingFire = false;
+    protected bool _isPressingDown = false;
     protected bool _isReloading;
     protected bool _throwIsOnCooldown;
 
@@ -489,6 +499,29 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log($"Player {_playerInput.playerIndex} Jumped");
     }
+
+    public void OnFastFall()
+    {
+        _isPressingDown = !_isPressingDown;
+
+        if (_isPressingDown == true)
+        {
+            ParticleSystem.MainModule main = _fastFallParticleSystem.main;
+            main.loop = true;
+            _fastFallParticleSystem.Play();
+
+            _rb.gravityScale = _fastFallGravity;
+        }
+        else
+        {
+            ParticleSystem.MainModule main = _fastFallParticleSystem.main;
+            main.loop = false;
+            _fastFallParticleSystem.Play();
+
+            _rb.gravityScale = _standardGravity;
+        }
+    }
+
     public void OnStick()
     {
        if(_isSticky == true)

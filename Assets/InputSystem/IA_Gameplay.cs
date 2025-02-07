@@ -89,6 +89,15 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FastFall"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f8b432d-0be5-4390-8399-2f0407003751"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -276,6 +285,39 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Generic Controller Scheme"",
                     ""action"": ""Unstick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e5c890b-6bd9-4478-b5c4-f618daacaced"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""FastFall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fea73038-76dd-468f-8580-3ad62266a509"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""FastFall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7fe0beea-75b7-4d43-8575-13e5724a0070"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse And Keyboard"",
+                    ""action"": ""FastFall"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -686,6 +728,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_Stick = m_Gameplay.FindAction("Stick", throwIfNotFound: true);
         m_Gameplay_Unstick = m_Gameplay.FindAction("Unstick", throwIfNotFound: true);
+        m_Gameplay_FastFall = m_Gameplay.FindAction("FastFall", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
@@ -771,6 +814,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_Stick;
     private readonly InputAction m_Gameplay_Unstick;
+    private readonly InputAction m_Gameplay_FastFall;
     public struct GameplayActions
     {
         private @IA_Gameplay m_Wrapper;
@@ -782,6 +826,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @Stick => m_Wrapper.m_Gameplay_Stick;
         public InputAction @Unstick => m_Wrapper.m_Gameplay_Unstick;
+        public InputAction @FastFall => m_Wrapper.m_Gameplay_FastFall;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -812,6 +857,9 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @Unstick.started += instance.OnUnstick;
             @Unstick.performed += instance.OnUnstick;
             @Unstick.canceled += instance.OnUnstick;
+            @FastFall.started += instance.OnFastFall;
+            @FastFall.performed += instance.OnFastFall;
+            @FastFall.canceled += instance.OnFastFall;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -837,6 +885,9 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @Unstick.started -= instance.OnUnstick;
             @Unstick.performed -= instance.OnUnstick;
             @Unstick.canceled -= instance.OnUnstick;
+            @FastFall.started -= instance.OnFastFall;
+            @FastFall.performed -= instance.OnFastFall;
+            @FastFall.canceled -= instance.OnFastFall;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1005,6 +1056,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnStick(InputAction.CallbackContext context);
         void OnUnstick(InputAction.CallbackContext context);
+        void OnFastFall(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

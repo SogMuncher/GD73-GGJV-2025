@@ -60,11 +60,20 @@ public class ThrownWeapon : MonoBehaviour
 
     [Header("Misc")]
     [SerializeField]
-    public GameObject _trailPrefab;
+    protected GameObject _spriteObject;
 
     [SerializeField]
-    public Transform _trailAnchor;
-    public GameObject _trailObject;
+    protected Sprite _spriteWhenGrounded;
+
+    [SerializeField]
+    protected ParticleSystem _dustParticleSystem;
+
+    [SerializeField]
+    public GameObject TrailPrefab;
+
+    [SerializeField]
+    public Transform TrailAnchor;
+    public GameObject TrailObject;
 
     [SerializeField] 
     protected GameObject _flickeringSprite;
@@ -121,7 +130,7 @@ public class ThrownWeapon : MonoBehaviour
         _backSpikeHitBox.gameObject.SetActive(false);
 
         gameManager = FindAnyObjectByType<GameManager>();
-        _trailObject = Instantiate(_trailPrefab, _trailAnchor.position, Quaternion.identity, _trailAnchor);
+        TrailObject = Instantiate(TrailPrefab, TrailAnchor.position, Quaternion.identity, TrailAnchor);
 
         _flickeringSpriteStartColor = _flickeringSprite.GetComponent<SpriteRenderer>().color;
 
@@ -287,6 +296,9 @@ public class ThrownWeapon : MonoBehaviour
             _rb.bodyType = RigidbodyType2D.Kinematic;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
+            _spriteObject.GetComponent<SpriteRenderer>().sprite = _spriteWhenGrounded;
+            _dustParticleSystem.Play();
+
             if (_layerMaskChangedToStuck == false)
             {
                 _frontSpikeHitBox.ChangeExcludeLayerMask(_frontSpikeExcludeWhileStuck);
@@ -322,10 +334,10 @@ public class ThrownWeapon : MonoBehaviour
 
     public void DetachParticle()
     {
-        if (_trailObject != null)
+        if (TrailObject != null)
         {
-            _trailObject.transform.parent = null;
-            Destroy(_trailObject, _trailObject.GetComponent<ParticleSystem>().main.duration);
+            TrailObject.transform.parent = null;
+            Destroy(TrailObject, TrailObject.GetComponent<ParticleSystem>().main.duration);
         }
     }
 
