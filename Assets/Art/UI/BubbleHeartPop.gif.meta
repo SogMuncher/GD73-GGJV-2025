@@ -1,43 +1,28 @@
 fileFormatVersion: 2
-guid: 4c0b848f7909bc641aaaa01df01691e0
+guid: dbec42ab69151c1449540ffbb19f0d6b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7374807500457677674
-    second: PurpleCoral_0
+      213: -3868095822930471760
+    second: BubbleHeartPop_0
   - first:
-      213: 3767951479722492821
-    second: PurpleCoral_1
+      213: 1185938861812940538
+    second: BubbleHeartPop_1
   - first:
-      213: 5849168200613611073
-    second: PurpleCoral_2
+      213: -9015313516510979206
+    second: BubbleHeartPop_2
   - first:
-      213: -3108123637071645089
-    second: PurpleCoral_3
+      213: -7929591818176317762
+    second: BubbleHeartPop_3
   - first:
-      213: 1256369227996060884
-    second: PurpleCoral_4
+      213: 2193407946382399068
+    second: BubbleHeartPop_4
   - first:
-      213: 8529965887412569865
-    second: PurpleCoral_5
+      213: -8582542274961295064
+    second: BubbleHeartPop_5
   - first:
-      213: 7710907025804766520
-    second: PurpleCoral_6
-  - first:
-      213: -5989132094905418349
-    second: PurpleCoral_7
-  - first:
-      213: 3234605088329023668
-    second: PurpleCoral_8
-  - first:
-      213: -6600894574237569352
-    second: PurpleCoral_9
-  - first:
-      213: -4195135302357684342
-    second: PurpleCoral_10
-  - first:
-      213: 2166280390075893498
-    second: PurpleCoral_11
+      213: -386684571927084630
+    second: BubbleHeartPop_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -84,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -133,7 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PurpleCoral_0
+      name: BubbleHeartPop_0
       rect:
         serializedVersion: 2
         x: 0
@@ -148,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 69c6558d6ab67a990800000000000000
-      internalID: -7374807500457677674
+      spriteID: 0b49e05d753c15ac0800000000000000
+      internalID: -3868095822930471760
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PurpleCoral_1
+      name: BubbleHeartPop_1
       rect:
         serializedVersion: 2
         x: 32
@@ -170,14 +155,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 59344c748e37a4430800000000000000
-      internalID: 3767951479722492821
+      spriteID: afef0b78c1d457010800000000000000
+      internalID: 1185938861812940538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PurpleCoral_2
+      name: BubbleHeartPop_2
       rect:
         serializedVersion: 2
         x: 64
@@ -192,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 146c51dfc7b6c2150800000000000000
-      internalID: 5849168200613611073
+      spriteID: a7bd5953f1c23e280800000000000000
+      internalID: -9015313516510979206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PurpleCoral_3
+      name: BubbleHeartPop_3
       rect:
         serializedVersion: 2
         x: 96
@@ -214,8 +199,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f567956050abdd4d0800000000000000
-      internalID: -3108123637071645089
+      spriteID: eb6b1cf014e64f190800000000000000
+      internalID: -7929591818176317762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleHeartPop_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5654a3f7ec807e10800000000000000
+      internalID: 2193407946382399068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleHeartPop_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 829b82fe54fa4e880800000000000000
+      internalID: -8582542274961295064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BubbleHeartPop_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa1892a3e6832aaf0800000000000000
+      internalID: -386684571927084630
       vertices: []
       indices: 
       edges: []
@@ -224,7 +275,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4aaf580573a947a4f8710bae533c41ec
+    spriteID: d89574dfb1a1e2444bd36eb173bacd51
     internalID: 0
     vertices: []
     indices: 
@@ -234,10 +285,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PurpleCoral_0: -7374807500457677674
-      PurpleCoral_1: 3767951479722492821
-      PurpleCoral_2: 5849168200613611073
-      PurpleCoral_3: -3108123637071645089
+      BubbleHeartPop_0: -3868095822930471760
+      BubbleHeartPop_1: 1185938861812940538
+      BubbleHeartPop_2: -9015313516510979206
+      BubbleHeartPop_3: -7929591818176317762
+      BubbleHeartPop_4: 2193407946382399068
+      BubbleHeartPop_5: -8582542274961295064
+      BubbleHeartPop_6: -386684571927084630
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
