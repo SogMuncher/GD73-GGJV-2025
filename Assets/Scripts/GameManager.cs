@@ -11,6 +11,7 @@ using FMODUnity;
 using FMOD.Studio;
 using DG.Tweening;
 using System;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     private PlayerInputManager playerInputManager;
     [SerializeField]
     private PlayerInput[] _playersInput;
+    private PlayerController[] _playerControllers;
     private List<ThrownWeapon> thrownWeapon = new List<ThrownWeapon>();
 
     public TextMeshProUGUI[] playerScoreTexts;
@@ -87,7 +89,9 @@ public class GameManager : MonoBehaviour
         //    return;
         //}
 
+        _playerControllers = FindObjectsOfType<PlayerController>();
     }
+
     private void Start()
     {
         StartCoroutine(RoundStart());
@@ -311,11 +315,17 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator RoundStart()
     {
-        //SwitchMap("Idle");
+
         for (int i = 0; i < _playersInput.Length; i++)
         {
             PlayerInput playerInput = _playersInput[i];
             playerInput.DeactivateInput();
+        }
+
+        for (int j = 0; j < _playerControllers.Length; j++)
+        {
+            PlayerController playerController = _playerControllers[j];
+            playerController.ResetAmmo();
         }
 
         RuntimeManager.PlayOneShot(_roundStartSFX, transform.position); //Play round start sound

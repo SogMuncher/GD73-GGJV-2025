@@ -689,5 +689,11 @@ public class PlayerController : MonoBehaviour
         _rb.linearVelocity = Vector2.zero;
     }
 
-    
+    public void ResetAmmo()
+    {
+        _currentAmmo = _maxAmmo;
+        _ammo.fillAmount = (_currentAmmo / _maxAmmo);
+    }
+
+
 }
