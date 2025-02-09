@@ -292,7 +292,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < playerRoundsWon.Length; i++)
         {
-            playerRoundsWonTexts[i].text = "Rounds Won: " + playerRoundsWon[i] + " / 3";
+            playerRoundsWonTexts[i].text = playerRoundsWon[i] + " / 3";
             Transform RoundsTransform = playerRoundsWonTexts[i].transform;
             //RoundsTransform.transform.DOPunchScale(new Vector3(2f,2f,2f), 0.2f, 0, 0.1f).SetUpdate(true);
         }
