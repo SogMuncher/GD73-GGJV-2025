@@ -7,6 +7,7 @@ using FMOD.Studio;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine.UI;
+using Unity.Cinemachine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput), typeof(Health))]
 public class PlayerController : MonoBehaviour
@@ -117,6 +118,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     protected ParticleSystem _fastFallParticleSystem;
+    [SerializeField] protected ParticleSystem _bubblePopParticleSystem;
+    [SerializeField] protected GameObject _visuals;
+    [SerializeField] protected CinemachineCamera _deathCamera;
 
     protected Rigidbody2D _rb;
     //protected Rigidbody2D _weaponRB;
@@ -610,7 +614,13 @@ public class PlayerController : MonoBehaviour
         {
             _rb.constraints = RigidbodyConstraints2D.None;
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            ResetTransform();
+            _deathCamera.Priority = 2;
+            _visuals.SetActive(false);
+            if (_bubblePopParticleSystem != null)
+            {
+                _bubblePopParticleSystem.Play();
+            }
+            //ResetTransform();
             yield break;
         }
 
@@ -626,7 +636,7 @@ public class PlayerController : MonoBehaviour
             {
                 _rb.constraints = RigidbodyConstraints2D.None;
                 _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-                ResetTransform();
+                //ResetTransform();
                 yield break;
             }
 
@@ -698,7 +708,9 @@ public class PlayerController : MonoBehaviour
     public void ResetTransform()
     {
         transform.position = _startLocation;
+        _deathCamera.Priority = 0;
         _rb.linearVelocity = Vector2.zero;
+        _visuals.SetActive(true);
     }
 
     public void ResetAmmo()
@@ -706,6 +718,5 @@ public class PlayerController : MonoBehaviour
         _currentAmmo = _maxAmmo;
         _ammo.fillAmount = (_currentAmmo / _maxAmmo);
     }
-
 
 }

@@ -107,26 +107,7 @@ public class GameManager : MonoBehaviour
                 _heartsP1[_p1.GetCurrentHealth()].SetActive(false);
                 if (_p1.GetCurrentHealth() <= 0)
                 {
-                    RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play win sound
-                    OnRoundEnd.Invoke();
-                    IncrementPlayerRoundsWon(1);
-                    StartCoroutine(CallDestroyWeapons());
-                    StartCoroutine(RoundStart());
-                    foreach (GameObject heart in _heartsP1)
-                    {
-                        if (heart != null)
-                        {
-                            heart.SetActive(true);
-                        }
-                    }
-
-                    foreach (GameObject heart in _heartsP2)
-                    {
-                        if (heart != null)
-                        {
-                            heart.SetActive(true);
-                        }
-                    }
+                    StartCoroutine(SlowTime());
                 }
             }
 
@@ -136,26 +117,7 @@ public class GameManager : MonoBehaviour
 
                 if (_p2.GetCurrentHealth() <= 0)
                 {
-                    RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play win sound
-                    OnRoundEnd.Invoke();
-                    IncrementPlayerRoundsWon(0);
-                    StartCoroutine(CallDestroyWeapons());
-                    StartCoroutine(RoundStart());
-                    foreach (GameObject heart in _heartsP1)
-                    {
-                        if (heart != null)
-                        {
-                            heart.SetActive(true);
-                        }
-                    }
-
-                    foreach (GameObject heart in _heartsP2)
-                    {
-                        if (heart != null)
-                        {
-                            heart.SetActive(true);
-                        }
-                    }
+                    StartCoroutine(SlowTime());
                 }
             }
             
@@ -189,6 +151,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator SlowTime()
+    {
+        Time.timeScale = 0.15f;
+
+        yield return new WaitForSeconds(0.75f);
+
+        Time.timeScale = 1f;
+        StartCoroutine(RoundEnd()); 
+    }
+
+    private IEnumerator RoundEnd()
+    {
+        RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play win sound
+        OnRoundEnd.Invoke();
+        IncrementPlayerRoundsWon(0);
+        StartCoroutine(CallDestroyWeapons());
+        StartCoroutine(RoundStart());
+        foreach (GameObject heart in _heartsP1)
+        {
+            if (heart != null)
+            {
+                heart.SetActive(true);
+            }
+        }
+
+        foreach (GameObject heart in _heartsP2)
+        {
+            if (heart != null)
+            {
+                heart.SetActive(true);
+            }
+        }
+        yield break;
+    }
 
     
     // Function to increment player score based on player index

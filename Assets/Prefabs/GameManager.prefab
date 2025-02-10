@@ -2432,7 +2432,7 @@ MonoBehaviour:
   _pause1RectTransform: {fileID: 0}
   _pause2RectTransform: {fileID: 0}
   topPosY: 0
-  finalPosY: 0
+  finalPosY: 45
   tweenDuration: 4
   _winPanelP1: {fileID: 8808753389373870008}
   _winPanelP2: {fileID: 241939968706956891}
@@ -3567,7 +3567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 572.0002, y: 381.4}
+  m_AnchoredPosition: {x: 856.8, y: 400}
   m_SizeDelta: {x: 350, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7373490323729210404
@@ -3598,7 +3598,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ': Player 2 HP'
+  m_text: P2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4a1aa007b851c14384debc86727ed6a, type: 2}
   m_sharedMaterial: {fileID: 5829988833276344204, guid: a4a1aa007b851c14384debc86727ed6a, type: 2}
@@ -3632,7 +3632,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -4186,8 +4186,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -493.00006, y: 406.4001}
-  m_SizeDelta: {x: 700, y: 155.6}
+  m_AnchoredPosition: {x: -665, y: 405}
+  m_SizeDelta: {x: 475, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8161751612497552947
 CanvasRenderer:
@@ -4748,8 +4748,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 484, y: 406.40015}
-  m_SizeDelta: {x: 700, y: 155.6}
+  m_AnchoredPosition: {x: 665, y: 406.40015}
+  m_SizeDelta: {x: 475, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4932300481321834614
 CanvasRenderer:
@@ -4959,8 +4959,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -675, y: 425}
-  m_SizeDelta: {x: 276.23, y: 50}
+  m_AnchoredPosition: {x: -295, y: 400}
+  m_SizeDelta: {x: 275, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7287358414628500043
 CanvasRenderer:
@@ -4990,7 +4990,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Rounds Won: 0 / 3'
+  m_text: 0 / 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4a1aa007b851c14384debc86727ed6a, type: 2}
   m_sharedMaterial: {fileID: 5829988833276344204, guid: a4a1aa007b851c14384debc86727ed6a, type: 2}
@@ -5024,7 +5024,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -5055,7 +5055,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -40.242188, w: 0}
+  m_margin: {x: 0, y: 0, z: 158.37216, w: 14.344297}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5661,7 +5661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -590, y: 381.4}
+  m_AnchoredPosition: {x: -860, y: 400}
   m_SizeDelta: {x: 350, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &879395130033691189
@@ -5692,7 +5692,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Player 1 HP:'
+  m_text: '  P1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4a1aa007b851c14384debc86727ed6a, type: 2}
   m_sharedMaterial: {fileID: 5829988833276344204, guid: a4a1aa007b851c14384debc86727ed6a, type: 2}
@@ -5726,7 +5726,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6974,8 +6974,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 755, y: 425}
-  m_SizeDelta: {x: 472.6, y: 50}
+  m_AnchoredPosition: {x: 460, y: 400}
+  m_SizeDelta: {x: 275, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5544114718241624780
 CanvasRenderer:
@@ -7005,7 +7005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Rounds Won: 0 / 3'
+  m_text: 0 / 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4a1aa007b851c14384debc86727ed6a, type: 2}
   m_sharedMaterial: {fileID: 5829988833276344204, guid: a4a1aa007b851c14384debc86727ed6a, type: 2}
@@ -7039,7 +7039,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -7070,7 +7070,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 187.29912, w: 15.368815}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
