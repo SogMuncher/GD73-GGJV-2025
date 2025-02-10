@@ -616,6 +616,7 @@ public class PlayerController : MonoBehaviour
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             _deathCamera.Priority = 2;
             _visuals.SetActive(false);
+            _weaponVisual.SetActive(false);
             if (_bubblePopParticleSystem != null)
             {
                 _bubblePopParticleSystem.Play();
@@ -711,6 +712,8 @@ public class PlayerController : MonoBehaviour
         _deathCamera.Priority = 0;
         _rb.linearVelocity = Vector2.zero;
         _visuals.SetActive(true);
+        _weaponVisual.SetActive(true);
+
     }
 
     public void ResetAmmo()
