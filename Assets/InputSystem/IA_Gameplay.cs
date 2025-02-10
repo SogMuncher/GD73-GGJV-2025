@@ -98,6 +98,15 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""0874ef33-219c-405e-9af9-6ca306927a2c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -191,6 +200,28 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""2f1b7686-e8c7-4ea9-8fbf-5ef1765b147f"",
+                    ""path"": ""<XInputController>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba93ef47-1e66-4024-af82-c5535ae8020a"",
+                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""3e922097-61f4-4c0e-8082-e9c332f99086"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
@@ -218,6 +249,28 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse And Keyboard"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4e96554-ac61-441e-9405-64608df74e9d"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad2f8003-f3e1-4ebd-b5a5-18d1338af118"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -318,6 +371,39 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Mouse And Keyboard"",
                     ""action"": ""FastFall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0586159a-4fbe-4ca8-88ec-16a9f40fba79"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c0133c6-68cb-4db4-b182-0d8d3e27a2fa"",
+                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90d92849-01b0-4bfb-8075-4a2c23b2ea3c"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -729,6 +815,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         m_Gameplay_Stick = m_Gameplay.FindAction("Stick", throwIfNotFound: true);
         m_Gameplay_Unstick = m_Gameplay.FindAction("Unstick", throwIfNotFound: true);
         m_Gameplay_FastFall = m_Gameplay.FindAction("FastFall", throwIfNotFound: true);
+        m_Gameplay_Reload = m_Gameplay.FindAction("Reload", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
@@ -815,6 +902,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Stick;
     private readonly InputAction m_Gameplay_Unstick;
     private readonly InputAction m_Gameplay_FastFall;
+    private readonly InputAction m_Gameplay_Reload;
     public struct GameplayActions
     {
         private @IA_Gameplay m_Wrapper;
@@ -827,6 +915,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         public InputAction @Stick => m_Wrapper.m_Gameplay_Stick;
         public InputAction @Unstick => m_Wrapper.m_Gameplay_Unstick;
         public InputAction @FastFall => m_Wrapper.m_Gameplay_FastFall;
+        public InputAction @Reload => m_Wrapper.m_Gameplay_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -860,6 +949,9 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @FastFall.started += instance.OnFastFall;
             @FastFall.performed += instance.OnFastFall;
             @FastFall.canceled += instance.OnFastFall;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -888,6 +980,9 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @FastFall.started -= instance.OnFastFall;
             @FastFall.performed -= instance.OnFastFall;
             @FastFall.canceled -= instance.OnFastFall;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1057,6 +1152,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         void OnStick(InputAction.CallbackContext context);
         void OnUnstick(InputAction.CallbackContext context);
         void OnFastFall(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

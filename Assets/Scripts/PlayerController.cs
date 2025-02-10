@@ -444,47 +444,50 @@ public class PlayerController : MonoBehaviour
 
     protected void OnFire()
     {
-        _isPressingFire = !_isPressingFire;
-
-        // the player is holding the fire button while being able to fire
-        if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
+        if (!_isReloading)
         {
-            _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
-        }
+            _isPressingFire = !_isPressingFire;
 
-        // the player has let go of the fire button while being able to fire
-        else if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == false)
-        {
-            _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
-
-            _currentAmmo--;
-
-            _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, _thrownWeaponSpawnPoint.position, _weaponVisual.transform.rotation);
-
-            _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
-
-            Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
-
-            if (thrownRB != null)
+            // the player is holding the fire button while being able to fire
+            if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
             {
-                thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
-                RuntimeManager.PlayOneShot(_throwSFX, transform.position);
+                _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
             }
 
-            _throwIsOnCooldown = true;
-            StartCoroutine(ThrowCooldownCoroutine());
+            // the player has let go of the fire button while being able to fire
+            else if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == false)
+            {
+                _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
+
+                _currentAmmo--;
+
+                _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, _thrownWeaponSpawnPoint.position, _weaponVisual.transform.rotation);
+
+                _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
+
+                Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
+
+                if (thrownRB != null)
+                {
+                    thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
+                    RuntimeManager.PlayOneShot(_throwSFX, transform.position);
+                }
+
+                _throwIsOnCooldown = true;
+                StartCoroutine(ThrowCooldownCoroutine());
+            }
+
+            if (_currentAmmo <= 0 && _isReloading == false)
+            {
+                _isReloading = true;
+                StartCoroutine(ReloadTimerCoroutine());
+            }
+
+            Debug.Log($"Player {_playerInput.playerIndex} Fired");
+
+            _ammo.fillAmount = (_currentAmmo / _maxAmmo);
+            Debug.Log("player ammo:" + _currentAmmo);
         }
-
-        if (_currentAmmo <= 0 && _isReloading == false)
-        {
-            _isReloading = true;
-            StartCoroutine(ReloadTimerCoroutine());
-        }
-
-        Debug.Log($"Player {_playerInput.playerIndex} Fired");
-
-        _ammo.fillAmount = (_currentAmmo / _maxAmmo);
-        Debug.Log("player ammo:" + _currentAmmo);
 
     }
 
@@ -675,6 +678,15 @@ public class PlayerController : MonoBehaviour
         }
 
         _isPaused = !_isPaused;
+    }
+
+    public void OnReload()
+    {
+        if (_currentAmmo >= 0 && _currentAmmo < _maxAmmo && _isReloading == false)
+        {
+            _isReloading = true;
+            StartCoroutine(ReloadTimerCoroutine());
+        }
     }
 
     public void SwitchIsPaused()
