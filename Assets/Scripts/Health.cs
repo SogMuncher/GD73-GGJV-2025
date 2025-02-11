@@ -23,8 +23,8 @@ public class Health : MonoBehaviour
     protected bool _canBeHurt = true;
 
     public bool CanBeHurt => _canBeHurt;
-    [SerializeField] private GameObject _damagedAnim;
-    [SerializeField] private GameObject _angryAnim;
+    [SerializeField] protected GameObject _damagedAnim;
+    [SerializeField] protected GameObject _angryAnim;
 
 
     [HideInInspector]

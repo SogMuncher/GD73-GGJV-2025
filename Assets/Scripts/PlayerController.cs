@@ -615,15 +615,17 @@ public class PlayerController : MonoBehaviour
             _rb.constraints = RigidbodyConstraints2D.None;
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             _deathCamera.Priority = 2;
-            _visuals.SetActive(false);
             _weaponVisual.SetActive(false);
             if (_bubblePopParticleSystem != null)
             {
                 _bubblePopParticleSystem.Play();
             }
             //ResetTransform();
+            yield return new WaitForSeconds(0.15f);
+            _visuals.SetActive(false);
             yield break;
         }
+
 
         _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         Vector3 startingPosition = transform.position;

@@ -267,6 +267,23 @@ public class ThrownWeapon : MonoBehaviour
             }
         }
 
+        if (collision.gameObject.layer == 19)
+        {
+                // damage logic
+                Debug.Log("spike player");
+
+                if (collision.attachedRigidbody.gameObject.TryGetComponent(out Health health))
+                {
+                    RuntimeManager.PlayOneShot(_takeDamageSFX, transform.position); // Play take damage sfx when spike hits player
+                    health.TakeDamage(1, transform.position);
+                }
+
+                RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
+
+                _lastHitLocation = collision.ClosestPoint(transform.position);
+                DestroyObject();
+        }
+
         if (collision.gameObject.CompareTag("ThrownWeapon"))
         {
             RuntimeManager.PlayOneShot(_spikeToSpikeSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide

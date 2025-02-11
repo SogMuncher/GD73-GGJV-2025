@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.32, y: 0, z: 0}
-  m_LocalScale: {x: 4.125, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a9d5f4fb3729d6478b4e0521e913fa6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +105,29 @@ MonoBehaviour:
   _maxHealth: 1
   _startingHealth: 1
   _currentHealth: 1
+  _invulnerabilityTime: 1
+  _damagedAnim: {fileID: 0}
+  _angryAnim: {fileID: 0}
   OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDamageParticleSystem: {fileID: 693376886732068931, guid: e04c9711237514d44ab0f30531c55adf, type: 3}
+  _takeDamageSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _popSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _playerIndex: 0
+  OnDamagedEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!95 &2648634424144984429
@@ -116,7 +138,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960096706908121187}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 282b9a41c16c52b46956b93b092c8f2f, type: 2}
   m_CullingMode: 0
