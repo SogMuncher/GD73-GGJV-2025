@@ -15,24 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "6a951a9d-5b8e-4134-abd1-35305584e241",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Fire",
-                    "type": "Button",
-                    "id": "c44345b0-a044-4825-ab38-e5d6326634c0",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Aim",
                     "type": "Value",
                     "id": "87995fdf-8c84-4ff8-8825-8e872d8587cb",
@@ -42,9 +24,54 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Pause",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "700890dd-aea8-4484-9d66-425758fe2619",
+                    "id": "6a951a9d-5b8e-4134-abd1-35305584e241",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FirePressed",
+                    "type": "Button",
+                    "id": "c44345b0-a044-4825-ab38-e5d6326634c0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FireReleased",
+                    "type": "Button",
+                    "id": "e6af5f01-98f4-4d5f-902e-a9bb0c62afa4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FastFallPressed",
+                    "type": "Button",
+                    "id": "8f8b432d-0be5-4390-8399-2f0407003751",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FastFallReleased",
+                    "type": "Button",
+                    "id": "cebb9792-3022-4edb-b8b3-6cda1af88fc3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "0874ef33-219c-405e-9af9-6ca306927a2c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -69,18 +96,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FastFall",
+                    "name": "Pause",
                     "type": "Button",
-                    "id": "8f8b432d-0be5-4390-8399-2f0407003751",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Reload",
-                    "type": "Button",
-                    "id": "0874ef33-219c-405e-9af9-6ca306927a2c",
+                    "id": "700890dd-aea8-4484-9d66-425758fe2619",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -156,6 +174,17 @@
                 },
                 {
                     "name": "",
+                    "id": "0f4202b0-cc87-448f-ac34-1c510c5cf627",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "290b7064-9f2c-48f5-92cb-75af443cc179",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -178,6 +207,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ba93ef47-1e66-4024-af82-c5535ae8020a",
+                    "path": "<XInputController>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2f1b7686-e8c7-4ea9-8fbf-5ef1765b147f",
                     "path": "<XInputController>/leftTrigger",
                     "interactions": "",
@@ -189,23 +229,12 @@
                 },
                 {
                     "name": "",
-                    "id": "ba93ef47-1e66-4024-af82-c5535ae8020a",
-                    "path": "<XInputController>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3e922097-61f4-4c0e-8082-e9c332f99086",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Generic Controller Scheme",
-                    "action": "Fire",
+                    "action": "FirePressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -216,7 +245,7 @@
                     "interactions": "",
                     "processors": "AxisDeadzone",
                     "groups": ";Generic Controller Scheme",
-                    "action": "Fire",
+                    "action": "FirePressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -227,7 +256,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse And Keyboard",
-                    "action": "Fire",
+                    "action": "FirePressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -238,7 +267,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire",
+                    "action": "FirePressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -249,7 +278,62 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire",
+                    "action": "FirePressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e7fe7cd8-9ac7-4fce-9033-a94031d1c474",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "FireReleased",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d250215f-3977-43f3-8823-90940ba07d1e",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "FireReleased",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e6bdc5d-6c87-4de0-9e50-b3b2ee486825",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse And Keyboard",
+                    "action": "FireReleased",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d50830b-4d3d-4fef-9492-979fe9292af2",
+                    "path": "<XInputController>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "FireReleased",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6721662f-f8b9-4028-bfae-3642b437dd97",
+                    "path": "<XInputController>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "FireReleased",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -326,7 +410,7 @@
                     "interactions": "",
                     "processors": "AxisDeadzone",
                     "groups": ";Generic Controller Scheme",
-                    "action": "FastFall",
+                    "action": "FastFallPressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -337,7 +421,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Generic Controller Scheme",
-                    "action": "FastFall",
+                    "action": "FastFallPressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -348,7 +432,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse And Keyboard",
-                    "action": "FastFall",
+                    "action": "FastFallPressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8dce7da8-327d-49f3-b25b-abd789e82de7",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "FastFallReleased",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5102b981-286c-4277-9c8e-2c24d005eae9",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic Controller Scheme",
+                    "action": "FastFallReleased",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f1d49ac3-1308-4236-b5b8-89806ed8eb12",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse And Keyboard",
+                    "action": "FastFallReleased",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -358,7 +475,7 @@
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Generic Controller Scheme",
                     "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -369,7 +486,7 @@
                     "path": "<XInputController>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Generic Controller Scheme",
                     "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -380,7 +497,7 @@
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Mouse And Keyboard",
                     "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false

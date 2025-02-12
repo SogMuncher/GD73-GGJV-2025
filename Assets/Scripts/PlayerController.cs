@@ -453,11 +453,11 @@ public class PlayerController : MonoBehaviour
         //Debug.Log($"Player {_playerInput.playerIndex} Aim Input: {_aimInput}");
     }
 
-    protected void OnFire()
+    protected void OnFirePressed()
     {
-        if (!_isReloading)
+        if (_isReloading == false)
         {
-            _isPressingFire = !_isPressingFire;
+            _isPressingFire = true;
 
             // the player is holding the fire button while being able to fire
             if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
@@ -465,8 +465,58 @@ public class PlayerController : MonoBehaviour
                 _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
             }
 
+            //_isPressingFire = !_isPressingFire;
+
+            //// the player is holding the fire button while being able to fire
+            //if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
+            //{
+            //    _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
+            //}
+
+            //// the player has let go of the fire button while being able to fire
+            //else if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == false)
+            //{
+            //    _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
+
+            //    _currentAmmo--;
+
+            //    _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, _thrownWeaponSpawnPoint.position, _weaponVisual.transform.rotation);
+
+            //    _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
+
+            //    Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
+
+            //    if (thrownRB != null)
+            //    {
+            //        thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
+            //        RuntimeManager.PlayOneShot(_throwSFX, transform.position);
+            //    }
+
+            //    _throwIsOnCooldown = true;
+            //    StartCoroutine(ThrowCooldownCoroutine());
+            //}
+
+            //if (_currentAmmo <= 0 && _isReloading == false)
+            //{
+            //    _isReloading = true;
+            //    StartCoroutine(ReloadTimerCoroutine());
+            //}
+
+            //Debug.Log($"Player {_playerInput.playerIndex} Fired");
+
+            //_ammo.fillAmount = (_currentAmmo / _maxAmmo);
+            //Debug.Log("player ammo:" + _currentAmmo);
+        }
+    }
+
+    protected void OnFireReleased()
+    {
+        if (_isReloading == false)
+        {
+            _isPressingFire = false;
+
             // the player has let go of the fire button while being able to fire
-            else if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == false)
+            if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == false)
             {
                 _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
 
@@ -499,7 +549,6 @@ public class PlayerController : MonoBehaviour
             _ammo.fillAmount = (_currentAmmo / _maxAmmo);
             Debug.Log("player ammo:" + _currentAmmo);
         }
-
     }
 
     protected void OnJump()
@@ -520,26 +569,46 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"Player {_playerInput.playerIndex} Jumped");
     }
 
-    public void OnFastFall()
+    public void OnFastFallPressed()
     {
-        _isPressingDown = !_isPressingDown;
+        _isPressingDown = true;
 
-        if (_isPressingDown == true)
-        {
-            ParticleSystem.MainModule main = _fastFallParticleSystem.main;
-            main.loop = true;
-            _fastFallParticleSystem.Play();
+        ParticleSystem.MainModule main = _fastFallParticleSystem.main;
+        main.loop = true;
+        _fastFallParticleSystem.Play();
 
-            _rb.gravityScale = _fastFallGravity;
-        }
-        else
-        {
-            ParticleSystem.MainModule main = _fastFallParticleSystem.main;
-            main.loop = false;
-            _fastFallParticleSystem.Play();
+        _rb.gravityScale = _fastFallGravity;
 
-            _rb.gravityScale = _standardGravity;
-        }
+        // OLD SHIT
+        //_isPressingDown = !_isPressingDown;
+
+        //if (_isPressingDown == true)
+        //{
+        //    ParticleSystem.MainModule main = _fastFallParticleSystem.main;
+        //    main.loop = true;
+        //    _fastFallParticleSystem.Play();
+
+        //    _rb.gravityScale = _fastFallGravity;
+        //}
+        //else
+        //{
+        //    ParticleSystem.MainModule main = _fastFallParticleSystem.main;
+        //    main.loop = false;
+        //    _fastFallParticleSystem.Play();
+
+        //    _rb.gravityScale = _standardGravity;
+        //}
+    }
+
+    public void OnFastFallReleased()
+    {
+        _isPressingDown = false;
+
+        ParticleSystem.MainModule main = _fastFallParticleSystem.main;
+        main.loop = false;
+        _fastFallParticleSystem.Play();
+
+        _rb.gravityScale = _standardGravity;
     }
 
     public void OnStick()
@@ -619,7 +688,6 @@ public class PlayerController : MonoBehaviour
     {
         if (_health.GetCurrentHealth() == 0)
         {
-            OnDying?.Invoke();
             _playerCollider.enabled = false;
             _deathCamera.Priority = 2;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -736,8 +804,10 @@ public class PlayerController : MonoBehaviour
         _rb.linearVelocity = Vector2.zero;
         _visuals.SetActive(true);
         _weaponVisual.SetActive(true);
-        OnRoundReset?.Invoke();
         _playerCollider.enabled = true;
+
+        _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
+        OnFastFallReleased();
     }
 
     public void ResetAmmo()
