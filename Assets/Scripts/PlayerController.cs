@@ -621,6 +621,7 @@ public class PlayerController : MonoBehaviour
         {
             _playerCollider.enabled = false;
             _deathCamera.Priority = 2;
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
             Vector3 positionZero = transform.position;
             float timer = 0f;
@@ -645,7 +646,6 @@ public class PlayerController : MonoBehaviour
             _weaponVisual.SetActive(false);      
             yield break;
         }
-
 
         _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         Vector3 startingPosition = transform.position;
