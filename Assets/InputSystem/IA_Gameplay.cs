@@ -37,24 +37,6 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""6a951a9d-5b8e-4134-abd1-35305584e241"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Fire"",
-                    ""type"": ""Button"",
-                    ""id"": ""c44345b0-a044-4825-ab38-e5d6326634c0"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Aim"",
                     ""type"": ""Value"",
                     ""id"": ""87995fdf-8c84-4ff8-8825-8e872d8587cb"",
@@ -64,9 +46,54 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Pause"",
+                    ""name"": ""Jump"",
                     ""type"": ""Button"",
-                    ""id"": ""700890dd-aea8-4484-9d66-425758fe2619"",
+                    ""id"": ""6a951a9d-5b8e-4134-abd1-35305584e241"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FirePressed"",
+                    ""type"": ""Button"",
+                    ""id"": ""c44345b0-a044-4825-ab38-e5d6326634c0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireReleased"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6af5f01-98f4-4d5f-902e-a9bb0c62afa4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FastFallPressed"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f8b432d-0be5-4390-8399-2f0407003751"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FastFallReleased"",
+                    ""type"": ""Button"",
+                    ""id"": ""cebb9792-3022-4edb-b8b3-6cda1af88fc3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""0874ef33-219c-405e-9af9-6ca306927a2c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -91,18 +118,9 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""FastFall"",
+                    ""name"": ""Pause"",
                     ""type"": ""Button"",
-                    ""id"": ""8f8b432d-0be5-4390-8399-2f0407003751"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Reload"",
-                    ""type"": ""Button"",
-                    ""id"": ""0874ef33-219c-405e-9af9-6ca306927a2c"",
+                    ""id"": ""700890dd-aea8-4484-9d66-425758fe2619"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -178,6 +196,17 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0f4202b0-cc87-448f-ac34-1c510c5cf627"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""290b7064-9f2c-48f5-92cb-75af443cc179"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -200,6 +229,17 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ba93ef47-1e66-4024-af82-c5535ae8020a"",
+                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2f1b7686-e8c7-4ea9-8fbf-5ef1765b147f"",
                     ""path"": ""<XInputController>/leftTrigger"",
                     ""interactions"": """",
@@ -211,23 +251,12 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ba93ef47-1e66-4024-af82-c5535ae8020a"",
-                    ""path"": ""<XInputController>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""3e922097-61f4-4c0e-8082-e9c332f99086"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Generic Controller Scheme"",
-                    ""action"": ""Fire"",
+                    ""action"": ""FirePressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -238,7 +267,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": ""AxisDeadzone"",
                     ""groups"": "";Generic Controller Scheme"",
-                    ""action"": ""Fire"",
+                    ""action"": ""FirePressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -249,7 +278,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse And Keyboard"",
-                    ""action"": ""Fire"",
+                    ""action"": ""FirePressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -260,7 +289,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Fire"",
+                    ""action"": ""FirePressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -271,7 +300,62 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Fire"",
+                    ""action"": ""FirePressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7fe7cd8-9ac7-4fce-9033-a94031d1c474"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""FireReleased"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d250215f-3977-43f3-8823-90940ba07d1e"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""FireReleased"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e6bdc5d-6c87-4de0-9e50-b3b2ee486825"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse And Keyboard"",
+                    ""action"": ""FireReleased"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d50830b-4d3d-4fef-9492-979fe9292af2"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""FireReleased"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6721662f-f8b9-4028-bfae-3642b437dd97"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""FireReleased"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -348,7 +432,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": ""AxisDeadzone"",
                     ""groups"": "";Generic Controller Scheme"",
-                    ""action"": ""FastFall"",
+                    ""action"": ""FastFallPressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -359,7 +443,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Generic Controller Scheme"",
-                    ""action"": ""FastFall"",
+                    ""action"": ""FastFallPressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -370,7 +454,40 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse And Keyboard"",
-                    ""action"": ""FastFall"",
+                    ""action"": ""FastFallPressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8dce7da8-327d-49f3-b25b-abd789e82de7"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""FastFallReleased"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5102b981-286c-4277-9c8e-2c24d005eae9"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Generic Controller Scheme"",
+                    ""action"": ""FastFallReleased"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1d49ac3-1308-4236-b5b8-89806ed8eb12"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse And Keyboard"",
+                    ""action"": ""FastFallReleased"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -380,7 +497,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Generic Controller Scheme"",
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -391,7 +508,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Generic Controller Scheme"",
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -402,7 +519,7 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Mouse And Keyboard"",
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -808,14 +925,16 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
-        m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
-        m_Gameplay_Fire = m_Gameplay.FindAction("Fire", throwIfNotFound: true);
         m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
-        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+        m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_FirePressed = m_Gameplay.FindAction("FirePressed", throwIfNotFound: true);
+        m_Gameplay_FireReleased = m_Gameplay.FindAction("FireReleased", throwIfNotFound: true);
+        m_Gameplay_FastFallPressed = m_Gameplay.FindAction("FastFallPressed", throwIfNotFound: true);
+        m_Gameplay_FastFallReleased = m_Gameplay.FindAction("FastFallReleased", throwIfNotFound: true);
+        m_Gameplay_Reload = m_Gameplay.FindAction("Reload", throwIfNotFound: true);
         m_Gameplay_Stick = m_Gameplay.FindAction("Stick", throwIfNotFound: true);
         m_Gameplay_Unstick = m_Gameplay.FindAction("Unstick", throwIfNotFound: true);
-        m_Gameplay_FastFall = m_Gameplay.FindAction("FastFall", throwIfNotFound: true);
-        m_Gameplay_Reload = m_Gameplay.FindAction("Reload", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
@@ -895,27 +1014,31 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Movement;
-    private readonly InputAction m_Gameplay_Jump;
-    private readonly InputAction m_Gameplay_Fire;
     private readonly InputAction m_Gameplay_Aim;
-    private readonly InputAction m_Gameplay_Pause;
+    private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_FirePressed;
+    private readonly InputAction m_Gameplay_FireReleased;
+    private readonly InputAction m_Gameplay_FastFallPressed;
+    private readonly InputAction m_Gameplay_FastFallReleased;
+    private readonly InputAction m_Gameplay_Reload;
     private readonly InputAction m_Gameplay_Stick;
     private readonly InputAction m_Gameplay_Unstick;
-    private readonly InputAction m_Gameplay_FastFall;
-    private readonly InputAction m_Gameplay_Reload;
+    private readonly InputAction m_Gameplay_Pause;
     public struct GameplayActions
     {
         private @IA_Gameplay m_Wrapper;
         public GameplayActions(@IA_Gameplay wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
-        public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
-        public InputAction @Fire => m_Wrapper.m_Gameplay_Fire;
         public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
-        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @FirePressed => m_Wrapper.m_Gameplay_FirePressed;
+        public InputAction @FireReleased => m_Wrapper.m_Gameplay_FireReleased;
+        public InputAction @FastFallPressed => m_Wrapper.m_Gameplay_FastFallPressed;
+        public InputAction @FastFallReleased => m_Wrapper.m_Gameplay_FastFallReleased;
+        public InputAction @Reload => m_Wrapper.m_Gameplay_Reload;
         public InputAction @Stick => m_Wrapper.m_Gameplay_Stick;
         public InputAction @Unstick => m_Wrapper.m_Gameplay_Unstick;
-        public InputAction @FastFall => m_Wrapper.m_Gameplay_FastFall;
-        public InputAction @Reload => m_Wrapper.m_Gameplay_Reload;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -928,30 +1051,36 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
-            @Fire.started += instance.OnFire;
-            @Fire.performed += instance.OnFire;
-            @Fire.canceled += instance.OnFire;
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+            @FirePressed.started += instance.OnFirePressed;
+            @FirePressed.performed += instance.OnFirePressed;
+            @FirePressed.canceled += instance.OnFirePressed;
+            @FireReleased.started += instance.OnFireReleased;
+            @FireReleased.performed += instance.OnFireReleased;
+            @FireReleased.canceled += instance.OnFireReleased;
+            @FastFallPressed.started += instance.OnFastFallPressed;
+            @FastFallPressed.performed += instance.OnFastFallPressed;
+            @FastFallPressed.canceled += instance.OnFastFallPressed;
+            @FastFallReleased.started += instance.OnFastFallReleased;
+            @FastFallReleased.performed += instance.OnFastFallReleased;
+            @FastFallReleased.canceled += instance.OnFastFallReleased;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
             @Stick.started += instance.OnStick;
             @Stick.performed += instance.OnStick;
             @Stick.canceled += instance.OnStick;
             @Unstick.started += instance.OnUnstick;
             @Unstick.performed += instance.OnUnstick;
             @Unstick.canceled += instance.OnUnstick;
-            @FastFall.started += instance.OnFastFall;
-            @FastFall.performed += instance.OnFastFall;
-            @FastFall.canceled += instance.OnFastFall;
-            @Reload.started += instance.OnReload;
-            @Reload.performed += instance.OnReload;
-            @Reload.canceled += instance.OnReload;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -959,30 +1088,36 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
-            @Fire.started -= instance.OnFire;
-            @Fire.performed -= instance.OnFire;
-            @Fire.canceled -= instance.OnFire;
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+            @FirePressed.started -= instance.OnFirePressed;
+            @FirePressed.performed -= instance.OnFirePressed;
+            @FirePressed.canceled -= instance.OnFirePressed;
+            @FireReleased.started -= instance.OnFireReleased;
+            @FireReleased.performed -= instance.OnFireReleased;
+            @FireReleased.canceled -= instance.OnFireReleased;
+            @FastFallPressed.started -= instance.OnFastFallPressed;
+            @FastFallPressed.performed -= instance.OnFastFallPressed;
+            @FastFallPressed.canceled -= instance.OnFastFallPressed;
+            @FastFallReleased.started -= instance.OnFastFallReleased;
+            @FastFallReleased.performed -= instance.OnFastFallReleased;
+            @FastFallReleased.canceled -= instance.OnFastFallReleased;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
             @Stick.started -= instance.OnStick;
             @Stick.performed -= instance.OnStick;
             @Stick.canceled -= instance.OnStick;
             @Unstick.started -= instance.OnUnstick;
             @Unstick.performed -= instance.OnUnstick;
             @Unstick.canceled -= instance.OnUnstick;
-            @FastFall.started -= instance.OnFastFall;
-            @FastFall.performed -= instance.OnFastFall;
-            @FastFall.canceled -= instance.OnFastFall;
-            @Reload.started -= instance.OnReload;
-            @Reload.performed -= instance.OnReload;
-            @Reload.canceled -= instance.OnReload;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1145,14 +1280,16 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnFire(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnFirePressed(InputAction.CallbackContext context);
+        void OnFireReleased(InputAction.CallbackContext context);
+        void OnFastFallPressed(InputAction.CallbackContext context);
+        void OnFastFallReleased(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
         void OnStick(InputAction.CallbackContext context);
         void OnUnstick(InputAction.CallbackContext context);
-        void OnFastFall(InputAction.CallbackContext context);
-        void OnReload(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
