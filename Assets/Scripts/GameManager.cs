@@ -71,6 +71,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image _gamepad;
     [SerializeField] private float _fadeTime = 3f;
 
+    public UnityEvent RoundStarting;
+    public UnityEvent RoundStarted;
+
 
     private void Awake()
     {
@@ -321,9 +324,8 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator RoundStart()
     {
-
         Cursor.visible = false;
-
+        RoundStarting.Invoke();
 
         for (int i = 0; i < _playersInput.Length; i++)
         {
@@ -395,6 +397,8 @@ public class GameManager : MonoBehaviour
             PlayerInput playerInput = _playersInput[i];
             playerInput.ActivateInput();
         }
+
+        RoundStarted.Invoke();
 
         yield break;
 

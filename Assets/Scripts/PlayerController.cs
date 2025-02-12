@@ -619,6 +619,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_health.GetCurrentHealth() == 0)
         {
+            OnDying?.Invoke();
             _playerCollider.enabled = false;
             _deathCamera.Priority = 2;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -735,7 +736,7 @@ public class PlayerController : MonoBehaviour
         _rb.linearVelocity = Vector2.zero;
         _visuals.SetActive(true);
         _weaponVisual.SetActive(true);
-        //OnRoundReset?.Invoke();
+        OnRoundReset?.Invoke();
         _playerCollider.enabled = true;
     }
 

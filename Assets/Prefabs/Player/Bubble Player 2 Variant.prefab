@@ -803,11 +803,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPaused.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: SetModeNone
+      value: SetVisibilityOn
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPaused.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: SetVisibilityOn
+      value: SetModeConfined
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPaused.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
@@ -927,7 +927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPaused.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPaused.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
