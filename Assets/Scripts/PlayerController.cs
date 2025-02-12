@@ -692,11 +692,11 @@ public class PlayerController : MonoBehaviour
             _deathCamera.Priority = 2;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            Vector3 positionZero = transform.position;
+            Vector3 positionZero = _visuals.transform.position;
             float timer = 0f;
             while (timer < _hitFreezeTime)
             {
-                transform.position = positionZero + new Vector3(Random.Range(-_hitShakeStrength, _hitShakeStrength), Random.Range(-_hitShakeStrength, _hitShakeStrength), 0);
+                _visuals.transform.position = positionZero + new Vector3(Random.Range(-_hitShakeStrength, _hitShakeStrength), Random.Range(-_hitShakeStrength, _hitShakeStrength), 0);
 
                 timer += Time.deltaTime;
                 yield return null;
