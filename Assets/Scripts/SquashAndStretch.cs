@@ -4,6 +4,7 @@ public class SquashAndStretch : MonoBehaviour
 {
     [SerializeField]
     protected Vector3 _maxSquash;
+    protected Vector3 _squash;
 
     [SerializeField]
     protected float _speedForMaxSquash;
@@ -28,11 +29,17 @@ public class SquashAndStretch : MonoBehaviour
     protected float _lastCustomAngle;
     protected float _customAngularVelocity;
 
+    private PlayerController _playerController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        _playerController = GetComponentInParent<PlayerController>();
+        _squash = _maxSquash;
+        _playerController.OnDying.AddListener(IncreaseSquash);
+        _playerController.OnRoundReset.AddListener(ResetSquash);
     }
+
     private void Update()
     {
         if (_counterRotationTransform != null)
@@ -82,6 +89,7 @@ public class SquashAndStretch : MonoBehaviour
         _velocity = _rb.linearVelocity;
         _velocityDot = Vector2.Dot(_velocity, _lastVelocity);
 
+        
 
         if (_velocity.sqrMagnitude > 0.01f) // Check if the GameObject is moving and rotate it towards its velocity
         {
@@ -89,7 +97,18 @@ public class SquashAndStretch : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
         
-        transform.localScale = Vector3.Lerp(Vector3.one, _maxSquash, Mathf.Clamp((_velocity.magnitude / _speedForMaxSquash), 0, 1));
+        transform.localScale = Vector3.Lerp(Vector3.one, _squash, Mathf.Clamp((_velocity.magnitude / _speedForMaxSquash), 0, 1));
 
     }
+
+    private void IncreaseSquash()
+    {
+        _squash *= 10;
+    }
+
+    private void ResetSquash()
+    {
+        _squash = _maxSquash;
+    }
+
 }

@@ -104,20 +104,31 @@ public class GameManager : MonoBehaviour
         {
             if (playerIndex == 0)
             {
-                _heartsP1[_p1.GetCurrentHealth()].SetActive(false);
-                if (_p1.GetCurrentHealth() <= 0)
+                if (_heartsP1 != null)
                 {
-                    StartCoroutine(SlowTime());
+                    if (_p1.GetCurrentHealth() >= 0)
+                    {
+                        _heartsP1[_p1.GetCurrentHealth()].SetActive(false);
+                    }
+                    if (_p1.GetCurrentHealth() <= 0)
+                    {
+                        StartCoroutine(SlowTime());
+                    }
                 }
             }
 
             if (playerIndex == 1)
             {
-                _heartsP2[_p2.GetCurrentHealth()].SetActive(false);
-
-                if (_p2.GetCurrentHealth() <= 0)
+                if (_heartsP2 != null)
                 {
-                    StartCoroutine(SlowTime());
+                    if (_p2.GetCurrentHealth() >= 0)
+                    {
+                        _heartsP2[_p2.GetCurrentHealth()].SetActive(false);
+                    }
+                    if (_p2.GetCurrentHealth() <= 0)
+                    {
+                        StartCoroutine(SlowTime());
+                    }
                 }
             }
             
