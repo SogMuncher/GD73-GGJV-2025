@@ -704,7 +704,7 @@ public class PlayerController : MonoBehaviour
 
             _rb.constraints = RigidbodyConstraints2D.None;
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            //OnDying?.Invoke();
+            OnDying?.Invoke();
             //ResetTransform();
             yield return new WaitForSeconds(0.15f);
             if (_bubblePopParticleSystem != null)
@@ -805,7 +805,7 @@ public class PlayerController : MonoBehaviour
         _visuals.SetActive(true);
         _weaponVisual.SetActive(true);
         _playerCollider.enabled = true;
-
+        OnRoundReset?.Invoke();
         _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
         OnFastFallReleased();
     }
