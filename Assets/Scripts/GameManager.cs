@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (_p1.GetCurrentHealth() <= 0)
                     {
+                        IncrementPlayerRoundsWon(1);
                         StartCoroutine(SlowTime());
                     }
                 }
@@ -127,6 +128,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (_p2.GetCurrentHealth() <= 0)
                     {
+                        IncrementPlayerRoundsWon(0);
                         StartCoroutine(SlowTime());
                     }
                 }
@@ -176,7 +178,6 @@ public class GameManager : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play win sound
         OnRoundEnd.Invoke();
-        IncrementPlayerRoundsWon(0);
         StartCoroutine(CallDestroyWeapons());
         StartCoroutine(RoundStart());
         foreach (GameObject heart in _heartsP1)
