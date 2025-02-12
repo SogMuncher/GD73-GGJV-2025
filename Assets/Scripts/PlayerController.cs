@@ -118,9 +118,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     protected ParticleSystem _fastFallParticleSystem;
+
+    [Header("Round End")]
     [SerializeField] protected ParticleSystem _bubblePopParticleSystem;
     [SerializeField] protected GameObject _visuals;
     [SerializeField] protected CinemachineCamera _deathCamera;
+    [SerializeField] protected CircleCollider2D _playerCollider;
 
     protected Rigidbody2D _rb;
     //protected Rigidbody2D _weaponRB;
@@ -161,6 +164,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected Image _ammo;
     [SerializeField] protected Image _reloading;
 
+    public UnityEvent OnDying;
+    public UnityEvent OnRoundReset;
+
     protected void OnEnable()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -172,6 +178,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected void Start()
     {
+        _playerCollider = GetComponent<CircleCollider2D>();
         _health.OnDamagedEvent.AddListener(OnDamaged);
         _health.OnDamagedEvent.AddListener(StartKnockback);
         _startLocation = transform.position;
@@ -681,20 +688,33 @@ public class PlayerController : MonoBehaviour
     {
         if (_health.GetCurrentHealth() == 0)
         {
+            _playerCollider.enabled = false;
+            _deathCamera.Priority = 2;
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+            Vector3 positionZero = transform.position;
+            float timer = 0f;
+            while (timer < _hitFreezeTime)
+            {
+                transform.position = positionZero + new Vector3(Random.Range(-_hitShakeStrength, _hitShakeStrength), Random.Range(-_hitShakeStrength, _hitShakeStrength), 0);
+
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
             _rb.constraints = RigidbodyConstraints2D.None;
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            _deathCamera.Priority = 2;
-            _weaponVisual.SetActive(false);
+            //OnDying?.Invoke();
+            //ResetTransform();
+            yield return new WaitForSeconds(0.15f);
             if (_bubblePopParticleSystem != null)
             {
                 _bubblePopParticleSystem.Play();
             }
-            //ResetTransform();
-            yield return new WaitForSeconds(0.15f);
             _visuals.SetActive(false);
+            _weaponVisual.SetActive(false);      
             yield break;
         }
-
 
         _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         Vector3 startingPosition = transform.position;
@@ -784,11 +804,10 @@ public class PlayerController : MonoBehaviour
         _rb.linearVelocity = Vector2.zero;
         _visuals.SetActive(true);
         _weaponVisual.SetActive(true);
-
+        _playerCollider.enabled = true;
 
         _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
         OnFastFallReleased();
-
     }
 
     public void ResetAmmo()

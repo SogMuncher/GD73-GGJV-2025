@@ -1,23 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
 public class DestructablePlatforms : Health
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] protected GameObject _clashParticlePrefab;
+
 
     protected override void Die()
     {
-        
+        Instantiate(_clashParticlePrefab, transform.position, Quaternion.identity);
         OnDeathEvent.Invoke();
-        this.gameObject.SetActive(false);
+        Destroy(gameObject);
     }
+
 }
