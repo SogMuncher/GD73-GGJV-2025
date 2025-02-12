@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using FMOD.Studio;
 using System.Collections;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Health : MonoBehaviour
 {
     [SerializeField]
@@ -87,6 +88,16 @@ public class Health : MonoBehaviour
             return;   
         }
 
+        if (this.CompareTag("Destructible"))
+        {
+            _currentHealth -= damageAmount;
+            if (_currentHealth <= 0)
+            {
+                Die();
+            }
+            return;
+        }
+
         _currentHealth -= damageAmount;
         OnDamagedEvent.Invoke(damagerPosition);
 
@@ -135,6 +146,5 @@ public class Health : MonoBehaviour
         RuntimeManager.PlayOneShot(_popSFX);
         _takeDamageInstance.release(); //stop the take damage SFX - prevents from creating multiple instances of the same sound
         OnDeathEvent.Invoke();
-        
     }
 }
