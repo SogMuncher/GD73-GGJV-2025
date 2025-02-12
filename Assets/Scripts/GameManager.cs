@@ -322,6 +322,9 @@ public class GameManager : MonoBehaviour
     public IEnumerator RoundStart()
     {
 
+        Cursor.visible = false;
+
+
         for (int i = 0; i < _playersInput.Length; i++)
         {
             PlayerInput playerInput = _playersInput[i];

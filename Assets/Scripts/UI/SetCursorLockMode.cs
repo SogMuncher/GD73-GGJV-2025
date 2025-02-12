@@ -8,7 +8,6 @@ namespace UIComponents
     {
         private void Start()
         {
-            Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
         }
 
