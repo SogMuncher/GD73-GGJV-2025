@@ -620,12 +620,23 @@ public class PlayerController : MonoBehaviour
         if (_health.GetCurrentHealth() == 0)
         {
             _playerCollider.enabled = false;
+            _deathCamera.Priority = 2;
+
+            Vector3 positionZero = transform.position;
+            float timer = 0f;
+            while (timer < _hitFreezeTime)
+            {
+                transform.position = positionZero + new Vector3(Random.Range(-_hitShakeStrength, _hitShakeStrength), Random.Range(-_hitShakeStrength, _hitShakeStrength), 0);
+
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
             _rb.constraints = RigidbodyConstraints2D.None;
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            _deathCamera.Priority = 2;
-            OnDying?.Invoke();
+            //OnDying?.Invoke();
             //ResetTransform();
-            yield return new WaitForSeconds(0.45f);
+            yield return new WaitForSeconds(0.15f);
             if (_bubblePopParticleSystem != null)
             {
                 _bubblePopParticleSystem.Play();
@@ -724,7 +735,7 @@ public class PlayerController : MonoBehaviour
         _rb.linearVelocity = Vector2.zero;
         _visuals.SetActive(true);
         _weaponVisual.SetActive(true);
-        OnRoundReset?.Invoke();
+        //OnRoundReset?.Invoke();
         _playerCollider.enabled = true;
     }
 

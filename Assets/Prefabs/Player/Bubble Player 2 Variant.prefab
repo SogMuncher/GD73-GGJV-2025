@@ -1124,12 +1124,13 @@ PrefabInstance:
     - {fileID: 9164994866993520343, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
     - {fileID: 6088705060362491471, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
     - {fileID: 166609962659942415, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
+    - {fileID: 430777960766047419, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6562995676205638332, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8630768509614575616}
     - targetCorrespondingSourceObject: {fileID: 1981761761739537336, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
-      insertIndex: 3
+      insertIndex: -1
       addedObject: {fileID: 8473133591258190048}
     - targetCorrespondingSourceObject: {fileID: 1981761761739537336, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       insertIndex: -1
@@ -1266,6 +1267,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1735977898271940996, guid: d050bd2eda14d14459fca167a6abf882, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267370412240400516, guid: d050bd2eda14d14459fca167a6abf882, type: 3}
+      propertyPath: stopAction
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6267370412240400516, guid: d050bd2eda14d14459fca167a6abf882, type: 3}

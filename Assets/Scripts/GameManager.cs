@@ -112,8 +112,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (_p1.GetCurrentHealth() <= 0)
                     {
-                        IncrementPlayerRoundsWon(1);
-                        StartCoroutine(SlowTime());
+                        StartCoroutine(SlowTime(1));
                     }
                 }
             }
@@ -128,8 +127,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (_p2.GetCurrentHealth() <= 0)
                     {
-                        IncrementPlayerRoundsWon(0);
-                        StartCoroutine(SlowTime());
+                        StartCoroutine(SlowTime(0));
                     }
                 }
             }
@@ -164,19 +162,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SlowTime()
+    private IEnumerator SlowTime(int playerIndex)
     {
         Time.timeScale = 0.15f;
 
         yield return new WaitForSeconds(0.75f);
 
         Time.timeScale = 1f;
-        StartCoroutine(RoundEnd()); 
+        StartCoroutine(RoundEnd(playerIndex)); 
     }
 
-    private IEnumerator RoundEnd()
+    private IEnumerator RoundEnd(int playerIndex)
     {
         RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play win sound
+        IncrementPlayerRoundsWon(playerIndex);
         OnRoundEnd.Invoke();
         StartCoroutine(CallDestroyWeapons());
         StartCoroutine(RoundStart());
@@ -246,12 +245,12 @@ public class GameManager : MonoBehaviour
 
             if (playerRoundsWon[0] == 3f)
             {
-                Win("Player 1 is the GOAT!");
+                Win("P1");
                 _winPanelP1.SetActive(true);
             }
             if (playerRoundsWon[1] == 3f)
             {
-                Win("Player 2's really LIKE that");
+                Win("P2");
                 _winPanelP2.SetActive(true);
             }
         }
@@ -259,7 +258,6 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CallDestroyWeapons()
     {
-        
         DestroyWeapons();
         yield break;
     }

@@ -21162,6 +21162,7 @@ MonoBehaviour:
   _bubblePopParticleSystem: {fileID: 5646287097801149621}
   _visuals: {fileID: 7193681690592756869}
   _deathCamera: {fileID: 7043184621903555726}
+  _playerCollider: {fileID: 0}
   OnPaused:
     m_PersistentCalls:
       m_Calls:
@@ -21426,6 +21427,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1735977898271940996, guid: d050bd2eda14d14459fca167a6abf882, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267370412240400516, guid: d050bd2eda14d14459fca167a6abf882, type: 3}
+      propertyPath: stopAction
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6267370412240400516, guid: d050bd2eda14d14459fca167a6abf882, type: 3}
