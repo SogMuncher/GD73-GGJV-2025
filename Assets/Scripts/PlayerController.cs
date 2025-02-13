@@ -803,6 +803,7 @@ public class PlayerController : MonoBehaviour
         _deathCamera.Priority = 0;
         _rb.linearVelocity = Vector2.zero;
         _visuals.SetActive(true);
+        _visuals.transform.localPosition = Vector3.zero;
         _weaponVisual.SetActive(true);
         _playerCollider.enabled = true;
         OnRoundReset?.Invoke();
