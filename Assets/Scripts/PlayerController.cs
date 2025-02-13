@@ -8,6 +8,8 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine.UI;
 using Unity.Cinemachine;
+using FMOD;
+using Debug = UnityEngine.Debug;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput), typeof(Health))]
 public class PlayerController : MonoBehaviour
@@ -123,7 +125,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected ParticleSystem _bubblePopParticleSystem;
     [SerializeField] protected GameObject _visuals;
     [SerializeField] protected CinemachineCamera _deathCamera;
-    [SerializeField] protected CircleCollider2D _playerCollider;
+    protected CircleCollider2D _playerCollider;
 
     protected Rigidbody2D _rb;
     //protected Rigidbody2D _weaponRB;
@@ -157,7 +159,6 @@ public class PlayerController : MonoBehaviour
 
     public UnityEvent OnPaused;
     public UnityEvent OnPauseStopped;
-    private bool _isPaused;
 
     private Vector3 _startLocation;
 
@@ -166,6 +167,8 @@ public class PlayerController : MonoBehaviour
 
     public UnityEvent OnDying;
     public UnityEvent OnRoundReset;
+
+    [SerializeField] private GameManager _gameManager;
 
     protected void OnEnable()
     {
@@ -182,7 +185,6 @@ public class PlayerController : MonoBehaviour
         _health.OnDamagedEvent.AddListener(OnDamaged);
         _health.OnDamagedEvent.AddListener(StartKnockback);
         _startLocation = transform.position;
-        _isPaused = false;
     }
 
     // Update is called once per frame
@@ -769,17 +771,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause()
     {
-        if (!_isPaused)
+        if (!_gameManager.IsPaused)
         {
             OnPaused.Invoke();
+            Debug.Log("Pause Invoked");
         }
 
-        if (_isPaused)
+        if (_gameManager.IsPaused)
         {
             OnPauseStopped.Invoke();
+            Debug.Log("Unpause Invoked");
         }
 
-        _isPaused = !_isPaused;
+        _gameManager.SwitchIsPaused();
     }
 
     public void OnReload()
@@ -789,11 +793,6 @@ public class PlayerController : MonoBehaviour
             _isReloading = true;
             StartCoroutine(ReloadTimerCoroutine());
         }
-    }
-
-    public void SwitchIsPaused()
-    {
-        _isPaused = !_isPaused;
     }
 
 

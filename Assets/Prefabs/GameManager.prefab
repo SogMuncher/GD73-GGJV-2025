@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 9079030858966324338}
   - component: {fileID: 2290808556850266516}
   - component: {fileID: 4134523601008779678}
+  - component: {fileID: 940405826779349939}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -334,6 +335,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2520982865079352702}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SwitchIsPaused
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 6835334592547352864}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: ResumeP2
@@ -358,9 +371,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: SwitchIsPaused
+      - m_Target: {fileID: 4759139324167041055}
+        m_TargetAssemblyTypeName: UIComponents.SetCursorLockMode, Assembly-CSharp
+        m_MethodName: SetVisibilityOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -370,29 +383,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7326134654387553592}
-        m_TargetAssemblyTypeName: UIComponents.SwitchActionMaps, Assembly-CSharp
-        m_MethodName: SwitchMap
-        m_Mode: 5
+      - m_Target: {fileID: 6094486221190355367}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Gameplay
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2042231102458146295}
-        m_TargetAssemblyTypeName: UIComponents.SwitchActionMaps, Assembly-CSharp
-        m_MethodName: SwitchMap
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Gameplay
-          m_BoolArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2290808556850266516
 MonoBehaviour:
@@ -418,6 +419,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213927df12325164fbc3b00b5d84ba08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &940405826779349939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520658331381159948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6ae44b00f3d634f8aed73416580b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: {fileID: 437911936583254768, guid: 18b915324d3d93945888ac2b1e0c704c, type: 3}
+  _activateButton: {fileID: 9079030858966324338}
+  OnPerformed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2520982865079352702}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SwitchIsPaused
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6835334592547352864}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: ResumeP2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1594042133235395097}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4759139324167041055}
+        m_TargetAssemblyTypeName: UIComponents.SetCursorLockMode, Assembly-CSharp
+        m_MethodName: SetVisibilityOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &598449336271126053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,6 +1596,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7326134654387553592}
+        m_TargetAssemblyTypeName: UIComponents.SwitchActionMaps, Assembly-CSharp
+        m_MethodName: SwitchMap
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Gameplay
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2042231102458146295}
+        m_TargetAssemblyTypeName: UIComponents.SwitchActionMaps, Assembly-CSharp
+        m_MethodName: SwitchMap
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Gameplay
+          m_BoolArgument: 0
+        m_CallState: 2
   OnP2OutroEnd:
     m_PersistentCalls:
       m_Calls:
@@ -1555,6 +1645,30 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7326134654387553592}
+        m_TargetAssemblyTypeName: UIComponents.SwitchActionMaps, Assembly-CSharp
+        m_MethodName: SwitchMap
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Gameplay
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2042231102458146295}
+        m_TargetAssemblyTypeName: UIComponents.SwitchActionMaps, Assembly-CSharp
+        m_MethodName: SwitchMap
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Gameplay
           m_BoolArgument: 0
         m_CallState: 2
   _pause1RectTransform: {fileID: 3515627620627906089}
@@ -2508,6 +2622,7 @@ MonoBehaviour:
           m_StringArgument: Gameplay
           m_BoolArgument: 0
         m_CallState: 2
+  IsPaused: 0
 --- !u!114 &8231546465857718472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2714,6 +2829,7 @@ GameObject:
   - component: {fileID: 8106666485939173412}
   - component: {fileID: 126348567865943865}
   - component: {fileID: 5591004681661690143}
+  - component: {fileID: 8606336125035177247}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -2883,6 +2999,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213927df12325164fbc3b00b5d84ba08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8606336125035177247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4081402875623272239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6ae44b00f3d634f8aed73416580b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: {fileID: 437911936583254768, guid: 18b915324d3d93945888ac2b1e0c704c, type: 3}
+  _activateButton: {fileID: 8106666485939173412}
+  OnPerformed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 876783944341714548}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3004438743930999235}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4112321003655046137
 GameObject:
   m_ObjectHideFlags: 0
@@ -6565,6 +6722,7 @@ GameObject:
   - component: {fileID: 2814098818064156461}
   - component: {fileID: 5065075084540953692}
   - component: {fileID: 1762230331521778324}
+  - component: {fileID: 7877324005132456167}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -6674,6 +6832,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2520982865079352702}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SwitchIsPaused
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 6835334592547352864}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: ResumeP1
@@ -6698,9 +6868,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: SwitchIsPaused
+      - m_Target: {fileID: 4759139324167041055}
+        m_TargetAssemblyTypeName: UIComponents.SetCursorLockMode, Assembly-CSharp
+        m_MethodName: SetVisibilityOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6710,29 +6880,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7326134654387553592}
-        m_TargetAssemblyTypeName: UIComponents.SwitchActionMaps, Assembly-CSharp
-        m_MethodName: SwitchMap
-        m_Mode: 5
+      - m_Target: {fileID: 2816790899208928937}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Gameplay
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2042231102458146295}
-        m_TargetAssemblyTypeName: UIComponents.SwitchActionMaps, Assembly-CSharp
-        m_MethodName: SwitchMap
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Gameplay
-          m_BoolArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &5065075084540953692
 MonoBehaviour:
@@ -6758,6 +6916,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213927df12325164fbc3b00b5d84ba08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7877324005132456167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8206742428672614273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6ae44b00f3d634f8aed73416580b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: {fileID: 437911936583254768, guid: 18b915324d3d93945888ac2b1e0c704c, type: 3}
+  _activateButton: {fileID: 2814098818064156461}
+  OnPerformed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2520982865079352702}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SwitchIsPaused
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6835334592547352864}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: ResumeP1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4690872059052686674}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4759139324167041055}
+        m_TargetAssemblyTypeName: UIComponents.SetCursorLockMode, Assembly-CSharp
+        m_MethodName: SetVisibilityOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8439326875118272740
 GameObject:
   m_ObjectHideFlags: 0
@@ -7884,12 +8107,26 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1397900718052074815, guid: e78261334ee91ac40916790722b6f077, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5105748103251139504}
+    - targetCorrespondingSourceObject: {fileID: 1397900718052074815, guid: e78261334ee91ac40916790722b6f077, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1982606233399251448}
   m_SourcePrefab: {fileID: 100100000, guid: e78261334ee91ac40916790722b6f077, type: 3}
 --- !u!1 &2324834983521200383 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1114083056228097228, guid: e78261334ee91ac40916790722b6f077, type: 3}
   m_PrefabInstance: {fileID: 3401763333696615475}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4161293289693833996 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1624286028938714943, guid: e78261334ee91ac40916790722b6f077, type: 3}
+  m_PrefabInstance: {fileID: 3401763333696615475}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346865281934463244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4346865281934463244 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1397900718052074815, guid: e78261334ee91ac40916790722b6f077, type: 3}
@@ -7907,6 +8144,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213927df12325164fbc3b00b5d84ba08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1982606233399251448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346865281934463244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6ae44b00f3d634f8aed73416580b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: {fileID: 437911936583254768, guid: 18b915324d3d93945888ac2b1e0c704c, type: 3}
+  _activateButton: {fileID: 4161293289693833996}
+  OnPerformed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7848211267425762236}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2324834983521200383}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &5075904556263745641 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7585260199348034650, guid: e78261334ee91ac40916790722b6f077, type: 3}

@@ -691,7 +691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.size
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPaused.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -763,7 +763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
@@ -775,7 +775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
@@ -859,19 +859,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
-      propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: ResumeP2
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
-      propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: SetModeConfined
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
-      propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
       value: SetVisibilityOff
+      objectReference: {fileID: 0}
+    - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
+      propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
@@ -951,11 +951,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: PauseManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: PauseManager, Assembly-CSharp
+      value: UIComponents.SetCursorLockMode, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
@@ -963,7 +963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
-      value: UIComponents.SetCursorLockMode, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 69833819794098601, guid: cd7ef2a6a02559f47ab7cbf2710b4203, type: 3}
       propertyPath: OnPauseStopped.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
@@ -1229,6 +1229,10 @@ PrefabInstance:
     - target: {fileID: 7424588068951868658, guid: e28b74a1357296c4c9071e6cc1cac637, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424588068951868658, guid: e28b74a1357296c4c9071e6cc1cac637, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9145103382609608329, guid: e28b74a1357296c4c9071e6cc1cac637, type: 3}
       propertyPath: m_Name

@@ -830,17 +830,6 @@ public partial class @IA_Gameplay: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8a7de7c1-a48c-4aa6-affe-68c9811d881a"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse And Keyboard"",
-                    ""action"": ""Back"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""28cc8239-fe36-444a-9136-1df8eb3a3e10"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",

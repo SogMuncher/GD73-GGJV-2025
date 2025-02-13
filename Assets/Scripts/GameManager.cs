@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
     public UnityEvent RoundStarting;
     public UnityEvent RoundStarted;
 
+    public bool IsPaused = false;
+
 
     private void Awake()
     {
@@ -93,12 +95,14 @@ public class GameManager : MonoBehaviour
         //}
 
         _playerControllers = FindObjectsOfType<PlayerController>();
+        IsPaused = false;
     }
 
     private void Start()
     {
         StartCoroutine(RoundStart());
-        ScoreIntro();        
+        ScoreIntro();
+        IsPaused = false;
     }
 
     public void UpdatePlayerHealth(int playerIndex)
@@ -460,5 +464,10 @@ public class GameManager : MonoBehaviour
             //_controlsObject.SetActive(false);
         }
         yield break;
+    }
+
+    public void SwitchIsPaused()
+    {
+        IsPaused = !IsPaused;
     }
 }
