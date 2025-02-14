@@ -125,7 +125,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected ParticleSystem _bubblePopParticleSystem;
     [SerializeField] protected GameObject _visuals;
     [SerializeField] protected CinemachineCamera _deathCamera;
+    [SerializeField] protected float _deathShakeStrenght = 0.25f;
     protected CircleCollider2D _playerCollider;
+    public UnityEvent OnDying;
+    public UnityEvent OnRoundReset;
 
     protected Rigidbody2D _rb;
     //protected Rigidbody2D _weaponRB;
@@ -154,21 +157,17 @@ public class PlayerController : MonoBehaviour
     protected bool _isPressingDown = false;
     protected bool _isReloading;
     protected bool _throwIsOnCooldown;
+    [SerializeField] protected Image _ammo;
+    [SerializeField] protected Image _reloading;
 
     protected Health _health;
 
     public UnityEvent OnPaused;
     public UnityEvent OnPauseStopped;
+    [SerializeField] private GameManager _gameManager;
 
     private Vector3 _startLocation;
 
-    [SerializeField] protected Image _ammo;
-    [SerializeField] protected Image _reloading;
-
-    public UnityEvent OnDying;
-    public UnityEvent OnRoundReset;
-
-    [SerializeField] private GameManager _gameManager;
 
     protected void OnEnable()
     {
@@ -698,7 +697,7 @@ public class PlayerController : MonoBehaviour
             float timer = 0f;
             while (timer < _hitFreezeTime)
             {
-                _visuals.transform.position = positionZero + new Vector3(Random.Range(-_hitShakeStrength, _hitShakeStrength), Random.Range(-_hitShakeStrength, _hitShakeStrength), 0);
+                _visuals.transform.position = positionZero + new Vector3(Random.Range(-_deathShakeStrenght, _deathShakeStrenght), Random.Range(-_deathShakeStrenght, _deathShakeStrenght), 0);
 
                 timer += Time.deltaTime;
                 yield return null;
