@@ -67,7 +67,7 @@ namespace UIComponents
             StopAllCoroutines();
             Vector3 newScale = _button.GetComponent<RectTransform>().localScale;
             _button.GetComponent<RectTransform>().localScale = new Vector3(newScale.x / _buttonHoverScaleXZ, newScale.y / _buttonHoverScaleY, newScale.z / _buttonHoverScaleXZ);
-            _button.transform.rotation = _originalRotation;
+            _button.transform.rotation = Quaternion.Euler(Vector4.zero);
         }
 
         private IEnumerator ShakeCorroutine()
