@@ -484,10 +484,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee7da4d248d3e40aed42146eb3a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonHoverScaleXZ: 1.15
-  _buttonHoverScaleY: 1.3
-  _buttonShake: 0.75
-  _shakeTime: 0.5
+  _buttonHoverScaleXZ: 1.05
+  _buttonHoverScaleY: 1.2
+  _shakeAmplitud: 1
+  _shakeDuration: 0.5
+  _shakeSpringDamping: 0.5
+  _shakeSpringFrequency: 3
+  _shakeDampingRatio: 0.35
 --- !u!1 &598449336271126053
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,10 +649,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee7da4d248d3e40aed42146eb3a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonHoverScaleXZ: 1.15
-  _buttonHoverScaleY: 1.3
-  _buttonShake: 0.75
-  _shakeTime: 0.5
+  _buttonHoverScaleXZ: 1.05
+  _buttonHoverScaleY: 1.2
+  _shakeAmplitud: 1
+  _shakeDuration: 0.5
+  _shakeSpringDamping: 0.5
+  _shakeSpringFrequency: 3
+  _shakeDampingRatio: 0.35
 --- !u!1 &876783944341714548
 GameObject:
   m_ObjectHideFlags: 0
@@ -2067,10 +2073,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee7da4d248d3e40aed42146eb3a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonHoverScaleXZ: 1.15
-  _buttonHoverScaleY: 1.3
-  _buttonShake: 0.75
-  _shakeTime: 0.5
+  _buttonHoverScaleXZ: 1.05
+  _buttonHoverScaleY: 1.2
+  _shakeAmplitud: 1
+  _shakeDuration: 0.5
+  _shakeSpringDamping: 0.5
+  _shakeSpringFrequency: 3
+  _shakeDampingRatio: 0.35
 --- !u!1 &2816790899208928937
 GameObject:
   m_ObjectHideFlags: 0
@@ -3052,10 +3061,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee7da4d248d3e40aed42146eb3a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonHoverScaleXZ: 1.15
-  _buttonHoverScaleY: 1.3
-  _buttonShake: 0.75
-  _shakeTime: 0.5
+  _buttonHoverScaleXZ: 1.05
+  _buttonHoverScaleY: 1.2
+  _shakeAmplitud: 1
+  _shakeDuration: 0.5
+  _shakeSpringDamping: 0.5
+  _shakeSpringFrequency: 3
+  _shakeDampingRatio: 0.35
 --- !u!1 &4112321003655046137
 GameObject:
   m_ObjectHideFlags: 0
@@ -3660,10 +3672,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee7da4d248d3e40aed42146eb3a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonHoverScaleXZ: 1.15
-  _buttonHoverScaleY: 1.3
-  _buttonShake: 0.75
-  _shakeTime: 0.5
+  _buttonHoverScaleXZ: 1.05
+  _buttonHoverScaleY: 1.2
+  _shakeAmplitud: 1
+  _shakeDuration: 0.5
+  _shakeSpringDamping: 0.5
+  _shakeSpringFrequency: 3
+  _shakeDampingRatio: 0.35
 --- !u!1 &4952745762236577878
 GameObject:
   m_ObjectHideFlags: 0
@@ -3834,10 +3849,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee7da4d248d3e40aed42146eb3a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonHoverScaleXZ: 1.15
-  _buttonHoverScaleY: 1.3
-  _buttonShake: 0.75
-  _shakeTime: 0.5
+  _buttonHoverScaleXZ: 1.05
+  _buttonHoverScaleY: 1.2
+  _shakeAmplitud: 1
+  _shakeDuration: 0.5
+  _shakeSpringDamping: 0.5
+  _shakeSpringFrequency: 3
+  _shakeDampingRatio: 0.35
 --- !u!1 &5019430325888806843
 GameObject:
   m_ObjectHideFlags: 0
@@ -4285,10 +4303,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee7da4d248d3e40aed42146eb3a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonHoverScaleXZ: 1.15
-  _buttonHoverScaleY: 1.3
-  _buttonShake: 0.75
-  _shakeTime: 0.5
+  _buttonHoverScaleXZ: 1.05
+  _buttonHoverScaleY: 1.2
+  _shakeAmplitud: 1
+  _shakeDuration: 0.5
+  _shakeSpringDamping: 0.5
+  _shakeSpringFrequency: 3
+  _shakeDampingRatio: 0.35
 --- !u!1 &5612538730220516658
 GameObject:
   m_ObjectHideFlags: 0
@@ -6600,10 +6621,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee7da4d248d3e40aed42146eb3a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonHoverScaleXZ: 1.15
-  _buttonHoverScaleY: 1.3
-  _buttonShake: 0.75
-  _shakeTime: 0.5
+  _buttonHoverScaleXZ: 1.05
+  _buttonHoverScaleY: 1.2
+  _shakeAmplitud: 1
+  _shakeDuration: 0.5
+  _shakeSpringDamping: 0.5
+  _shakeSpringFrequency: 3
+  _shakeDampingRatio: 0.35
 --- !u!1 &8040352813152585803
 GameObject:
   m_ObjectHideFlags: 0
@@ -7013,10 +7037,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee7da4d248d3e40aed42146eb3a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonHoverScaleXZ: 1.15
-  _buttonHoverScaleY: 1.3
-  _buttonShake: 0.75
-  _shakeTime: 0.5
+  _buttonHoverScaleXZ: 1.05
+  _buttonHoverScaleY: 1.2
+  _shakeAmplitud: 1
+  _shakeDuration: 0.5
+  _shakeSpringDamping: 0.5
+  _shakeSpringFrequency: 3
+  _shakeDampingRatio: 0.35
 --- !u!1 &8439326875118272740
 GameObject:
   m_ObjectHideFlags: 0
@@ -8221,10 +8248,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee7da4d248d3e40aed42146eb3a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonHoverScaleXZ: 1.15
-  _buttonHoverScaleY: 1.3
-  _buttonShake: 0.75
-  _shakeTime: 0.5
+  _buttonHoverScaleXZ: 1.05
+  _buttonHoverScaleY: 1.2
+  _shakeAmplitud: 1
+  _shakeDuration: 0.5
+  _shakeSpringDamping: 0.5
+  _shakeSpringFrequency: 3
+  _shakeDampingRatio: 0.35
 --- !u!224 &5075904556263745641 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7585260199348034650, guid: e78261334ee91ac40916790722b6f077, type: 3}
