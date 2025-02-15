@@ -27,9 +27,6 @@ public class GameManager : MonoBehaviour
     private PlayerInput[] _playersInput;
     private PlayerController[] _playerControllers;
     private List<ThrownWeapon> thrownWeapon = new List<ThrownWeapon>();
-
-    public TextMeshProUGUI[] playerScoreTexts;
-    public TextMeshProUGUI[] playerRoundsWonTexts;
     public TextMeshProUGUI WonText;
     public TextMeshProUGUI RoundStartText;
 
@@ -60,16 +57,30 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _winPanelP2;
 
     [Header("Health Track")]
-    [SerializeField] private Health _p1;
-    [SerializeField] private GameObject[] _heartsP1;  
-    [SerializeField] private Health _p2;
+    [SerializeField] private Health _healthP1;
+    [SerializeField] private GameObject[] _heartsP1;
+    [SerializeField] private Health _healthP2;
     [SerializeField] private GameObject[] _heartsP2;
 
     [Header("Controls")]
-    [SerializeField] GameObject _controlsObject;
     [SerializeField] Image _keyboard;
     [SerializeField] Image _gamepad;
     [SerializeField] private float _fadeTime = 3f;
+
+    [Header("Score HUD")]
+    [SerializeField] private PlayerController _p1;
+    [SerializeField] private PlayerController _p2;
+    [SerializeField] private RectTransform _p1HUD;
+    [SerializeField] private RectTransform _p2HUD;
+    [SerializeField] private Image[] _heartIconsP1;
+    [SerializeField] private Image[] _heartIconsP2;
+    [SerializeField] private Image _scorePanelP1;
+    [SerializeField] private Image _scorePanelP2;
+    [SerializeField] private float _range = 10f;
+    public TextMeshProUGUI[] playerScoreTexts;
+    public TextMeshProUGUI[] playerRoundsWonTexts;
+    private Vector3 _p1ScreenPosition;
+    private Vector3 _p2ScreenPosition;
 
     public UnityEvent RoundStarting;
     public UnityEvent RoundStarted;
@@ -105,6 +116,11 @@ public class GameManager : MonoBehaviour
         IsPaused = false;
     }
 
+    private void Update()
+    {
+        FadeOutScoreOnDistance();
+    }
+
     public void UpdatePlayerHealth(int playerIndex)
     {
         if (playerIndex >= 0)
@@ -113,11 +129,11 @@ public class GameManager : MonoBehaviour
             {
                 if (_heartsP1 != null)
                 {
-                    if (_p1.GetCurrentHealth() >= 0)
+                    if (_healthP1.GetCurrentHealth() >= 0)
                     {
-                        _heartsP1[_p1.GetCurrentHealth()].SetActive(false);
+                        _heartsP1[_healthP1.GetCurrentHealth()].SetActive(false);
                     }
-                    if (_p1.GetCurrentHealth() <= 0)
+                    if (_healthP1.GetCurrentHealth() <= 0)
                     {
                         StartCoroutine(SlowTime(1));
                     }
@@ -128,11 +144,11 @@ public class GameManager : MonoBehaviour
             {
                 if (_heartsP2 != null)
                 {
-                    if (_p2.GetCurrentHealth() >= 0)
+                    if (_healthP2.GetCurrentHealth() >= 0)
                     {
-                        _heartsP2[_p2.GetCurrentHealth()].SetActive(false);
+                        _heartsP2[_healthP2.GetCurrentHealth()].SetActive(false);
                     }
-                    if (_p2.GetCurrentHealth() <= 0)
+                    if (_healthP2.GetCurrentHealth() <= 0)
                     {
                         StartCoroutine(SlowTime(0));
                     }
@@ -278,8 +294,6 @@ public class GameManager : MonoBehaviour
         }
         return 0;
     }
-
-
     
     public void UpdateUIScore()
     {
@@ -343,6 +357,8 @@ public class GameManager : MonoBehaviour
             playerController.ResetAmmo();
         }
 
+        StartCoroutine(ControlsFadeIn());
+
         RuntimeManager.PlayOneShot(_roundStartSFX, transform.position); //Play round start sound
         yield return new WaitForSeconds(0.5f);
         Transform CountDownTransform = RoundStartText.transform;
@@ -393,7 +409,7 @@ public class GameManager : MonoBehaviour
 
         RoundStartText.text = "";
 
-        StartCoroutine(FadeOut());
+        StartCoroutine(ControlsFadeOut());
 
         //SwitchMap("Gameplay");
         for (int i = 0; i < _playersInput.Length; i++)
@@ -413,6 +429,7 @@ public class GameManager : MonoBehaviour
         WonText.text = winText;
         StartCoroutine(WinScreen());
     }
+
     public IEnumerator WinScreen()
     {
         RuntimeManager.PlayOneShot(_winSFX, transform.position); //Play win sound
@@ -452,7 +469,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeOut()
+    private IEnumerator ControlsFadeOut()
     {
         float timer = _fadeTime;
         while (timer > 0)
@@ -461,7 +478,19 @@ public class GameManager : MonoBehaviour
             _keyboard.color = new Color(_keyboard.color.r, _keyboard.color.g, _keyboard.color.b, timer / _fadeTime);
             _gamepad.color = new Color(_gamepad.color.r, _gamepad.color.g, _gamepad.color.b, timer / _fadeTime);
             yield return null;
-            //_controlsObject.SetActive(false);
+        }
+        yield break;
+    }
+
+    private IEnumerator ControlsFadeIn()
+    {
+        float timer = 0;
+        while (timer < _fadeTime)
+        {
+            timer += Time.deltaTime;
+            _keyboard.color = new Color(_keyboard.color.r, _keyboard.color.g, _keyboard.color.b,  timer / _fadeTime);
+            _gamepad.color = new Color(_gamepad.color.r, _gamepad.color.g, _gamepad.color.b, timer / _fadeTime);
+            yield return null;
         }
         yield break;
     }
@@ -469,5 +498,60 @@ public class GameManager : MonoBehaviour
     public void SwitchIsPaused()
     {
         IsPaused = !IsPaused;
+    }
+
+    private void FadeOutScoreOnDistance()
+    {
+        _p1ScreenPosition = new Vector3(Camera.main.WorldToScreenPoint(_p1.transform.position).x, Camera.main.WorldToScreenPoint(_p1.transform.position).y, 0);
+        _p2ScreenPosition = new Vector3(Camera.main.WorldToScreenPoint(_p2.transform.position).x, Camera.main.WorldToScreenPoint(_p2.transform.position).y, 0);
+
+        float distanceP1ToP1HUD = Vector3.Distance(_p1HUD.position, _p1ScreenPosition);
+        float distanceP2ToP1HUD = Vector3.Distance(_p1HUD.position, _p2ScreenPosition);
+
+        float closestPlayerDistanceToP1HUD = Mathf.Min(distanceP1ToP1HUD, distanceP2ToP1HUD);
+
+        float lerpedDistanceToP1HUD = Mathf.Lerp(1, 0, closestPlayerDistanceToP1HUD / _range);
+
+        _scorePanelP1.color = 
+            Color.Lerp(new Color(_scorePanelP1.color.r, _scorePanelP1.color.g, _scorePanelP1.color.b, 0.8f), 
+            new Color(_scorePanelP1.color.r, _scorePanelP1.color.g, _scorePanelP1.color.b, 0.1f), _range / closestPlayerDistanceToP1HUD);
+
+        playerScoreTexts[0].color = Color.Lerp(new Color(_scorePanelP1.color.r, _scorePanelP1.color.g, _scorePanelP1.color.b, 1f),
+            new Color(_scorePanelP1.color.r, _scorePanelP1.color.g, _scorePanelP1.color.b, 0.1f), _range / closestPlayerDistanceToP1HUD);
+
+        playerRoundsWonTexts[0].color = Color.Lerp(new Color(_scorePanelP2.color.r, _scorePanelP2.color.g, _scorePanelP2.color.b, 1f),
+            new Color(_scorePanelP2.color.r, _scorePanelP2.color.g, _scorePanelP2.color.b, 0.1f), _range / closestPlayerDistanceToP1HUD);
+
+        for (int i = 0; i < _heartIconsP1.Length; i++)
+        {
+            _heartIconsP1[i].color =
+                Color.Lerp(new Color(_scorePanelP1.color.r, _scorePanelP1.color.g, _scorePanelP1.color.b, 1f),
+            new Color(_scorePanelP1.color.r, _scorePanelP1.color.g, _scorePanelP1.color.b, 0.1f), _range / closestPlayerDistanceToP1HUD);
+        }
+
+
+        float distanceP1ToP2HUD = Vector3.Distance(_p2HUD.position, _p1ScreenPosition);
+        float distanceP2ToP2HUD = Vector3.Distance(_p2HUD.position, _p2ScreenPosition);
+
+        float closestPlayerDistanceToP2HUD = Mathf.Min(distanceP1ToP2HUD, distanceP2ToP2HUD);
+
+        float lerpedDistanceToP2HUD = Mathf.Lerp(1, 0, closestPlayerDistanceToP2HUD / _range);
+
+        _scorePanelP2.color = 
+            Color.Lerp(new Color(_scorePanelP2.color.r, _scorePanelP2.color.g, _scorePanelP2.color.b, 0.8f), 
+            new Color(_scorePanelP2.color.r, _scorePanelP2.color.g, _scorePanelP2.color.b, 0.1f), _range / closestPlayerDistanceToP2HUD);
+
+        playerScoreTexts[1].color = Color.Lerp(new Color(_scorePanelP1.color.r, _scorePanelP1.color.g, _scorePanelP1.color.b, 1f),
+            new Color(_scorePanelP1.color.r, _scorePanelP1.color.g, _scorePanelP1.color.b, 0.1f), _range / closestPlayerDistanceToP2HUD);
+
+        playerRoundsWonTexts[1].color = Color.Lerp(new Color(_scorePanelP2.color.r, _scorePanelP2.color.g, _scorePanelP2.color.b, 1f),
+            new Color(_scorePanelP2.color.r, _scorePanelP2.color.g, _scorePanelP2.color.b, 0.1f), _range / closestPlayerDistanceToP2HUD);
+
+        for (int i = 0; i < _heartIconsP2.Length; i++)
+        {
+            _heartIconsP2[i].color =
+                Color.Lerp(new Color(_scorePanelP1.color.r, _scorePanelP1.color.g, _scorePanelP1.color.b, 1f),
+            new Color(_scorePanelP1.color.r, _scorePanelP1.color.g, _scorePanelP1.color.b, 0.1f), _range / closestPlayerDistanceToP2HUD);
+        }
     }
 }
