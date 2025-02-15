@@ -8,7 +8,6 @@ namespace UIComponents
 {
     public class ButtonHoverPop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
     {
-
         private Button _button;
         private bool _isSelected;
 
