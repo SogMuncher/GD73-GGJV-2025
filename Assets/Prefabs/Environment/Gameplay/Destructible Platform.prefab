@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9a9d5f4fb3729d6478b4e0521e913fa6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.57254905, g: 0.6745098, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   OnDamagedEvent:
     m_PersistentCalls:
       m_Calls: []
-  _clashParticlePrefab: {fileID: 1356372384118787551, guid: e04c9711237514d44ab0f30531c55adf, type: 3}
+  _clashParticlePrefab: {fileID: 1950540712338071218, guid: e04c9711237514d44ab0f30531c55adf, type: 3}
 --- !u!61 &7639947444960980034
 BoxCollider2D:
   m_ObjectHideFlags: 0
