@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private PlayerInput[] _playersInput;
     private PlayerController[] _playerControllers;
     private List<ThrownWeapon> thrownWeapon = new List<ThrownWeapon>();
+    private List<Dart> darts = new List<Dart>();
     public TextMeshProUGUI WonText;
     public TextMeshProUGUI RoundStartText;
 
@@ -447,6 +448,11 @@ public class GameManager : MonoBehaviour
     {
         thrownWeapon.Add(weapon);
     }
+    
+    public void AddDartToList(Dart dart)
+    {
+        darts.Add(dart);
+    }
 
     private void DestroyWeapons()
     {
@@ -458,6 +464,15 @@ public class GameManager : MonoBehaviour
             }
         }
         thrownWeapon.Clear();
+
+        foreach (Dart dart in darts)
+        {
+            if (dart != null)
+            {
+                dart.DestroyObject();
+            }
+        }
+        darts.Clear();
     }
 
     public void SwitchMap(string newMap)

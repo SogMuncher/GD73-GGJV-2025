@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d3728fb90b1a1de4ca87ef6767676f20
+guid: 463b134fe83691d4ba96707927abd44b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3185887201872873151
-    second: Dart_0
+      213: 852106132762124745
+    second: DartGun_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dart_0
+      name: DartGun_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 11
-        width: 23
-        height: 9
+        x: 0
+        y: 0
+        width: 90
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fb68812d78b863c20800000000000000
-      internalID: 3185887201872873151
+      spriteID: 9c1e73a530a43db00800000000000000
+      internalID: 852106132762124745
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dart_0: 3185887201872873151
+      DartGun_0: 852106132762124745
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
