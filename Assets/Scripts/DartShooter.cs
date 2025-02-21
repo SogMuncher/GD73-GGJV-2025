@@ -24,16 +24,23 @@ public class DartShooter : MonoBehaviour
     private float _tiltUpAngle;
     private float _tiltDownAngle;
 
+    private DartShooterSwitch _dartShooterSwitch;
     private GameManager _gameManager;
 
+    private void Awake()
+    {
+        _dartShooterSwitch = FindFirstObjectByType<DartShooterSwitch>();
+        _gameManager = FindFirstObjectByType<GameManager>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _gameManager = FindFirstObjectByType<GameManager>();
         _aimInput = gameObject.transform.right;
         _shootAngle = gameObject.transform.rotation;
+        _dartShooterSwitch.OnSwitchOn.AddListener(CallShootDartsCoroutine);
         _gameManager.RoundStarting.AddListener(CallShootDartsCoroutine);
+        _dartShooterSwitch.OnSwitchOff.AddListener(StopShooting);
     }
 
     
@@ -54,19 +61,20 @@ public class DartShooter : MonoBehaviour
             StopAllCoroutines();
             _isShooting = false;
         }
+        _canShoot = !_canShoot;
     }
 
     private IEnumerator ShootDartsCorroutine()
     {
         while (_canShoot)
         {
-            ShootDarts(_dartSpawnPoint1.transform.position, _shootAngle);
+            ShootDarts(_dartSpawnPoint2.transform.position, _shootAngle);
             yield return new WaitForSeconds(_shootWaitTime);
 
             ShootDarts(_dartSpawnPoint3.transform.position, _shootAngle);
             yield return new WaitForSeconds(_shootWaitTime);
 
-            ShootDarts(_dartSpawnPoint2.transform.position, _shootAngle);
+            ShootDarts(_dartSpawnPoint1.transform.position, _shootAngle);
             yield return new WaitForSeconds(_shootFrequency);
             yield return null;
         }

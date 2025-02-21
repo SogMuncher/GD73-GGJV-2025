@@ -188,7 +188,7 @@ MonoBehaviour:
   _dartSpawnPoint3: {fileID: 6370034987673270803}
   _shootWaitTime: 0.5
   _shootFrequency: 0.5
-  _shootStrenght: 10
+  _shootStrenght: 15
 --- !u!1 &6639071770270728384
 GameObject:
   m_ObjectHideFlags: 0

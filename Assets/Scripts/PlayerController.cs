@@ -232,14 +232,13 @@ public class PlayerController : MonoBehaviour
             _rb.AddForce(-direction * _playerBounceForce, ForceMode2D.Impulse);
 
             RuntimeManager.PlayOneShot(_bounceSFX, transform.position); // Play the bounce off other player sound
-
-
         }
 
         if (collision.gameObject.layer == 3)
         {
             _isSticky = true;
         }
+
 
         //if (collision.gameObject.layer == 15)
         //{

@@ -76,15 +76,15 @@ public class Dart : MonoBehaviour
 
     protected bool isDestroying = false;
 
-    protected GameManager gameManager;
-    protected Dart thisDart;
+    protected GameManager _gameManager;
+    protected Dart _thisDart;
 
     //private GameObject[] _players = new GameObject[2];
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected void Awake()
     {
-        thisDart = GetComponent<Dart>();
+        _thisDart = GetComponent<Dart>();
     }
 
     protected void Start()
@@ -97,16 +97,10 @@ public class Dart : MonoBehaviour
         _frontDartHitBox.ChangeExcludeLayerMask(_frontDartExcludeWhileFlying);
         _bodyHitBox.ChangeExcludeLayerMask(_bodyExcludeWhileFlying);
 
-        gameManager = FindAnyObjectByType<GameManager>();
+        _gameManager = FindAnyObjectByType<GameManager>();
         TrailObject = Instantiate(TrailPrefab, TrailAnchor.position, Quaternion.identity, TrailAnchor);
 
-        AddDartInLevel(thisDart);
-
-    }
-
-    // Update is called once per frame
-    protected void Update()
-    {
+        AddDartInLevel(_thisDart);
 
     }
 
@@ -170,6 +164,24 @@ public class Dart : MonoBehaviour
             if (collision.attachedRigidbody.gameObject != null && collision.attachedRigidbody.TryGetComponent(out Dart dart))
             {
                 dart.DestroyObject();
+            }
+
+            DestroyObject();
+            return;
+        }
+
+        if (collision.gameObject.CompareTag("Switch"))
+        {
+            RuntimeManager.PlayOneShot(_spikeToSpikeSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide
+
+            RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
+
+            Debug.Log("Switch Hit");
+            _lastHitLocation = collision.ClosestPoint(transform.position);
+
+            if (collision.TryGetComponent(out DartShooterSwitch leverSwitch))
+            {
+                leverSwitch.SwitchOnOff();
             }
 
             DestroyObject();
@@ -263,6 +275,6 @@ public class Dart : MonoBehaviour
 
     protected void AddDartInLevel(Dart dart)
     {
-        gameManager.AddDartToList(dart);
+        _gameManager.AddDartToList(dart);
     }
 }

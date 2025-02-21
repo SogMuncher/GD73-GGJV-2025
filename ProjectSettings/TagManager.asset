@@ -12,6 +12,7 @@ TagManager:
   - Destructible
   - Dart
   - DartGun
+  - Switch
   layers:
   - Default
   - TransparentFX
@@ -35,7 +36,7 @@ TagManager:
   - Destructible
   - DartGun
   - Dart
-  - 
+  - Switch
   - 
   - 
   - 
