@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class MenuHandler : MonoBehaviour
 {
-    [SerializeField] private string _gameScene = "InputTestScene";
+    //[SerializeField] private string _gameScene = "InputTestScene";
 
-    public void Play()
+    public void Play(string sceneName)
     {
-        SceneManager.LoadScene(_gameScene);
+        SceneManager.LoadScene(sceneName);
     }
 
     public void Quit()
