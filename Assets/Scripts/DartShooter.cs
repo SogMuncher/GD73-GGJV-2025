@@ -38,9 +38,13 @@ public class DartShooter : MonoBehaviour
     {
         _aimInput = gameObject.transform.right;
         _shootAngle = gameObject.transform.rotation;
-        _dartShooterSwitch.OnSwitchOn.AddListener(CallShootDartsCoroutine);
         _gameManager.RoundStarting.AddListener(CallShootDartsCoroutine);
-        _dartShooterSwitch.OnSwitchOff.AddListener(StopShooting);
+        
+        if ( _dartShooterSwitch != null )
+        {
+            _dartShooterSwitch.OnSwitchOn.AddListener(CallShootDartsCoroutine);
+            _dartShooterSwitch.OnSwitchOff.AddListener(StopShooting);
+        }
     }
 
     

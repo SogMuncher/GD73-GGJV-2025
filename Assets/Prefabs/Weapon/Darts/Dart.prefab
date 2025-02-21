@@ -10313,7 +10313,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
-  _spikeToSpikeSFX:
+  _harpoonClashSFX:
     Guid:
       Data1: 0
       Data2: 0
@@ -10334,6 +10334,7 @@ MonoBehaviour:
   TrailAnchor: {fileID: 5652542481927110044}
   TrailObject: {fileID: 4078020463218979060}
   _isStuck: 0
+  _lifeTimer: 6
 --- !u!1 &6784180548429954228
 GameObject:
   m_ObjectHideFlags: 0

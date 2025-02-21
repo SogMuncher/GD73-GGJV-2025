@@ -5,6 +5,7 @@ using FMOD.Studio;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Dart : MonoBehaviour 
@@ -39,7 +40,7 @@ public class Dart : MonoBehaviour
     EventInstance _impactInstance;
 
     [SerializeField]
-    EventReference _spikeToSpikeSFX;
+    EventReference _harpoonClashSFX;
 
     [SerializeField]
     EventReference _takeDamageSFX;
@@ -47,47 +48,48 @@ public class Dart : MonoBehaviour
 
     [Header("Misc")]
     [SerializeField]
-    protected GameObject _spriteObject;
+    private GameObject _spriteObject;
 
     [SerializeField]
-    protected Sprite _spriteWhenGrounded;
+    private Sprite _spriteWhenGrounded;
 
     [SerializeField]
-    protected ParticleSystem _dustParticleSystem;
+    private ParticleSystem _dustParticleSystem;
 
     [SerializeField]
-    public GameObject TrailPrefab;
+    private GameObject TrailPrefab;
 
     [SerializeField]
-    public Transform TrailAnchor;
-    public GameObject TrailObject;
+    private Transform TrailAnchor;
+    private GameObject TrailObject;
 
-    protected Rigidbody2D _rb;
+    private Rigidbody2D _rb;
 
     [SerializeField]
-    protected bool _isStuck = false;
-    protected bool _layerMaskChangedToStuck = false;
+    private bool _layerMaskChangedToStuck = false;
 
-    protected bool _isFlipped = false;
+    private bool _isStuck = false;
 
-    protected Vector2 _velocity;
+    private Vector2 _velocity;
 
-    protected Vector3 _lastHitLocation;
+    private Vector3 _lastHitLocation;
 
-    protected bool isDestroying = false;
+    private bool isDestroying = false;
 
-    protected GameManager _gameManager;
-    protected Dart _thisDart;
+    private GameManager _gameManager;
+    private Dart _thisDart;
+
+    [SerializeField] private float _lifeTimer = 3.0f;
 
     //private GameObject[] _players = new GameObject[2];
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected void Awake()
+    private void Awake()
     {
         _thisDart = GetComponent<Dart>();
     }
 
-    protected void Start()
+    private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
 
@@ -102,6 +104,7 @@ public class Dart : MonoBehaviour
 
         AddDartInLevel(_thisDart);
 
+        StartCoroutine(DestroySelfCorroutine());
     }
 
     public bool GetIsStuck()
@@ -109,7 +112,7 @@ public class Dart : MonoBehaviour
         return _isStuck;
     }
 
-    protected void OnSpikeCollision(Collider2D collision)
+    private void OnSpikeCollision(Collider2D collision)
     {
 
         // if the collision was with a teleporter
@@ -150,7 +153,7 @@ public class Dart : MonoBehaviour
 
         if (collision.gameObject.CompareTag("ThrownWeapon") || collision.gameObject.CompareTag("Dart"))
         {
-            RuntimeManager.PlayOneShot(_spikeToSpikeSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide
+            RuntimeManager.PlayOneShot(_harpoonClashSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide
 
             RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
 
@@ -172,7 +175,7 @@ public class Dart : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Switch"))
         {
-            RuntimeManager.PlayOneShot(_spikeToSpikeSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide
+            RuntimeManager.PlayOneShot(_harpoonClashSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide
 
             RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
 
@@ -215,7 +218,7 @@ public class Dart : MonoBehaviour
             
     }
 
-    protected void OnShaftCollision(Collision2D collision)
+    private void OnShaftCollision(Collision2D collision)
     {
         // if the collision was with a teleporter
         if (collision.gameObject.layer == 16)
@@ -243,7 +246,7 @@ public class Dart : MonoBehaviour
         }
     }
 
-    public void DetachParticle()
+    private void DetachParticle()
     {
         if (TrailObject != null)
         {
@@ -273,8 +276,20 @@ public class Dart : MonoBehaviour
         Destroy(gameObject);
     }
 
-    protected void AddDartInLevel(Dart dart)
+    private void AddDartInLevel(Dart dart)
     {
         _gameManager.AddDartToList(dart);
+    }
+
+    private IEnumerator DestroySelfCorroutine()
+    {
+        float timer = 0f;
+        while (timer < _lifeTimer)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        DestroyObject();
+        yield break;
     }
 }
