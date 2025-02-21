@@ -64,6 +64,7 @@ public class Dart : MonoBehaviour
 
     protected Rigidbody2D _rb;
 
+    [SerializeField]
     protected bool _isStuck = false;
     protected bool _layerMaskChangedToStuck = false;
 
@@ -106,29 +107,6 @@ public class Dart : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if (_isStuck == false)
-        {
-            _velocity = _rb.linearVelocity;
-
-            if (_rb.linearVelocityX < 0 && _isFlipped == false)
-            {
-                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1f, transform.localScale.z);
-                _isFlipped = true;
-            }
-            else if (_rb.linearVelocityX > 0 && _isFlipped == true)
-            {
-                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1f, transform.localScale.z);
-                _isFlipped = false;
-            }
-
-
-            if (_velocity.sqrMagnitude > 0.01f) 
-            {
-                float angle = Mathf.Atan2(_velocity.y, _velocity.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            }
-
-        }
 
     }
 
@@ -141,7 +119,7 @@ public class Dart : MonoBehaviour
     {
 
         // if the collision was with a teleporter
-        if (collision.gameObject.layer == 16)
+        if (collision.gameObject.layer == 16 || collision.gameObject.layer == 18)
         {
             return;
         }
@@ -164,8 +142,6 @@ public class Dart : MonoBehaviour
 
         if (collision.gameObject.layer == 19)
         {
-            // damage logic
-
             if (collision.attachedRigidbody.gameObject.TryGetComponent(out Health health))
             {
                 RuntimeManager.PlayOneShot(_takeDamageSFX, transform.position); // Play take damage sfx when spike hits player
@@ -184,7 +160,6 @@ public class Dart : MonoBehaviour
 
             RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
 
-            Debug.Log("spike thrown weapon");
             _lastHitLocation = collision.ClosestPoint(transform.position);
 
             if (collision.attachedRigidbody.gameObject != null && collision.attachedRigidbody.TryGetComponent(out ThrownWeapon otherWeapon))
@@ -201,31 +176,31 @@ public class Dart : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.layer == 18)
+
+        if (collision.gameObject.layer == 3)
         {
-            return;
-        }
-
-        if (_isStuck == false)
-        {
-            RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
-
-            _isStuck = true;
-
-            _frontDartHitBox.gameObject.SetActive(false);
-            _rb.bodyType = RigidbodyType2D.Kinematic;
-            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-
-            _spriteObject.GetComponent<SpriteRenderer>().sprite = _spriteWhenGrounded;
-            _dustParticleSystem.Play();
-
-            if (_layerMaskChangedToStuck == false)
+            Debug.Log("Collided With Ground!");
+            if (_isStuck == false)
             {
-                _frontDartHitBox.ChangeExcludeLayerMask(_frontDartExcludeWhileStuck);
-                _bodyHitBox.ChangeExcludeLayerMask(_bodyExcludeWhileStuck);
-            }
+                RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
 
+                _isStuck = true;
+
+                //_frontDartHitBox.gameObject.SetActive(false);
+                _rb.bodyType = RigidbodyType2D.Kinematic;
+                _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+                _spriteObject.GetComponent<SpriteRenderer>().sprite = _spriteWhenGrounded;
+                _dustParticleSystem.Play();
+
+                if (_layerMaskChangedToStuck == false)
+                {
+                    _frontDartHitBox.ChangeExcludeLayerMask(_frontDartExcludeWhileStuck);
+                    _bodyHitBox.ChangeExcludeLayerMask(_bodyExcludeWhileStuck);
+                }
+            }
         }
+            
     }
 
     protected void OnShaftCollision(Collision2D collision)

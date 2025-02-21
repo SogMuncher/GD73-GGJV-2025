@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _health = GetComponent<Health>();
         _playerInput = GetComponent<PlayerInput>();
+        _gameManager = FindAnyObjectByType<GameManager>();
         //_weaponRB = _weapon.GetComponent<Rigidbody2D>();
     }
 

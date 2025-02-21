@@ -19,7 +19,7 @@ public class DartShooter : MonoBehaviour
     [SerializeField] private float _shootWaitTime = 0.5f;
     [SerializeField] private float _shootFrequency = 0.5f;
     [SerializeField] private float _shootStrenght;
-    [SerializeField] private Vector2 _aimInput;
+    private Vector2 _aimInput;
     private Quaternion _shootAngle;
     private float _tiltUpAngle;
     private float _tiltDownAngle;
@@ -31,7 +31,7 @@ public class DartShooter : MonoBehaviour
     void Start()
     {
         _gameManager = FindFirstObjectByType<GameManager>();
-        _aimInput = new Vector2(transform.rotation.x, transform.rotation.y);
+        _aimInput = gameObject.transform.right;
         _shootAngle = gameObject.transform.rotation;
         _gameManager.RoundStarting.AddListener(CallShootDartsCoroutine);
     }
@@ -63,7 +63,7 @@ public class DartShooter : MonoBehaviour
             ShootDarts(_dartSpawnPoint1.transform.position, _shootAngle);
             yield return new WaitForSeconds(_shootWaitTime);
 
-            ShootDarts(_dartSpawnPoint2.transform.position, _shootAngle);
+            ShootDarts(_dartSpawnPoint3.transform.position, _shootAngle);
             yield return new WaitForSeconds(_shootWaitTime);
 
             ShootDarts(_dartSpawnPoint2.transform.position, _shootAngle);

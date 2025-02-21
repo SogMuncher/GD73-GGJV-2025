@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8802607557412917428}
   m_Layer: 20
   m_Name: DartGun
-  m_TagString: Untagged
+  m_TagString: DartGun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 337064255
   m_SortingLayer: 7
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 463b134fe83691d4ba96707927abd44b, type: 3}
   m_Color: {r: 0.97647065, g: 0.42352945, b: 0.08627451, a: 1}
   m_FlipX: 0
@@ -187,8 +187,8 @@ MonoBehaviour:
   _dartSpawnPoint2: {fileID: 1839470932817304111}
   _dartSpawnPoint3: {fileID: 6370034987673270803}
   _shootWaitTime: 0.5
-  _shootStrenght: 0
-  _aimInput: {x: 0, y: 0}
+  _shootFrequency: 0.5
+  _shootStrenght: 10
 --- !u!1 &6639071770270728384
 GameObject:
   m_ObjectHideFlags: 0

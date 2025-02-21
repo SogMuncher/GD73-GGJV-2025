@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3453561648698348733}
   - component: {fileID: 8658929375041040053}
   - component: {fileID: 9046140436664704508}
-  m_Layer: 15
+  m_Layer: 21
   m_Name: Shaft
-  m_TagString: ThrownWeapon
+  m_TagString: Dart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,9 +108,9 @@ GameObject:
   - component: {fileID: 3883350646445258498}
   - component: {fileID: 3747280797414615724}
   - component: {fileID: 1553221618415897665}
-  m_Layer: 15
+  m_Layer: 21
   m_Name: FrontSpike
-  m_TagString: ThrownWeapon
+  m_TagString: Dart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 2847140580479948016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26222, y: -0.046711, z: 0}
+  m_LocalPosition: {x: 0.2704, y: -0.046711, z: 0}
   m_LocalScale: {x: 0.47556, y: 0.41611502, z: 0.47556}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -164,7 +164,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.06089429, y: 0.115682065}
+  m_Offset: {x: 0.066055715, y: 0.11612715}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -174,7 +174,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.3650851, y: 0.13954496}
+  m_Size: {x: 0.37540793, y: 0.342483}
   m_EdgeRadius: 0
 --- !u!114 &1553221618415897665
 MonoBehaviour:
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 2421688254353059661}
   - component: {fileID: 1105172272459444584}
   - component: {fileID: 8569785197770354412}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5652542481927110044}
-  m_Layer: 15
+  m_Layer: 21
   m_Name: TrailAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 588351729469349699}
   - component: {fileID: 2788025588999863794}
   - component: {fileID: 3498428377359437959}
-  m_Layer: 15
+  m_Layer: 21
   m_Name: AirCuttingParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5203,7 +5203,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 337064255
   m_SortingLayer: 7
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -5245,9 +5245,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7343022457977037402}
-  m_Layer: 15
+  m_Layer: 21
   m_Name: HitBoxes
-  m_TagString: ThrownWeapon
+  m_TagString: Dart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5280,7 +5280,7 @@ GameObject:
   - component: {fileID: 4107826235398959741}
   - component: {fileID: 5271082316313958354}
   - component: {fileID: 4862364951216601825}
-  m_Layer: 15
+  m_Layer: 21
   m_Name: DustImpactParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10137,7 +10137,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 337064255
   m_SortingLayer: 7
-  m_SortingOrder: 10
+  m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -10182,7 +10182,7 @@ GameObject:
   - component: {fileID: 6557877531533071158}
   - component: {fileID: 1162519515158998155}
   - component: {fileID: 3485599021764747785}
-  m_Layer: 15
+  m_Layer: 21
   m_Name: Dart
   m_TagString: Dart
   m_Icon: {fileID: 0}
@@ -10219,9 +10219,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.25
-  m_AngularDamping: 0.05
-  m_GravityScale: 2
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -10294,17 +10294,17 @@ MonoBehaviour:
   _frontDartHitBox: {fileID: 1553221618415897665}
   _frontDartExcludeWhileFlying:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1441847
   _frontDartExcludeWhileStuck:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2032703
   _bodyHitBox: {fileID: 9046140436664704508}
   _bodyExcludeWhileFlying:
     serializedVersion: 2
-    m_Bits: 393271
+    m_Bits: 1703990
   _bodyExcludeWhileStuck:
     serializedVersion: 2
-    m_Bits: 1016895
+    m_Bits: 2031679
   _clashParticlePrefab: {fileID: 7462766234518659814, guid: d050bd2eda14d14459fca167a6abf882, type: 3}
   _impactSFX:
     Guid:
@@ -10327,12 +10327,13 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
-  _spriteObject: {fileID: 6784180548429954228}
+  _spriteObject: {fileID: 7196699448984137047}
   _spriteWhenGrounded: {fileID: 3185887201872873151, guid: d3728fb90b1a1de4ca87ef6767676f20, type: 3}
   _dustParticleSystem: {fileID: 5271082316313958354}
   TrailPrefab: {fileID: 1813119774171087128, guid: 4a027a5a223da2f4c8796ec499fa4d16, type: 3}
   TrailAnchor: {fileID: 5652542481927110044}
   TrailObject: {fileID: 4078020463218979060}
+  _isStuck: 0
 --- !u!1 &6784180548429954228
 GameObject:
   m_ObjectHideFlags: 0
@@ -10342,9 +10343,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7938527180334018029}
-  m_Layer: 15
+  m_Layer: 21
   m_Name: Visuals
-  m_TagString: ThrownWeapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10378,7 +10379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6336073575822554765}
   - component: {fileID: 8675839216645179331}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10444,7 +10445,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 337064255
   m_SortingLayer: 7
-  m_SortingOrder: 10
+  m_SortingOrder: 1
   m_Sprite: {fileID: 3185887201872873151, guid: d3728fb90b1a1de4ca87ef6767676f20, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

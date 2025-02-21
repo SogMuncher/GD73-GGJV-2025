@@ -236,7 +236,7 @@ public class ThrownWeapon : MonoBehaviour
     {
 
         // if the collision was with a teleporter
-        if (collision.gameObject.layer == 16)
+        if (collision.gameObject.layer == 16 || collision.gameObject.layer == 18)
         {
             return;
         }
@@ -302,12 +302,7 @@ public class ThrownWeapon : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.layer == 18)
-        {
-            return;
-        }
-
-            if (_isStuck == false)
+        if (_isStuck == false)
         {
             RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
 

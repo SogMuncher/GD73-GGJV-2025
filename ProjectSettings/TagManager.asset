@@ -10,6 +10,8 @@ TagManager:
   - Player2
   - Current
   - Destructible
+  - Dart
+  - DartGun
   layers:
   - Default
   - TransparentFX
@@ -31,8 +33,8 @@ TagManager:
   - SpearDetector
   - Current
   - Destructible
-  - 
-  - 
+  - DartGun
+  - Dart
   - 
   - 
   - 
