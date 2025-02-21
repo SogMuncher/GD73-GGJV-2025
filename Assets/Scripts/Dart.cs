@@ -94,7 +94,7 @@ public class Dart : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
 
         _frontDartHitBox.OnTriggerEnterEvent.AddListener(OnSpikeCollision);
-        _bodyHitBox.OnCollisionEnterEvent.AddListener(OnShaftCollision);
+        _bodyHitBox.OnCollisionEnterEvent.AddListener(OnDartCollision);
 
         _frontDartHitBox.ChangeExcludeLayerMask(_frontDartExcludeWhileFlying);
         _bodyHitBox.ChangeExcludeLayerMask(_bodyExcludeWhileFlying);
@@ -218,7 +218,7 @@ public class Dart : MonoBehaviour
             
     }
 
-    private void OnShaftCollision(Collision2D collision)
+    private void OnDartCollision(Collision2D collision)
     {
         // if the collision was with a teleporter
         if (collision.gameObject.layer == 16)
