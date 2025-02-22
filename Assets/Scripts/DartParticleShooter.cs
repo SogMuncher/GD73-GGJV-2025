@@ -1,4 +1,5 @@
 using FMODUnity;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
@@ -74,7 +75,7 @@ public class DartParticleShooter : MonoBehaviour
                 Vector3 collisionPoint = other.transform.position;
                 float distance = Vector3.Distance(particlePosition, collisionPoint);
 
-                if (distance <= 1.0f)
+                if (distance <= 1.5f)
                 {
                     _particles[i].remainingLifetime = 0;
                     _particleSystem.SetParticles(_particles, numParticlesAlive);
