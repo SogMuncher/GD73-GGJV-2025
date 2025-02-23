@@ -687,8 +687,9 @@ public class PlayerController : MonoBehaviour
 
     protected IEnumerator DamageOnKnockbackCoroutine()
     {
+
         if (_health.GetCurrentHealth() == 0)
-        {
+        {            
             _playerCollider.enabled = false;
             _deathCamera.Priority = 2;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -697,6 +698,11 @@ public class PlayerController : MonoBehaviour
             float timer = 0f;
             while (timer < _hitFreezeTime)
             {
+                if (_gameManager.IsPaused)
+                {
+                    yield return new WaitUntil(() => _gameManager.IsPaused == false);
+                }
+
                 _visuals.transform.position = positionZero + new Vector3(Random.Range(-_deathShakeStrenght, _deathShakeStrenght), Random.Range(-_deathShakeStrenght, _deathShakeStrenght), 0);
 
                 timer += Time.deltaTime;
@@ -723,6 +729,11 @@ public class PlayerController : MonoBehaviour
         float time = 0f;
         while (time < _hitFreezeTime)
         {
+            if (_gameManager.IsPaused)
+            {
+                yield return new WaitUntil(() => _gameManager.IsPaused == false);
+            }
+
             transform.position = startingPosition + new Vector3(Random.Range(-_hitShakeStrength, _hitShakeStrength), Random.Range(-_hitShakeStrength, _hitShakeStrength), 0);
 
             if (_health.GetCurrentHealth() == 0 || _health.GetCurrentHealth() == _health.MaxHealth)
