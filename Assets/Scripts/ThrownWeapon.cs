@@ -5,11 +5,16 @@ using FMOD.Studio;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 using DG.Tweening.Core.Easing;
+using System.ComponentModel;
+using Unity.Jobs;
+using Unity.Collections;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class ThrownWeapon : MonoBehaviour
 {
+    
     [Header("Front")]
     [SerializeField]
     protected HitBox _frontSpikeHitBox;
@@ -107,6 +112,9 @@ public class ThrownWeapon : MonoBehaviour
     protected GameManager _gameManager;
     protected ThrownWeapon _thisWeapon;
 
+    [SerializeField, Unity.Collections.ReadOnly]
+    public int TimesCollidedWithTeleporter = 0;
+
     //private GameObject[] _players = new GameObject[2];
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -135,7 +143,7 @@ public class ThrownWeapon : MonoBehaviour
 
         _flickeringSpriteStartColor = _flickeringSprite.GetComponent<SpriteRenderer>().color;
 
-        AddThrownWeapon(_thisWeapon);
+        //AddThrownWeapon(_thisWeapon);
 
         //for (int i = 0; i < _players.Length; i++)
         //{
@@ -236,8 +244,13 @@ public class ThrownWeapon : MonoBehaviour
     protected void OnSpikeCollision(Collider2D collision)
     {
 
+        if (collision.gameObject.layer == 18)
+        {
+            return;
+        }
+         
         // if the collision was with a teleporter
-        if (collision.gameObject.layer == 16 || collision.gameObject.layer == 18)
+        if (collision.gameObject.layer == 16 )
         {
             return;
         }
