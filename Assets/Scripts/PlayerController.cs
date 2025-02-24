@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _health = GetComponent<Health>();
         _playerInput = GetComponent<PlayerInput>();
+        _gameManager = FindAnyObjectByType<GameManager>();
         //_weaponRB = _weapon.GetComponent<Rigidbody2D>();
     }
 
@@ -231,14 +232,13 @@ public class PlayerController : MonoBehaviour
             _rb.AddForce(-direction * _playerBounceForce, ForceMode2D.Impulse);
 
             RuntimeManager.PlayOneShot(_bounceSFX, transform.position); // Play the bounce off other player sound
-
-
         }
 
         if (collision.gameObject.layer == 3)
         {
             _isSticky = true;
         }
+
 
         //if (collision.gameObject.layer == 15)
         //{
@@ -687,8 +687,9 @@ public class PlayerController : MonoBehaviour
 
     protected IEnumerator DamageOnKnockbackCoroutine()
     {
+
         if (_health.GetCurrentHealth() == 0)
-        {
+        {            
             _playerCollider.enabled = false;
             _deathCamera.Priority = 2;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -697,6 +698,11 @@ public class PlayerController : MonoBehaviour
             float timer = 0f;
             while (timer < _hitFreezeTime)
             {
+                if (_gameManager.IsPaused)
+                {
+                    yield return new WaitUntil(() => _gameManager.IsPaused == false);
+                }
+
                 _visuals.transform.position = positionZero + new Vector3(Random.Range(-_deathShakeStrenght, _deathShakeStrenght), Random.Range(-_deathShakeStrenght, _deathShakeStrenght), 0);
 
                 timer += Time.deltaTime;
@@ -723,6 +729,11 @@ public class PlayerController : MonoBehaviour
         float time = 0f;
         while (time < _hitFreezeTime)
         {
+            if (_gameManager.IsPaused)
+            {
+                yield return new WaitUntil(() => _gameManager.IsPaused == false);
+            }
+
             transform.position = startingPosition + new Vector3(Random.Range(-_hitShakeStrength, _hitShakeStrength), Random.Range(-_hitShakeStrength, _hitShakeStrength), 0);
 
             if (_health.GetCurrentHealth() == 0 || _health.GetCurrentHealth() == _health.MaxHealth)

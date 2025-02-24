@@ -5,6 +5,7 @@ using FMOD.Studio;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using DG.Tweening.Core.Easing;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class ThrownWeapon : MonoBehaviour
@@ -103,16 +104,15 @@ public class ThrownWeapon : MonoBehaviour
 
     protected bool isDestroying = false;
 
-    protected GameManager gameManager;
-    protected ThrownWeapon thisWeapon;
+    protected GameManager _gameManager;
+    protected ThrownWeapon _thisWeapon;
 
     //private GameObject[] _players = new GameObject[2];
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected void Awake()
     {
-        thisWeapon = GetComponent<ThrownWeapon>();
-
+        _thisWeapon = GetComponent<ThrownWeapon>();
     }
 
     protected void Start()
@@ -129,12 +129,13 @@ public class ThrownWeapon : MonoBehaviour
 
         _backSpikeHitBox.gameObject.SetActive(false);
 
-        gameManager = FindAnyObjectByType<GameManager>();
+        _gameManager = FindAnyObjectByType<GameManager>();
+
         TrailObject = Instantiate(TrailPrefab, TrailAnchor.position, Quaternion.identity, TrailAnchor);
 
         _flickeringSpriteStartColor = _flickeringSprite.GetComponent<SpriteRenderer>().color;
 
-        AddThrownWeapon(thisWeapon);
+        AddThrownWeapon(_thisWeapon);
 
         //for (int i = 0; i < _players.Length; i++)
         //{
@@ -236,7 +237,7 @@ public class ThrownWeapon : MonoBehaviour
     {
 
         // if the collision was with a teleporter
-        if (collision.gameObject.layer == 16)
+        if (collision.gameObject.layer == 16 || collision.gameObject.layer == 18)
         {
             return;
         }
@@ -302,12 +303,22 @@ public class ThrownWeapon : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.layer == 18)
+        if (collision.gameObject.CompareTag("Switch"))
         {
+            RuntimeManager.PlayOneShot(_spikeToSpikeSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide
+
+            RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
+
+            Debug.Log("Switch Hit");
+            _lastHitLocation = collision.ClosestPoint(transform.position);
+
+            collision.GetComponentInParent<DartShooterSwitch>().SwitchOnOff();
+            
+            DestroyObject();
             return;
         }
 
-            if (_isStuck == false)
+        if (_isStuck == false)
         {
             RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
 
@@ -386,7 +397,7 @@ public class ThrownWeapon : MonoBehaviour
 
     protected void AddThrownWeapon(ThrownWeapon weapon)
     {
-        gameManager.AddWeaponsToList(weapon);
+        _gameManager.AddWeaponsToList(weapon);
     }
 
     //protected void OnTriggerEnter2D(Collider2D other)

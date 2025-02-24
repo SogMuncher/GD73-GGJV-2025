@@ -27,12 +27,14 @@ public class GameManager : MonoBehaviour
     private PlayerInput[] _playersInput;
     private PlayerController[] _playerControllers;
     private List<ThrownWeapon> thrownWeapon = new List<ThrownWeapon>();
+    private List<Dart> darts = new List<Dart>();
     public TextMeshProUGUI WonText;
     public TextMeshProUGUI RoundStartText;
 
     [SerializeField] private float _roundStartTimer = 1f;
 
     public UnityEvent OnWin;
+    //public UnityEvent OnWinScreenEnd;
 
     public UnityEvent OnRoundEnd;
 
@@ -437,7 +439,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(4f);
+        //yield return new WaitForSeconds(4f);
 
+        //OnWinScreenEnd.Invoke();
         SceneManager.LoadScene("MainMenu");
 
         yield break;
@@ -446,6 +450,11 @@ public class GameManager : MonoBehaviour
     public void AddWeaponsToList(ThrownWeapon weapon)
     {
         thrownWeapon.Add(weapon);
+    }
+    
+    public void AddDartToList(Dart dart)
+    {
+        darts.Add(dart);
     }
 
     private void DestroyWeapons()
@@ -458,6 +467,15 @@ public class GameManager : MonoBehaviour
             }
         }
         thrownWeapon.Clear();
+
+        foreach (Dart dart in darts)
+        {
+            if (dart != null)
+            {
+                dart.DestroyObject();
+            }
+        }
+        darts.Clear();
     }
 
     public void SwitchMap(string newMap)
