@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{873eb688-abef-4fd3-bfec-57ce7603bb45}">
 		<property name="assetPath">
-			<value>Bubble Pop_04.mp3</value>
+			<value>SFX/Bubbles/Bubble Pop_04.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{0fba9a68-af05-46a8-9498-b56c9d1d0ba1}">
 		<property name="assetPath">
-			<value>MUI DENY MEDIUM Low Synthetic.wav</value>
+			<value>SFX/MUI DENY MEDIUM Low Synthetic.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

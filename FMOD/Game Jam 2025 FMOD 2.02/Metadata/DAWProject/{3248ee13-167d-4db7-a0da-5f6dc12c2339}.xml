@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DAWProject" id="{3248ee13-167d-4db7-a0da-5f6dc12c2339}">
+		<property name="assetPath">
+			<value>Bubble Team 73 SFX.rpp.link/</value>
+		</property>
+		<property name="dawProjectPath">
+			<value>Bubble Team 73 SFX/Bubble Team 73 SFX.rpp</value>
+		</property>
+		<property name="renderedAssetsPath">
+			<value>../Audio SFX Renders</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5960e3ec-e478-4d13-bc2c-f125b1d6cf87}</destination>
+		</relationship>
+	</object>
+</objects>

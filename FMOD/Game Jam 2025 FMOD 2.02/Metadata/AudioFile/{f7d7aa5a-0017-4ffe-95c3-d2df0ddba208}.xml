@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{f7d7aa5a-0017-4ffe-95c3-d2df0ddba208}">
 		<property name="assetPath">
-			<value>Spike Hit_02.mp3</value>
+			<value>SFX/Weapons/Spike Hit_02.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

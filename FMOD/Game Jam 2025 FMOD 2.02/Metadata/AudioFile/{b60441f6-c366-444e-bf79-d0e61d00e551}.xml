@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{b60441f6-c366-444e-bf79-d0e61d00e551}">
 		<property name="assetPath">
-			<value>Bubble Gargle_02.mp3</value>
+			<value>SFX/Bubbles/Bubble Gargle_02.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
