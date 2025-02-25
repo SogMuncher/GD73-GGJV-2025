@@ -191,7 +191,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator SlowTime(int playerIndex)
     {
-        Time.timeScale = 0.15f;
+        if (playerRoundsWon[0] == 2f || playerRoundsWon[0] == 2f)
+        {
+            DestroyWeapons();
+        }
+
+            Time.timeScale = 0.15f;
         yield return new WaitForSeconds(0.55f);
 
         if (_bubbleParticleSystem != null)
