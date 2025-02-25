@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent OnRoundEnd;
 
+    [SerializeField] private ParticleSystem _bubbleParticleSystem;
+
     [SerializeField] EventReference _winSFX;
     [SerializeField] EventReference _countdownSFX;
 
@@ -190,10 +192,16 @@ public class GameManager : MonoBehaviour
     private IEnumerator SlowTime(int playerIndex)
     {
         Time.timeScale = 0.15f;
+        yield return new WaitForSeconds(0.55f);
 
-        yield return new WaitForSeconds(0.75f);
+        if (_bubbleParticleSystem != null)
+        {
+            _bubbleParticleSystem.Play();
+        }
+        yield return new WaitForSeconds(0.20f);
 
         Time.timeScale = 1f;
+
         StartCoroutine(RoundEnd(playerIndex)); 
     }
 

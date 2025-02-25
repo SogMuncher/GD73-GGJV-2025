@@ -42,7 +42,7 @@ public class BubbleTransition : MonoBehaviour
             yield return null;
         }
 
-        OnTransitionEnd.Invoke(sceneName);
+        OnTransitionEnd?.Invoke(sceneName);
         yield break;
     }
 }
