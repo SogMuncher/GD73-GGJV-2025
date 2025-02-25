@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -11,9 +12,9 @@ namespace UIComponents
         private Button _button;
         private bool _isSelected;
 
-        [Header("Scale")]
-        [SerializeField] private float _buttonHoverScaleXZ = 1.05f;
-        [SerializeField] private float _buttonHoverScaleY = 1.2f;
+        //[Header("Scale")]
+        //[SerializeField] private float _buttonHoverScaleXZ = 1.05f;
+        //[SerializeField] private float _buttonHoverScaleY = 1.2f;
         //[SerializeField] private float _scaleDuration = 0.5f;
         //[SerializeField] private float _scaleSpringDamping = 0.15f;
         //[SerializeField] private float _scaleSpringFrequency = 2.0f;
@@ -26,6 +27,8 @@ namespace UIComponents
         [SerializeField] private float _shakeSpringDamping = 0.15f;
         [SerializeField] private float _shakeSpringFrequency = 1.0f;
         [SerializeField] private float _shakeDampingRatio = 0.2f;
+
+        public UnityEvent OnCursorHover;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Awake()
@@ -60,9 +63,10 @@ namespace UIComponents
 
         private void Selected()
         {
+            OnCursorHover?.Invoke();
             _isSelected = !_isSelected;
-            Vector3 scaleZero = _button.GetComponent<RectTransform>().localScale;
-            _button.GetComponent<RectTransform>().localScale = new Vector3(scaleZero.x * _buttonHoverScaleXZ, scaleZero.y * _buttonHoverScaleY, scaleZero.z * _buttonHoverScaleXZ);
+            //Vector3 scaleZero = _button.GetComponent<RectTransform>().localScale;
+            //_button.GetComponent<RectTransform>().localScale = new Vector3(scaleZero.x * _buttonHoverScaleXZ, scaleZero.y * _buttonHoverScaleY, scaleZero.z * _buttonHoverScaleXZ);
             StartCoroutine(ShakeCoroutine());
 
             //StartCoroutine(ScaleCoroutine(targetScale, _scaleDuration, _scaleSpringDamping, _scaleSpringFrequency, _scaleDampingRatio));
@@ -72,8 +76,8 @@ namespace UIComponents
         {
             _isSelected = !_isSelected;
             StopAllCoroutines();
-            _button.transform.rotation = Quaternion.Euler(Vector4.zero);
-            _button.GetComponent<RectTransform>().localScale = _originalScale;
+            //_button.transform.rotation = Quaternion.Euler(Vector4.zero);
+            //_button.GetComponent<RectTransform>().localScale = _originalScale;
         }
 
         private IEnumerator ShakeCoroutine()

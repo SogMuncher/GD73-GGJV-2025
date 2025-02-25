@@ -290,6 +290,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2596602502937830568, guid: 896364b04775bb8498459e7340d3e95c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2174501910290790606}
+    - targetCorrespondingSourceObject: {fileID: 2596602502937830568, guid: 896364b04775bb8498459e7340d3e95c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5603011803161204741}
+    - targetCorrespondingSourceObject: {fileID: 2596602502937830568, guid: 896364b04775bb8498459e7340d3e95c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7083721728348167485}
   m_SourcePrefab: {fileID: 100100000, guid: 896364b04775bb8498459e7340d3e95c, type: 3}
 --- !u!1 &1666793821653227161 stripped
 GameObject:
@@ -308,10 +314,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee7da4d248d3e40aed42146eb3a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonHoverScaleXZ: 1.15
-  _buttonHoverScaleY: 1.35
-  _shakeAmplitud: 1
+  _shakeAmplitud: 0
   _shakeDuration: 0.5
   _shakeSpringDamping: 0.5
   _shakeSpringFrequency: 3
   _shakeDampingRatio: 0.35
+  OnCursorHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7083721728348167485}
+        m_TargetAssemblyTypeName: LlamAcademy.Spring.Runtime.Vector3Nudger, Assembly-CSharp
+        m_MethodName: Nudge
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5603011803161204741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666793821653227161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb8c4bc2fe74bc48ac4f5b5f056a803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damping: 8
+  Stiffness: 180
+--- !u!114 &7083721728348167485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666793821653227161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c8153f9b70c884ea013764ceb567ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Nudgeable: {fileID: 5603011803161204741}
+  NudgeAmount: {x: 10, y: 10, z: 10}
+  NudgeFrequency: {x: 2, y: 10}
+  AutoNudge: 0

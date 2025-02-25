@@ -143,7 +143,11 @@ public class ThrownWeapon : MonoBehaviour
 
         _flickeringSpriteStartColor = _flickeringSprite.GetComponent<SpriteRenderer>().color;
 
-        //AddThrownWeapon(_thisWeapon);
+        if (_gameManager != null)
+        {
+            AddThrownWeapon(_thisWeapon);
+        }
+        
 
         //for (int i = 0; i < _players.Length; i++)
         //{

@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
         RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play win sound
         IncrementPlayerRoundsWon(playerIndex);
         OnRoundEnd.Invoke();
-        StartCoroutine(CallDestroyWeapons());
+        DestroyWeapons();
         StartCoroutine(RoundStart());
         foreach (GameObject heart in _heartsP1)
         {
@@ -239,7 +239,7 @@ public class GameManager : MonoBehaviour
                 IncrementPlayerRoundsWon(1);
                 playerScores[0] = 0;
                 UpdateUIScore();
-                StartCoroutine(CallDestroyWeapons());
+                DestroyWeapons();
                 StartCoroutine(RoundStart());
             }
             if (playerScores[1] == _maxScore)
@@ -249,7 +249,7 @@ public class GameManager : MonoBehaviour
                 IncrementPlayerRoundsWon(0);
                 playerScores[1] = 0;
                 UpdateUIScore();
-                StartCoroutine(CallDestroyWeapons());
+                DestroyWeapons();
                 StartCoroutine(RoundStart());
             }
 
@@ -279,12 +279,6 @@ public class GameManager : MonoBehaviour
                 _winPanelP2.SetActive(true);
             }
         }
-    }
-
-    private IEnumerator CallDestroyWeapons()
-    {
-        DestroyWeapons();
-        yield break;
     }
 
     // Function to get player score based on player index
@@ -427,6 +421,7 @@ public class GameManager : MonoBehaviour
     }
     public void Win(string winText)
     {
+        DestroyWeapons();
         OnWin.Invoke();
         WonText.text = winText;
         StartCoroutine(WinScreen());
