@@ -1,5 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using LlamAcademy.Spring;
+using LlamAcademy.Spring.Runtime;
+
 
 namespace LlamAcademy.Spring.Runtime
 {
@@ -106,8 +109,11 @@ namespace LlamAcademy.Spring.Runtime
 
         private void CheckInspectorChanges()
         {
-            Spring.Damping = Damping;
-            Spring.Stiffness = Stiffness;
+            if (Spring != null) 
+            { 
+                Spring.Damping = Damping;
+                Spring.Stiffness = Stiffness;            
+            }
         }
     }
 }
