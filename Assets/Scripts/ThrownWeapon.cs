@@ -95,6 +95,9 @@ public class ThrownWeapon : MonoBehaviour
 
     protected Rigidbody2D _rb;
 
+    [HideInInspector]
+    public bool isCharged = false;
+
     protected GameObject _owningPlayerObject;
     protected bool _canHitOwner = false;
 
@@ -127,13 +130,16 @@ public class ThrownWeapon : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
 
-        _frontSpikeHitBox.OnTriggerEnterEvent.AddListener(OnSpikeCollision);
-        _backSpikeHitBox.OnTriggerEnterEvent.AddListener(OnSpikeCollision);
-        _shaftHitBox.OnCollisionEnterEvent.AddListener(OnShaftCollision);
+        _frontSpikeHitBox.OnTriggerEnterEvent.AddListener(OnSpikeTriggerEnter);
+        _backSpikeHitBox.OnTriggerEnterEvent.AddListener(OnSpikeTriggerEnter);
+        _shaftHitBox.OnTriggerEnterEvent.AddListener(OnShaftTriggerEnter);
+        _shaftHitBox.OnCollisionEnterEvent.AddListener(OnShaftCollisionEnter);
 
         _frontSpikeHitBox.ChangeExcludeLayerMask(_frontSpikeExcludeWhileFlying);
         _backSpikeHitBox.ChangeExcludeLayerMask(_backSpikeExcludeWhileFlying);
         _shaftHitBox.ChangeExcludeLayerMask(_shaftExcludeWhileFlying);
+
+        _shaftHitBox.ColliderIsTrigger(true);
 
         _backSpikeHitBox.gameObject.SetActive(false);
 
@@ -245,7 +251,7 @@ public class ThrownWeapon : MonoBehaviour
         return _isStuck;
     }
 
-    protected void OnSpikeCollision(Collider2D collision)
+    protected void OnSpikeTriggerEnter(Collider2D collision)
     {
 
         if (collision.gameObject.layer == 18)
@@ -285,6 +291,7 @@ public class ThrownWeapon : MonoBehaviour
             }
         }
 
+        // destructible
         if (collision.gameObject.layer == 19)
         {
                 // damage logic
@@ -302,6 +309,7 @@ public class ThrownWeapon : MonoBehaviour
                 DestroyObject();
         }
 
+        // thrown weapon
         if (collision.gameObject.CompareTag("ThrownWeapon"))
         {
             RuntimeManager.PlayOneShot(_spikeToSpikeSFX, transform.position); // Play spike to spike SFX when two thrown weapons collide
@@ -311,12 +319,22 @@ public class ThrownWeapon : MonoBehaviour
             Debug.Log("spike thrown weapon");
             _lastHitLocation = collision.ClosestPoint(transform.position);
 
-            if (collision.attachedRigidbody.gameObject != null && collision.attachedRigidbody.TryGetComponent(out ThrownWeapon otherWeapon))
+            bool otherHasWeapon = collision.attachedRigidbody.TryGetComponent(out ThrownWeapon otherWeapon);
+
+            if (collision.attachedRigidbody.gameObject != null && otherHasWeapon)
             {
-                otherWeapon.DestroyObject();
+                if (otherWeapon.isCharged == false || (otherWeapon.isCharged == true && isCharged == true))
+                {
+                    otherWeapon.DestroyObject();
+                }
             }
 
-            DestroyObject();
+            // destroy self on collision just in case otherweapon does not do it for us (sometimes the collisions arent registered on both harpoons at the same time)
+            if (isCharged == false || (otherHasWeapon && (otherWeapon.isCharged == true && isCharged == true)))
+            {
+                DestroyObject();
+            }
+
             return;
         }
 
@@ -340,6 +358,9 @@ public class ThrownWeapon : MonoBehaviour
             RuntimeManager.PlayOneShot(_impactSFX, transform.position); // Play impact sound on collision
 
             _isStuck = true;
+            isCharged = false;
+
+            _shaftHitBox.ColliderIsTrigger(false);
 
             _frontSpikeHitBox.gameObject.SetActive(false);
             _backSpikeHitBox.gameObject.SetActive(true);
@@ -359,7 +380,39 @@ public class ThrownWeapon : MonoBehaviour
         }
     }
 
-    protected void OnShaftCollision(Collision2D collision)
+    protected void OnShaftTriggerEnter(Collider2D collision)
+    {
+        // if the collision was with a teleporter
+        if (collision.gameObject.layer == 16)
+        {
+            return;
+        }
+
+        if (collision.gameObject.CompareTag("ThrownWeapon"))
+        {
+            // kill this mf
+            Debug.Log("shaft");
+            _lastHitLocation = collision.ClosestPoint(transform.position);
+
+            bool otherHasWeapon = collision.attachedRigidbody.TryGetComponent(out ThrownWeapon otherWeapon);
+
+            if (collision.attachedRigidbody.gameObject != null && otherHasWeapon)
+            {
+                if (otherWeapon.isCharged == false || (otherWeapon.isCharged == true && isCharged == true))
+                {
+                    otherWeapon.DestroyObject();
+                }
+            }
+
+            // destroy self on collision just in case otherweapon does not do it for us (sometimes the collisions arent registered on both harpoons at the same time)
+            if (isCharged == false || (otherHasWeapon && (otherWeapon.isCharged == true && isCharged == true)))
+            {
+                DestroyObject();
+            }
+        }
+    }
+
+    protected void OnShaftCollisionEnter(Collision2D collision)
     {
         // if the collision was with a teleporter
         if (collision.gameObject.layer == 16)
@@ -373,12 +426,21 @@ public class ThrownWeapon : MonoBehaviour
             Debug.Log("shaft");
             _lastHitLocation = collision.GetContact(0).point;
 
-            if (collision.rigidbody.gameObject != null && collision.rigidbody.TryGetComponent(out ThrownWeapon otherWeapon))
+            bool otherHasWeapon = collision.rigidbody.TryGetComponent(out ThrownWeapon otherWeapon);
+
+            if (collision.rigidbody.gameObject != null && otherHasWeapon)
             {
-                otherWeapon.DestroyObject();
+                if (otherWeapon.isCharged == false || (otherWeapon.isCharged == true && isCharged == true))
+                {
+                    otherWeapon.DestroyObject();
+                }
             }
 
-            DestroyObject();
+            // destroy self on collision just in case otherweapon does not do it for us (sometimes the collisions arent registered on both harpoons at the same time)
+            if (isCharged == false || (otherHasWeapon && (otherWeapon.isCharged == true && isCharged == true)))
+            {
+                DestroyObject();
+            }
         }
     }
 

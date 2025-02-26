@@ -10,68 +10,79 @@ using UnityEngine.UI;
 using Unity.Cinemachine;
 using FMOD;
 using Debug = UnityEngine.Debug;
+using UnityEngine.Rendering;
+using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput), typeof(Health))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Locomotion")]
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _maxSpeed;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _accelerationSpeed;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _jumpStrength;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _standardGravity = .45f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _fastFallGravity = 1.5f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _playerBounceForce = 5f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     EventReference _bounceSFX;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     EventReference _jumpSFX;
     EventInstance _jumpSFXInstance;
 
     [Header("Attacking")]
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected GameObject _weaponVisual;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected float _maxAmmo = 3;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected float _reloadTime = 2f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected float _throwCooldownTime = .25f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected float _throwStrength;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected float _aimSpeed;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
+    protected float _throwChargeTime = 1.5f;
+
+    [SerializeField, FoldoutGroup("Attacking")]
+    protected ParticleSystem _chargeTimeParticle;
+
+    [SerializeField, FoldoutGroup("Attacking")]
+    protected ParticleSystem _chargeTimeFinishedParticle;
+
+    [SerializeField, FoldoutGroup("Attacking")]
     protected GameObject _thrownWeaponPrefab;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected Transform _thrownWeaponSpawnPoint;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected Follower _weaponFollowerScript;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected GameObject _weaponFollowerDefaultPosition;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected GameObject _weaponFollowerChargePosition;
 
     //[Header("Aim Spring Settings")]
@@ -81,51 +92,51 @@ public class PlayerController : MonoBehaviour
     //[SerializeField]
     //protected float _aimSpringDampStrength;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     EventReference _throwSFX;
     EventInstance _throwSFXInstance;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     EventReference _reloadSFX;
 
     [Header("Spring Settings")]
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Spring Settings")]
     protected float _rayMaxDistance;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Spring Settings")]
     protected LayerMask _rayLayerMask;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Spring Settings")]
     protected float _springRestHeight;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Spring Settings")]
     protected float _springStrength;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Spring Settings")]
     protected float _springDampStrength;
 
     [Header("Sticky Settings")]
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Misc")]
     private bool _isSticky;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Misc")]
     private InputAction _stick;
 
     [Header("Misc")]
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Misc")]
     protected float _hitFreezeTime = .25f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Misc")]
     protected float _hitShakeStrength = 1f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Misc")]
     protected ParticleSystem _fastFallParticleSystem;
 
     [Header("Round End")]
-    [SerializeField] protected ParticleSystem _bubblePopParticleSystem;
-    [SerializeField] protected GameObject _visuals;
-    [SerializeField] protected CinemachineCamera _deathCamera;
-    [SerializeField] protected float _deathShakeStrenght = 0.25f;
+    [SerializeField, FoldoutGroup("Misc")] protected ParticleSystem _bubblePopParticleSystem;
+    [SerializeField, FoldoutGroup("Misc")] protected GameObject _visuals;
+    [SerializeField, FoldoutGroup("Misc")] protected CinemachineCamera _deathCamera;
+    [SerializeField, FoldoutGroup("Misc")] protected float _deathShakeStrenght = 0.25f;
     protected CircleCollider2D _playerCollider;
     public UnityEvent OnDying;
     public UnityEvent OnRoundReset;
@@ -156,6 +167,7 @@ public class PlayerController : MonoBehaviour
     protected bool _isPressingFire = false;
     protected bool _isPressingDown = false;
     protected bool _isReloading;
+    protected bool _isFullyChargedThrow = false;
     protected bool _throwIsOnCooldown;
     [SerializeField] protected Image _ammo;
     [SerializeField] protected Image _reloading;
@@ -464,6 +476,8 @@ public class PlayerController : MonoBehaviour
             if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
             {
                 _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
+
+                StartCoroutine(ChargeTimeCoroutine());
             }
 
             //_isPressingFire = !_isPressingFire;
@@ -512,6 +526,8 @@ public class PlayerController : MonoBehaviour
 
     protected void OnFireReleased()
     {
+        StopCharging();
+
         if (_isReloading == false)
         {
             _isPressingFire = false;
@@ -533,6 +549,12 @@ public class PlayerController : MonoBehaviour
                 {
                     thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
                     RuntimeManager.PlayOneShot(_throwSFX, transform.position);
+
+                    if (_isFullyChargedThrow == true)
+                    {
+                        _lastThrownWeapon.GetComponent<ThrownWeapon>().isCharged = true;
+                        _isFullyChargedThrow = false;
+                    }
                 }
 
                 _throwIsOnCooldown = true;
@@ -661,6 +683,32 @@ public class PlayerController : MonoBehaviour
 
         StartCoroutine(ThrowCooldownCoroutine());
         yield break;
+    }
+
+    protected IEnumerator ChargeTimeCoroutine()
+    {
+        _chargeTimeParticle.Play();
+
+        float time = 0f;
+
+        while (time < _throwChargeTime)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        _chargeTimeFinishedParticle.Play();
+
+        _isFullyChargedThrow = true;
+
+        yield break;
+    }
+
+    protected void StopCharging()
+    {
+        _chargeTimeParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+
+        StopCoroutine("ChargeTimeCoroutine");
     }
 
     protected IEnumerator ThrowCooldownCoroutine()
@@ -817,6 +865,9 @@ public class PlayerController : MonoBehaviour
         _playerCollider.enabled = true;
         OnRoundReset?.Invoke();
         _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
+        StopCoroutine(ChargeTimeCoroutine());
+        _isFullyChargedThrow = false;
+
         OnFastFallReleased();
     }
 
