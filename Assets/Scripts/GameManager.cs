@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent OnRoundEnd;
 
+    [SerializeField] private ParticleSystem _bubbleParticleSystem;
+
     [SerializeField] EventReference _winSFX;
     [SerializeField] EventReference _countdownSFX;
 
@@ -189,11 +191,22 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator SlowTime(int playerIndex)
     {
-        Time.timeScale = 0.15f;
+        if (playerRoundsWon[0] == 2f || playerRoundsWon[0] == 2f)
+        {
+            DestroyWeapons();
+        }
 
-        yield return new WaitForSeconds(0.75f);
+            Time.timeScale = 0.15f;
+        yield return new WaitForSeconds(0.55f);
+
+        if (_bubbleParticleSystem != null)
+        {
+            _bubbleParticleSystem.Play();
+        }
+        yield return new WaitForSeconds(0.20f);
 
         Time.timeScale = 1f;
+
         StartCoroutine(RoundEnd(playerIndex)); 
     }
 
@@ -202,7 +215,7 @@ public class GameManager : MonoBehaviour
         RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play win sound
         IncrementPlayerRoundsWon(playerIndex);
         OnRoundEnd.Invoke();
-        StartCoroutine(CallDestroyWeapons());
+        DestroyWeapons();
         StartCoroutine(RoundStart());
         foreach (GameObject heart in _heartsP1)
         {
@@ -239,7 +252,7 @@ public class GameManager : MonoBehaviour
                 IncrementPlayerRoundsWon(1);
                 playerScores[0] = 0;
                 UpdateUIScore();
-                StartCoroutine(CallDestroyWeapons());
+                DestroyWeapons();
                 StartCoroutine(RoundStart());
             }
             if (playerScores[1] == _maxScore)
@@ -249,7 +262,7 @@ public class GameManager : MonoBehaviour
                 IncrementPlayerRoundsWon(0);
                 playerScores[1] = 0;
                 UpdateUIScore();
-                StartCoroutine(CallDestroyWeapons());
+                DestroyWeapons();
                 StartCoroutine(RoundStart());
             }
 
@@ -279,12 +292,6 @@ public class GameManager : MonoBehaviour
                 _winPanelP2.SetActive(true);
             }
         }
-    }
-
-    private IEnumerator CallDestroyWeapons()
-    {
-        DestroyWeapons();
-        yield break;
     }
 
     // Function to get player score based on player index
@@ -427,6 +434,7 @@ public class GameManager : MonoBehaviour
     }
     public void Win(string winText)
     {
+        DestroyWeapons();
         OnWin.Invoke();
         WonText.text = winText;
         StartCoroutine(WinScreen());
