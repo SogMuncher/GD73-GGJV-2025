@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AsymetricalPassages : MonoBehaviour
+public class AsymetricalVerticalPassage : MonoBehaviour
 {
     [SerializeField] private Transform _tpExit;
 
@@ -8,12 +8,14 @@ public class AsymetricalPassages : MonoBehaviour
     protected RaycastHit2D[] _raycastHitBuffer = new RaycastHit2D[10];
     [SerializeField] private int _maxDistance = 10;
     [SerializeField] protected LayerMask _rayLayerMask;
+    [SerializeField] protected int _maxSpearCollisionsWithTP = 2;
 
     [HideInInspector]
     public GameObject _lastObjectTeleported;
 
     private void Start()
     {
+       
     }
 
     private void FixedUpdate()
@@ -55,7 +57,7 @@ public class AsymetricalPassages : MonoBehaviour
     //        newPosition.y = collisionInitialY; // Maintain the collision object's initial Y
     //        collision.attachedRigidbody.gameObject.transform.position = newPosition;
 
-            
+
     //    }
 
     //    if (isWeapon)
@@ -67,23 +69,27 @@ public class AsymetricalPassages : MonoBehaviour
     public void GetHits()
     {
         //int raycastHits = Physics2D.RaycastNonAlloc(_bottomOfTrigger.position, Vector3.up,_raycastHitBuffer, _maxDistance, _rayLayerMask );
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, _maxDistance, _rayLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, _maxDistance, _rayLayerMask);
 
 
         //if the object is a thrown weapon
         bool isWeapon = false;
         if (!hit) return;
-        if (hit.collider.gameObject.layer == 15 )
+        if (hit.collider.gameObject.layer == 15)
         {
-            
+
+            isWeapon = true;
+            ThrownWeapon weapon = hit.collider.attachedRigidbody.GetComponent<ThrownWeapon>();
+
+
+
+
             // if the object is the same as the last one that entered this passage, do not teleport it
             if (hit.collider.attachedRigidbody.gameObject == _lastObjectTeleported)
             {
                 return;
             }
 
-            isWeapon = true;
-            ThrownWeapon weapon = hit.collider.attachedRigidbody.GetComponent<ThrownWeapon>();
 
             if (isWeapon)
             {
@@ -94,11 +100,22 @@ public class AsymetricalPassages : MonoBehaviour
         }
         if (hit.collider.gameObject.layer != 3)
         {
-            float distance = Mathf.Abs(hit.point.y - transform.position.y);
+            if (hit.collider.gameObject.layer == 15 )
+            {
+                ThrownWeapon weapon = hit.collider.attachedRigidbody.GetComponent<ThrownWeapon>();
+                
+                weapon.TimesCollidedWithTeleporter++;   
+
+                if (weapon.TimesCollidedWithTeleporter >= _maxSpearCollisionsWithTP)
+                {
+                    Destroy(weapon.gameObject);
+                }
+            }
+            float distance = Mathf.Abs(hit.point.x - transform.position.x);
             Debug.Log(distance);
 
-            hit.collider.gameObject.transform.position = new Vector2(_tpExit.position.x, _tpExit.position.y + distance) ;
-            
+            hit.collider.gameObject.transform.position = new Vector2(_tpExit.position.x + distance, _tpExit.position.y );
+
         }
 
 
@@ -106,10 +123,9 @@ public class AsymetricalPassages : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, _maxDistance, _rayLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, _maxDistance, _rayLayerMask);
 
-        Debug.DrawRay(transform.position, Vector2.up * 10, Color.black);
+        Debug.DrawRay(transform.position, Vector2.right * 10, Color.black);
     }
 
-    
 }
