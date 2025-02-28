@@ -86,9 +86,6 @@
 		</relationship>
 	</object>
 	<object class="GroupTrack" id="{4f4f532f-5c98-4b89-aaa9-468076f0893c}">
-		<relationship name="modules">
-			<destination>{02751930-e9a8-4eec-8dda-4757af26ece1}</destination>
-		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{4cf613ff-bea7-4bd1-b54b-d0846947e065}</destination>
 		</relationship>
@@ -98,7 +95,6 @@
 			<destination>{cc4a3d2f-2ca7-4d7b-aec8-d5b0b2c47d17}</destination>
 			<destination>{8d7f4574-2943-480a-bd99-c98457237625}</destination>
 			<destination>{65d8ba95-cedb-4a3e-8b41-aa402107206b}</destination>
-			<destination>{02751930-e9a8-4eec-8dda-4757af26ece1}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{5c832241-6839-4004-814b-6ebbd0fa75db}">
@@ -132,6 +128,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{14621d92-218c-464a-9dc2-390e3ff0e50c}">
+		<property name="volume">
+			<value>-7.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -175,7 +174,7 @@
 	</object>
 	<object class="MultiSound" id="{65d8ba95-cedb-4a3e-8b41-aa402107206b}">
 		<property name="length">
-			<value>0.69599999999999995</value>
+			<value>2</value>
 		</property>
 		<relationship name="fadeInCurve">
 			<destination>{a65a9eea-5a94-4a08-9ca3-e072a57c5b5f}</destination>
@@ -204,20 +203,6 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{5c832241-6839-4004-814b-6ebbd0fa75db}</destination>
-		</relationship>
-	</object>
-	<object class="SingleSound" id="{02751930-e9a8-4eec-8dda-4757af26ece1}">
-		<property name="length">
-			<value>0.90000000000000002</value>
-		</property>
-		<property name="timelockedOffset">
-			<value>0.20000000000000001</value>
-		</property>
-		<relationship name="fadeOutCurve">
-			<destination>{d6767af5-501a-4b10-b9ba-b1d9bd8c1ef0}</destination>
-		</relationship>
-		<relationship name="audioFile">
-			<destination>{ca0213c2-7251-43be-87e6-a2d6a074040f}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{4cf613ff-bea7-4bd1-b54b-d0846947e065}">
@@ -351,18 +336,9 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{82ba9505-187c-44e3-b3ef-6161345724d3}" />
-	<object class="FadeCurve" id="{d6767af5-501a-4b10-b9ba-b1d9bd8c1ef0}">
-		<relationship name="startPoint">
-			<destination>{0ec01e04-d904-490b-a3bd-cac2ffa87020}</destination>
-		</relationship>
-		<relationship name="endPoint">
-			<destination>{7eda4d4f-319a-4cf7-b331-87b84de07e96}</destination>
-		</relationship>
-	</object>
 	<object class="MixerBusEffectChain" id="{a0564c61-0697-4227-9567-2eef3bc54e2c}">
 		<relationship name="effects">
 			<destination>{d76f1602-8b31-4ff8-bd30-ba78851460af}</destination>
-			<destination>{c79e1cf3-3aeb-457e-a794-57b5966ca5c7}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{651745b6-d9b9-4157-b774-2ca792038769}" />
@@ -401,40 +377,5 @@
 			<value>1.82999992</value>
 		</property>
 	</object>
-	<object class="AutomationPoint" id="{0ec01e04-d904-490b-a3bd-cac2ffa87020}">
-		<property name="position">
-			<value>0.20400000000000007</value>
-		</property>
-		<property name="value">
-			<value>1</value>
-		</property>
-		<property name="curveShape">
-			<value>0.25471893</value>
-		</property>
-	</object>
-	<object class="AutomationPoint" id="{7eda4d4f-319a-4cf7-b331-87b84de07e96}">
-		<property name="position">
-			<value>0.90000000000000002</value>
-		</property>
-		<property name="value">
-			<value>0</value>
-		</property>
-	</object>
 	<object class="MixerBusFader" id="{d76f1602-8b31-4ff8-bd30-ba78851460af}" />
-	<object class="PitchShifterEffect" id="{c79e1cf3-3aeb-457e-a794-57b5966ca5c7}">
-		<property name="pitch">
-			<value>1</value>
-		</property>
-		<relationship name="modulators">
-			<destination>{159ed137-96d5-4c8a-9686-82ab528335ca}</destination>
-		</relationship>
-	</object>
-	<object class="RandomizerModulator" id="{159ed137-96d5-4c8a-9686-82ab528335ca}">
-		<property name="nameOfPropertyBeingModulated">
-			<value>pitch</value>
-		</property>
-		<property name="amount">
-			<value>45.5</value>
-		</property>
-	</object>
 </objects>

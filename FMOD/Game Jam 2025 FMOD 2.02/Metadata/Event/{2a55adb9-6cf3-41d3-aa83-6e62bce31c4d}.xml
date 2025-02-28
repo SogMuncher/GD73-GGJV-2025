@@ -84,6 +84,9 @@
 		</relationship>
 	</object>
 	<object class="GroupTrack" id="{b5e732d4-db04-4506-9b7f-3353f6e3aac2}">
+		<relationship name="modules">
+			<destination>{31fb7f67-7a1b-4133-b77c-954665fc3d4e}</destination>
+		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{7389019c-803f-49f3-a411-cb3b1648be81}</destination>
 		</relationship>
@@ -95,6 +98,10 @@
 			<destination>{1f274152-79d7-433b-b93e-3d3a868bf68b}</destination>
 			<destination>{49ce0cb7-6c39-43fc-b603-a4bdb852f6d5}</destination>
 			<destination>{121a504b-d37e-41b1-abda-360b5f036377}</destination>
+			<destination>{31fb7f67-7a1b-4133-b77c-954665fc3d4e}</destination>
+		</relationship>
+		<relationship name="markers">
+			<destination>{11b32ba3-0dec-4fba-999f-6dcfe70add21}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{c08477d7-1da3-41c8-a30b-6bdb41d886ae}">
@@ -218,6 +225,18 @@
 			<destination>{c08477d7-1da3-41c8-a30b-6bdb41d886ae}</destination>
 		</relationship>
 	</object>
+	<object class="CommandSound" id="{31fb7f67-7a1b-4133-b77c-954665fc3d4e}">
+		<property name="length">
+			<value>651.32938775510218</value>
+		</property>
+		<property name="name" />
+		<property name="commandType">
+			<value>1</value>
+		</property>
+		<relationship name="commandTarget">
+			<destination>{9b2792bc-1e9a-4456-8f52-571f7700550a}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{7389019c-803f-49f3-a411-cb3b1648be81}">
 		<property name="name">
 			<value>Audio 3</value>
@@ -230,6 +249,20 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{c08477d7-1da3-41c8-a30b-6bdb41d886ae}</destination>
+		</relationship>
+	</object>
+	<object class="LoopRegion" id="{11b32ba3-0dec-4fba-999f-6dcfe70add21}">
+		<property name="position">
+			<value>3.5</value>
+		</property>
+		<property name="length">
+			<value>647.82938775510218</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{f9577d75-6971-4306-af29-9685807bcbc7}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{b6bb67da-f064-4056-a5d2-875561cc4488}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{f488a96d-cd14-43a2-ba35-44c2175309cc}">

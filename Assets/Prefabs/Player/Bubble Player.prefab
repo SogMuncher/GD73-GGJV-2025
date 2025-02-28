@@ -21132,6 +21132,20 @@ MonoBehaviour:
       Data3: -2110805588
       Data4: -1296817943
     Path: event:/SFX/Spike Throw/Spike Throw
+  _chargingAttackSFX:
+    Guid:
+      Data1: -626039608
+      Data2: 1159735579
+      Data3: 1113547427
+      Data4: -2047884140
+    Path: event:/SFX/Charge Attack
+  _ammoCountSFX:
+    Guid:
+      Data1: -264343030
+      Data2: 1170595276
+      Data3: -891905350
+      Data4: 773650475
+    Path: event:/Weapon Reload
   _reloadSFX:
     Guid:
       Data1: -705360180
@@ -21217,6 +21231,13 @@ MonoBehaviour:
           m_StringArgument: Gameplay
           m_BoolArgument: 0
         m_CallState: 2
+  _deathSFX:
+    Guid:
+      Data1: -2142685954
+      Data2: 1145541092
+      Data3: -51752552
+      Data4: -1153794739
+    Path: event:/Player/Player Death
   _ammo: {fileID: 8910246767773573694}
   _reloading: {fileID: 8865639191074298025}
   OnPaused:

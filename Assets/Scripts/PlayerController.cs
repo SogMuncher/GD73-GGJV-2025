@@ -86,6 +86,14 @@ public class PlayerController : MonoBehaviour
     EventInstance _throwSFXInstance;
 
     [SerializeField]
+    EventReference _chargingAttackSFX;
+    EventInstance _chargingAttackInstance;
+
+    [SerializeField]
+    EventReference _ammoCountSFX;
+    EventInstance _ammoCountInstance;
+
+    [SerializeField]
     EventReference _reloadSFX;
 
     [Header("Spring Settings")]
@@ -129,6 +137,9 @@ public class PlayerController : MonoBehaviour
     protected CircleCollider2D _playerCollider;
     public UnityEvent OnDying;
     public UnityEvent OnRoundReset;
+    [SerializeField] 
+    EventReference _deathSFX;
+    EventInstance _deathSFXInstance;
 
     protected Rigidbody2D _rb;
     //protected Rigidbody2D _weaponRB;
@@ -464,6 +475,9 @@ public class PlayerController : MonoBehaviour
             if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
             {
                 _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
+                
+                _chargingAttackInstance = RuntimeManager.CreateInstance(_chargingAttackSFX);
+                _chargingAttackInstance.start(); //Starts the charging attack sound
             }
 
             //_isPressingFire = !_isPressingFire;
@@ -519,6 +533,9 @@ public class PlayerController : MonoBehaviour
             // the player has let go of the fire button while being able to fire
             if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == false)
             {
+                _chargingAttackInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                _chargingAttackInstance.release(); //Stops the charging attack sound
+
                 _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
 
                 _currentAmmo--;
@@ -693,6 +710,7 @@ public class PlayerController : MonoBehaviour
             _playerCollider.enabled = false;
             _deathCamera.Priority = 2;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            RuntimeManager.PlayOneShot(_deathSFX, transform.position); // Play Player Death Sound
 
             Vector3 positionZero = _visuals.transform.position;
             float timer = 0f;
@@ -803,6 +821,7 @@ public class PlayerController : MonoBehaviour
             _isReloading = true;
             StartCoroutine(ReloadTimerCoroutine());
         }
+
     }
 
 

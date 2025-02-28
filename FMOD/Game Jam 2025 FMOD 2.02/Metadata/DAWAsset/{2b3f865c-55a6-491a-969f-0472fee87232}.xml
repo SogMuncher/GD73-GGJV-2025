@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DAWAsset" id="{2b3f865c-55a6-491a-969f-0472fee87232}">
+		<property name="assetPath">
+			<value>Bubble Team 73 SFX.rpp.link/Charging Attack v1.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.5</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5960e3ec-e478-4d13-bc2c-f125b1d6cf87}</destination>
+		</relationship>
+		<relationship name="project">
+			<destination>{3248ee13-167d-4db7-a0da-5f6dc12c2339}</destination>
+		</relationship>
+	</object>
+</objects>
