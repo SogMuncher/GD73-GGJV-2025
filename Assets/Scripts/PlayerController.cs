@@ -191,6 +191,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 _startLocation;
 
+    private bool _isAlive;
 
     protected void OnEnable()
     {
@@ -208,6 +209,7 @@ public class PlayerController : MonoBehaviour
         _health.OnDamagedEvent.AddListener(OnDamaged);
         _health.OnDamagedEvent.AddListener(StartKnockback);
         _startLocation = transform.position;
+        _isAlive = true;
     }
 
     // Update is called once per frame
@@ -423,6 +425,11 @@ public class PlayerController : MonoBehaviour
 
     protected void OnMovement(InputValue inputValue)
     {
+        if (_isAlive == false)
+        {
+            return ;
+        }
+        
         _moveInput = inputValue.Get<float>();
 
         Debug.Log($"Player {_playerInput.playerIndex} Move Input: {_moveInput}");
@@ -430,6 +437,11 @@ public class PlayerController : MonoBehaviour
 
     protected void OnAim(InputValue inputValue)
     {
+        if (_isAlive == false)
+        {
+            return;
+        }
+
         if (_playerInput.currentControlScheme == "Mouse And Keyboard")
         {
             // convert positions to viewport point (does not care about resolution)
@@ -479,6 +491,11 @@ public class PlayerController : MonoBehaviour
 
     protected void OnFirePressed()
     {
+        if (_isAlive == false)
+        {
+            return;
+        }
+
         _isPressingFire = true;
 
         // the player is holding the fire button while being able to fire
@@ -540,6 +557,11 @@ public class PlayerController : MonoBehaviour
 
     protected void OnFireReleased()
     {
+        if (_isAlive == false)
+        {
+            return;
+        }
+
         StopCharging();
         _isCharging = false;
 
@@ -591,6 +613,11 @@ public class PlayerController : MonoBehaviour
 
     protected void OnJump()
     {
+        if (_isAlive == false)
+        {
+            return;
+        }
+
         if (Mathf.Approximately(Time.timeScale, 0f))
         {
             return;
@@ -609,6 +636,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnFastFallPressed()
     {
+        if (_isAlive == false)
+        {
+            return;
+        }
+
         _isPressingDown = true;
 
         ParticleSystem.MainModule main = _fastFallParticleSystem.main;
@@ -651,7 +683,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnStick()
     {
-       if(_isSticky == true)
+        if (_isAlive == false)
+        {
+            return;
+        }
+
+        if (_isSticky == true)
         {
             _rb.constraints = RigidbodyConstraints2D.FreezePosition;
         } 
@@ -896,6 +933,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnReload()
     {
+        if (_isAlive == false)
+        {
+            return;
+        }
+
         if (_currentAmmo >= 0 && _currentAmmo < _maxAmmo && _isReloading == false)
         {
             _isReloading = true;
@@ -925,6 +967,16 @@ public class PlayerController : MonoBehaviour
     {
         _currentAmmo = _maxAmmo;
         _ammo.fillAmount = (_currentAmmo / _maxAmmo);
+    }
+
+    public void IsDead()
+    {
+        _isAlive = false;
+    }
+
+    public void ResetIsAlive()
+    {
+        _isAlive = true;
     }
 
 }

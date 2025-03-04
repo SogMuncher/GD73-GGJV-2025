@@ -90,7 +90,8 @@ public class GameManager : MonoBehaviour
     public UnityEvent RoundStarted;
 
     public bool IsPaused = false;
-
+    private bool _isCountingDown = false;
+    private bool _isRoundEnding = false;
 
     private void Awake()
     {
@@ -139,6 +140,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (_healthP1.GetCurrentHealth() <= 0)
                     {
+                        _p1.IsDead();
                         StartCoroutine(SlowTime(1));
                     }
                 }
@@ -154,6 +156,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (_healthP2.GetCurrentHealth() <= 0)
                     {
+                        _p2.IsDead();
                         StartCoroutine(SlowTime(0));
                     }
                 }
@@ -191,10 +194,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator SlowTime(int playerIndex)
     {
-        if (playerRoundsWon[0] == 2f || playerRoundsWon[0] == 2f)
-        {
-            DestroyWeapons();
-        }
+        DestroyWeapons();
+
+        //if (playerRoundsWon[0] == 2f || playerRoundsWon[0] == 2f)
+        //{
+        //    DestroyWeapons();
+        //}
 
             Time.timeScale = 0.15f;
         yield return new WaitForSeconds(0.55f);
@@ -212,6 +217,13 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundEnd(int playerIndex)
     {
+        if (_isRoundEnding)
+        {
+            yield break;
+        }
+
+        _isRoundEnding = true;
+
         RuntimeManager.PlayOneShot(_roundEndSFX, transform.position); //Play win sound
         IncrementPlayerRoundsWon(playerIndex);
         OnRoundEnd.Invoke();
@@ -232,6 +244,8 @@ public class GameManager : MonoBehaviour
                 heart.SetActive(true);
             }
         }
+        _isRoundEnding = false;
+
         yield break;
     }
 
@@ -239,7 +253,13 @@ public class GameManager : MonoBehaviour
     // Function to increment player score based on player index
     public void IncrementPlayerScore(int playerIndex)
     {
-        
+        if (_isRoundEnding)
+        {
+            return;
+        }
+
+        _isRoundEnding = true;
+
         if (playerIndex >= 0)
         {
             playerScores[playerIndex]++;
@@ -248,12 +268,14 @@ public class GameManager : MonoBehaviour
             if (playerScores[0] == _maxScore)
             {
                 OnRoundEnd.Invoke();
-
+                
                 IncrementPlayerRoundsWon(1);
                 playerScores[0] = 0;
                 UpdateUIScore();
                 DestroyWeapons();
                 StartCoroutine(RoundStart());
+                _isRoundEnding = false; 
+                return;
             }
             if (playerScores[1] == _maxScore)
             {
@@ -264,6 +286,7 @@ public class GameManager : MonoBehaviour
                 UpdateUIScore();
                 DestroyWeapons();
                 StartCoroutine(RoundStart());
+                _isRoundEnding = false;
             }
 
             Debug.Log(playerScores[0]);
@@ -351,6 +374,16 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator RoundStart()
     {
+        if (_isCountingDown)
+        {
+            yield break;
+        }
+
+        _isCountingDown = true;
+
+        _p1.ResetIsAlive();
+        _p2.ResetIsAlive();
+
         Cursor.visible = false;
         RoundStarting.Invoke();
 
@@ -428,6 +461,8 @@ public class GameManager : MonoBehaviour
         }
 
         RoundStarted.Invoke();
+
+        _isCountingDown = false;
 
         yield break;
 
