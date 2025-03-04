@@ -65,10 +65,19 @@ public class PlayerController : MonoBehaviour
     protected float _throwChargeTime = 1.5f;
 
     [SerializeField, FoldoutGroup("Attacking")]
+    protected float _chargedShakeAmount = .1f;
+
+    [SerializeField, FoldoutGroup("Attacking")]
+    protected AnimationCurve _chargedShakeCurve;
+
+    [SerializeField, FoldoutGroup("Attacking")]
     protected ParticleSystem _chargeTimeParticle;
 
     [SerializeField, FoldoutGroup("Attacking")]
     protected ParticleSystem _chargeTimeFinishedParticle;
+
+    [SerializeField, FoldoutGroup("Attacking")]
+    protected ParticleSystem _chargedSpearParticle;
 
     [SerializeField, FoldoutGroup("Attacking")]
     protected GameObject _thrownWeaponPrefab;
@@ -164,9 +173,11 @@ public class PlayerController : MonoBehaviour
     protected Vector3 _lastWeaponCollisionPosition;
 
     protected float _currentAmmo = 3;
+    protected float _currentThrowChargeTime = 0f;
     protected bool _isPressingFire = false;
     protected bool _isPressingDown = false;
     protected bool _isReloading;
+    protected bool _isCharging;
     protected bool _isFullyChargedThrow = false;
     protected bool _throwIsOnCooldown;
     [SerializeField] protected Image _ammo;
@@ -468,65 +479,69 @@ public class PlayerController : MonoBehaviour
 
     protected void OnFirePressed()
     {
-        if (_isReloading == false)
+        _isPressingFire = true;
+
+        // the player is holding the fire button while being able to fire
+        if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true && _isReloading == false)
         {
-            _isPressingFire = true;
+            _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
 
-            // the player is holding the fire button while being able to fire
-            if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
-            {
-                _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
+            _isCharging = true;
 
-                StartCoroutine(ChargeTimeCoroutine());
-            }
-
-            //_isPressingFire = !_isPressingFire;
-
-            //// the player is holding the fire button while being able to fire
-            //if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
-            //{
-            //    _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
-            //}
-
-            //// the player has let go of the fire button while being able to fire
-            //else if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == false)
-            //{
-            //    _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
-
-            //    _currentAmmo--;
-
-            //    _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, _thrownWeaponSpawnPoint.position, _weaponVisual.transform.rotation);
-
-            //    _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
-
-            //    Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
-
-            //    if (thrownRB != null)
-            //    {
-            //        thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
-            //        RuntimeManager.PlayOneShot(_throwSFX, transform.position);
-            //    }
-
-            //    _throwIsOnCooldown = true;
-            //    StartCoroutine(ThrowCooldownCoroutine());
-            //}
-
-            //if (_currentAmmo <= 0 && _isReloading == false)
-            //{
-            //    _isReloading = true;
-            //    StartCoroutine(ReloadTimerCoroutine());
-            //}
-
-            //Debug.Log($"Player {_playerInput.playerIndex} Fired");
-
-            //_ammo.fillAmount = (_currentAmmo / _maxAmmo);
-            //Debug.Log("player ammo:" + _currentAmmo);
+            StartCoroutine("ChargeTimeCoroutine");
         }
+
+        //if (_isReloading == false)
+        //{
+
+        //    //_isPressingFire = !_isPressingFire;
+
+        //    //// the player is holding the fire button while being able to fire
+        //    //if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
+        //    //{
+        //    //    _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
+        //    //}
+
+        //    //// the player has let go of the fire button while being able to fire
+        //    //else if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == false)
+        //    //{
+        //    //    _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
+
+        //    //    _currentAmmo--;
+
+        //    //    _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, _thrownWeaponSpawnPoint.position, _weaponVisual.transform.rotation);
+
+        //    //    _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
+
+        //    //    Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
+
+        //    //    if (thrownRB != null)
+        //    //    {
+        //    //        thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
+        //    //        RuntimeManager.PlayOneShot(_throwSFX, transform.position);
+        //    //    }
+
+        //    //    _throwIsOnCooldown = true;
+        //    //    StartCoroutine(ThrowCooldownCoroutine());
+        //    //}
+
+        //    //if (_currentAmmo <= 0 && _isReloading == false)
+        //    //{
+        //    //    _isReloading = true;
+        //    //    StartCoroutine(ReloadTimerCoroutine());
+        //    //}
+
+        //    //Debug.Log($"Player {_playerInput.playerIndex} Fired");
+
+        //    //_ammo.fillAmount = (_currentAmmo / _maxAmmo);
+        //    //Debug.Log("player ammo:" + _currentAmmo);
+        //}
     }
 
     protected void OnFireReleased()
     {
         StopCharging();
+        _isCharging = false;
 
         if (_isReloading == false)
         {
@@ -661,6 +676,8 @@ public class PlayerController : MonoBehaviour
     {
         _isReloading = true;
 
+        StopCharging();
+
         _weaponVisual.SetActive(false);
 
         //yield return new WaitForSeconds(_reloadTime);
@@ -689,26 +706,53 @@ public class PlayerController : MonoBehaviour
     {
         _chargeTimeParticle.Play();
 
-        float time = 0f;
+        _currentThrowChargeTime = 0f;
 
-        while (time < _throwChargeTime)
+        StartCoroutine("ChargeShakeCoroutine");
+
+        while (_currentThrowChargeTime < _throwChargeTime && _isCharging == true)
         {
-            time += Time.deltaTime;
+            _currentThrowChargeTime += Time.deltaTime;
             yield return null;
         }
 
+        _currentThrowChargeTime = _throwChargeTime;
+
         _chargeTimeFinishedParticle.Play();
+        _chargedSpearParticle.Play();
 
         _isFullyChargedThrow = true;
 
         yield break;
     }
 
+    protected IEnumerator ChargeShakeCoroutine()
+    {
+        while (_isCharging == true)
+        {
+            float x = Random.Range(0, _chargedShakeAmount) * _chargedShakeCurve.Evaluate(_currentThrowChargeTime / _throwChargeTime);
+            float y = Random.Range(0, _chargedShakeAmount) * _chargedShakeCurve.Evaluate(_currentThrowChargeTime / _throwChargeTime);
+
+            _weaponVisual.transform.localPosition = new Vector3(x, y, 0);
+
+            yield return new WaitForSeconds(.025f);
+        }
+
+        yield break;
+    }
+
     protected void StopCharging()
     {
+        _isCharging = false;
+
+        _weaponVisual.transform.localPosition = Vector3.zero;
+
         _chargeTimeParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        _chargeTimeFinishedParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        _chargedSpearParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
         StopCoroutine("ChargeTimeCoroutine");
+        StopCoroutine("ChargeShakeCoroutine");
     }
 
     protected IEnumerator ThrowCooldownCoroutine()
@@ -730,6 +774,12 @@ public class PlayerController : MonoBehaviour
         //yield return new WaitForSeconds(_throwCooldownTime);
 
         _throwIsOnCooldown = false;
+
+        if (_isPressingFire == true)
+        {
+            OnFirePressed();
+        }
+
         yield break;
     }
 

@@ -132,6 +132,7 @@ public class HVTeleporter : MonoBehaviour
                 if (isWeapon)
                 {
                     _lastWeapon.TrailObject = Instantiate(_lastWeapon.TrailPrefab, _lastWeapon.TrailAnchor.position, Quaternion.identity, _lastWeapon.TrailAnchor);
+                    _lastWeapon.ChargedParticleObject = Instantiate(_lastWeapon.ChargedParticlePrefab, _lastWeapon.transform.position, _lastWeapon.transform.rotation, _lastWeapon.transform);
                 }
 
 
@@ -192,6 +193,7 @@ public class HVTeleporter : MonoBehaviour
                 if (isWeapon)
                 {
                     _lastWeapon.TrailObject = Instantiate(_lastWeapon.TrailPrefab, _lastWeapon.TrailAnchor.position, Quaternion.identity, _lastWeapon.TrailAnchor);
+                    _lastWeapon.ChargedParticleObject = Instantiate(_lastWeapon.ChargedParticlePrefab, _lastWeapon.transform.position, _lastWeapon.transform.rotation, _lastWeapon.transform);
                 }
 
             }

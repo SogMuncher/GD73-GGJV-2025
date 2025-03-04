@@ -81,6 +81,10 @@ public class ThrownWeapon : MonoBehaviour
     public Transform TrailAnchor;
     public GameObject TrailObject;
 
+    [SerializeField]
+    public GameObject ChargedParticlePrefab;
+    public GameObject ChargedParticleObject;
+
     [SerializeField] 
     protected GameObject _flickeringSprite;
     protected Color _flickeringSpriteStartColor;
@@ -146,6 +150,11 @@ public class ThrownWeapon : MonoBehaviour
         _gameManager = FindAnyObjectByType<GameManager>();
 
         TrailObject = Instantiate(TrailPrefab, TrailAnchor.position, Quaternion.identity, TrailAnchor);
+        
+        if (isCharged == true)
+        {
+            ChargedParticleObject = Instantiate(ChargedParticlePrefab, transform.position, transform.rotation, transform);
+        }
 
         _flickeringSpriteStartColor = _flickeringSprite.GetComponent<SpriteRenderer>().color;
 
@@ -370,6 +379,8 @@ public class ThrownWeapon : MonoBehaviour
             _spriteObject.GetComponent<SpriteRenderer>().sprite = _spriteWhenGrounded;
             _dustParticleSystem.Play();
 
+            DetachParticle();
+
             if (_layerMaskChangedToStuck == false)
             {
                 _frontSpikeHitBox.ChangeExcludeLayerMask(_frontSpikeExcludeWhileStuck);
@@ -450,6 +461,13 @@ public class ThrownWeapon : MonoBehaviour
         {
             TrailObject.transform.parent = null;
             Destroy(TrailObject, TrailObject.GetComponent<ParticleSystem>().main.duration);
+        }
+
+        if (ChargedParticleObject != null)
+        {
+            ChargedParticleObject.transform.parent = null;
+            ChargedParticleObject.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            Destroy(ChargedParticleObject);
         }
     }
 

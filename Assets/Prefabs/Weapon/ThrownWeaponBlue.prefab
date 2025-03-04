@@ -191,6 +191,8 @@ MonoBehaviour:
   TrailPrefab: {fileID: 1813119774171087128, guid: 4a027a5a223da2f4c8796ec499fa4d16, type: 3}
   TrailAnchor: {fileID: 661242858275896048}
   TrailObject: {fileID: 0}
+  ChargedParticlePrefab: {fileID: 8916803203410717679, guid: 02b5b2f969e85fc45b2c3b260072dfb6, type: 3}
+  ChargedParticleObject: {fileID: 0}
   _flickeringSprite: {fileID: 6453527469281479661}
   _detectionRange: 8
   _flickeringColorLerpAlpha:
@@ -226,6 +228,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  isCharged: 0
+  TimesCollidedWithTeleporter: 0
 --- !u!61 &2297569559314318966
 BoxCollider2D:
   m_ObjectHideFlags: 0

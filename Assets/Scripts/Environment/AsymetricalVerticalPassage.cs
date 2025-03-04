@@ -94,6 +94,7 @@ public class AsymetricalVerticalPassage : MonoBehaviour
             if (isWeapon)
             {
                 weapon.TrailObject = Instantiate(weapon.TrailPrefab, weapon.TrailAnchor.position, Quaternion.identity, weapon.TrailAnchor);
+                weapon.ChargedParticleObject = Instantiate(weapon.ChargedParticlePrefab, weapon.transform.position, weapon.transform.rotation, weapon.transform);
             }
 
             weapon.DetachParticle();
