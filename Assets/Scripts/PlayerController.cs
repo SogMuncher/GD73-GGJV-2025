@@ -10,68 +10,88 @@ using UnityEngine.UI;
 using Unity.Cinemachine;
 using FMOD;
 using Debug = UnityEngine.Debug;
+using UnityEngine.Rendering;
+using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput), typeof(Health))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Locomotion")]
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _maxSpeed;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _accelerationSpeed;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _jumpStrength;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _standardGravity = .45f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _fastFallGravity = 1.5f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     protected float _playerBounceForce = 5f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     EventReference _bounceSFX;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Locomotion")]
     EventReference _jumpSFX;
     EventInstance _jumpSFXInstance;
 
     [Header("Attacking")]
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected GameObject _weaponVisual;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected float _maxAmmo = 3;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected float _reloadTime = 2f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected float _throwCooldownTime = .25f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected float _throwStrength;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected float _aimSpeed;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
+    protected float _throwChargeTime = 1.5f;
+
+    [SerializeField, FoldoutGroup("Attacking")]
+    protected float _chargedShakeAmount = .1f;
+
+    [SerializeField, FoldoutGroup("Attacking")]
+    protected AnimationCurve _chargedShakeCurve;
+
+    [SerializeField, FoldoutGroup("Attacking")]
+    protected ParticleSystem _chargeTimeParticle;
+
+    [SerializeField, FoldoutGroup("Attacking")]
+    protected ParticleSystem _chargeTimeFinishedParticle;
+
+    [SerializeField, FoldoutGroup("Attacking")]
+    protected ParticleSystem _chargedSpearParticle;
+
+    [SerializeField, FoldoutGroup("Attacking")]
     protected GameObject _thrownWeaponPrefab;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected Transform _thrownWeaponSpawnPoint;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected Follower _weaponFollowerScript;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected GameObject _weaponFollowerDefaultPosition;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     protected GameObject _weaponFollowerChargePosition;
 
     //[Header("Aim Spring Settings")]
@@ -81,51 +101,51 @@ public class PlayerController : MonoBehaviour
     //[SerializeField]
     //protected float _aimSpringDampStrength;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     EventReference _throwSFX;
     EventInstance _throwSFXInstance;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Attacking")]
     EventReference _reloadSFX;
 
     [Header("Spring Settings")]
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Spring Settings")]
     protected float _rayMaxDistance;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Spring Settings")]
     protected LayerMask _rayLayerMask;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Spring Settings")]
     protected float _springRestHeight;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Spring Settings")]
     protected float _springStrength;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Spring Settings")]
     protected float _springDampStrength;
 
     [Header("Sticky Settings")]
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Misc")]
     private bool _isSticky;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Misc")]
     private InputAction _stick;
 
     [Header("Misc")]
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Misc")]
     protected float _hitFreezeTime = .25f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Misc")]
     protected float _hitShakeStrength = 1f;
 
-    [SerializeField]
+    [SerializeField, FoldoutGroup("Misc")]
     protected ParticleSystem _fastFallParticleSystem;
 
     [Header("Round End")]
-    [SerializeField] protected ParticleSystem _bubblePopParticleSystem;
-    [SerializeField] protected GameObject _visuals;
-    [SerializeField] protected CinemachineCamera _deathCamera;
-    [SerializeField] protected float _deathShakeStrenght = 0.25f;
+    [SerializeField, FoldoutGroup("Misc")] protected ParticleSystem _bubblePopParticleSystem;
+    [SerializeField, FoldoutGroup("Misc")] protected GameObject _visuals;
+    [SerializeField, FoldoutGroup("Misc")] protected CinemachineCamera _deathCamera;
+    [SerializeField, FoldoutGroup("Misc")] protected float _deathShakeStrenght = 0.25f;
     protected CircleCollider2D _playerCollider;
     public UnityEvent OnDying;
     public UnityEvent OnRoundReset;
@@ -153,9 +173,12 @@ public class PlayerController : MonoBehaviour
     protected Vector3 _lastWeaponCollisionPosition;
 
     protected float _currentAmmo = 3;
+    protected float _currentThrowChargeTime = 0f;
     protected bool _isPressingFire = false;
     protected bool _isPressingDown = false;
     protected bool _isReloading;
+    protected bool _isCharging;
+    protected bool _isFullyChargedThrow = false;
     protected bool _throwIsOnCooldown;
     [SerializeField] protected Image _ammo;
     [SerializeField] protected Image _reloading;
@@ -456,62 +479,70 @@ public class PlayerController : MonoBehaviour
 
     protected void OnFirePressed()
     {
-        if (_isReloading == false)
+        _isPressingFire = true;
+
+        // the player is holding the fire button while being able to fire
+        if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true && _isReloading == false)
         {
-            _isPressingFire = true;
+            _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
 
-            // the player is holding the fire button while being able to fire
-            if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
-            {
-                _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
-            }
+            _isCharging = true;
 
-            //_isPressingFire = !_isPressingFire;
-
-            //// the player is holding the fire button while being able to fire
-            //if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
-            //{
-            //    _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
-            //}
-
-            //// the player has let go of the fire button while being able to fire
-            //else if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == false)
-            //{
-            //    _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
-
-            //    _currentAmmo--;
-
-            //    _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, _thrownWeaponSpawnPoint.position, _weaponVisual.transform.rotation);
-
-            //    _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
-
-            //    Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
-
-            //    if (thrownRB != null)
-            //    {
-            //        thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
-            //        RuntimeManager.PlayOneShot(_throwSFX, transform.position);
-            //    }
-
-            //    _throwIsOnCooldown = true;
-            //    StartCoroutine(ThrowCooldownCoroutine());
-            //}
-
-            //if (_currentAmmo <= 0 && _isReloading == false)
-            //{
-            //    _isReloading = true;
-            //    StartCoroutine(ReloadTimerCoroutine());
-            //}
-
-            //Debug.Log($"Player {_playerInput.playerIndex} Fired");
-
-            //_ammo.fillAmount = (_currentAmmo / _maxAmmo);
-            //Debug.Log("player ammo:" + _currentAmmo);
+            StartCoroutine("ChargeTimeCoroutine");
         }
+
+        //if (_isReloading == false)
+        //{
+
+        //    //_isPressingFire = !_isPressingFire;
+
+        //    //// the player is holding the fire button while being able to fire
+        //    //if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == true)
+        //    //{
+        //    //    _weaponFollowerScript.ChangeFollowObject(_weaponFollowerChargePosition);
+        //    //}
+
+        //    //// the player has let go of the fire button while being able to fire
+        //    //else if (_currentAmmo > 0 && _throwIsOnCooldown == false && _isPressingFire == false)
+        //    //{
+        //    //    _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
+
+        //    //    _currentAmmo--;
+
+        //    //    _lastThrownWeapon = Instantiate(_thrownWeaponPrefab, _thrownWeaponSpawnPoint.position, _weaponVisual.transform.rotation);
+
+        //    //    _lastThrownWeapon.GetComponent<ThrownWeapon>().SetOwningPlayerObject(gameObject);
+
+        //    //    Rigidbody2D thrownRB = _lastThrownWeapon.GetComponent<Rigidbody2D>();
+
+        //    //    if (thrownRB != null)
+        //    //    {
+        //    //        thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
+        //    //        RuntimeManager.PlayOneShot(_throwSFX, transform.position);
+        //    //    }
+
+        //    //    _throwIsOnCooldown = true;
+        //    //    StartCoroutine(ThrowCooldownCoroutine());
+        //    //}
+
+        //    //if (_currentAmmo <= 0 && _isReloading == false)
+        //    //{
+        //    //    _isReloading = true;
+        //    //    StartCoroutine(ReloadTimerCoroutine());
+        //    //}
+
+        //    //Debug.Log($"Player {_playerInput.playerIndex} Fired");
+
+        //    //_ammo.fillAmount = (_currentAmmo / _maxAmmo);
+        //    //Debug.Log("player ammo:" + _currentAmmo);
+        //}
     }
 
     protected void OnFireReleased()
     {
+        StopCharging();
+        _isCharging = false;
+
         if (_isReloading == false)
         {
             _isPressingFire = false;
@@ -533,6 +564,12 @@ public class PlayerController : MonoBehaviour
                 {
                     thrownRB.AddForce(_aimInput * _throwStrength, ForceMode2D.Impulse);
                     RuntimeManager.PlayOneShot(_throwSFX, transform.position);
+
+                    if (_isFullyChargedThrow == true)
+                    {
+                        _lastThrownWeapon.GetComponent<ThrownWeapon>().isCharged = true;
+                        _isFullyChargedThrow = false;
+                    }
                 }
 
                 _throwIsOnCooldown = true;
@@ -639,6 +676,8 @@ public class PlayerController : MonoBehaviour
     {
         _isReloading = true;
 
+        StopCharging();
+
         _weaponVisual.SetActive(false);
 
         //yield return new WaitForSeconds(_reloadTime);
@@ -663,6 +702,59 @@ public class PlayerController : MonoBehaviour
         yield break;
     }
 
+    protected IEnumerator ChargeTimeCoroutine()
+    {
+        _chargeTimeParticle.Play();
+
+        _currentThrowChargeTime = 0f;
+
+        StartCoroutine("ChargeShakeCoroutine");
+
+        while (_currentThrowChargeTime < _throwChargeTime && _isCharging == true)
+        {
+            _currentThrowChargeTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _currentThrowChargeTime = _throwChargeTime;
+
+        _chargeTimeFinishedParticle.Play();
+        _chargedSpearParticle.Play();
+
+        _isFullyChargedThrow = true;
+
+        yield break;
+    }
+
+    protected IEnumerator ChargeShakeCoroutine()
+    {
+        while (_isCharging == true)
+        {
+            float x = Random.Range(0, _chargedShakeAmount) * _chargedShakeCurve.Evaluate(_currentThrowChargeTime / _throwChargeTime);
+            float y = Random.Range(0, _chargedShakeAmount) * _chargedShakeCurve.Evaluate(_currentThrowChargeTime / _throwChargeTime);
+
+            _weaponVisual.transform.localPosition = new Vector3(x, y, 0);
+
+            yield return new WaitForSeconds(.025f);
+        }
+
+        yield break;
+    }
+
+    protected void StopCharging()
+    {
+        _isCharging = false;
+
+        _weaponVisual.transform.localPosition = Vector3.zero;
+
+        _chargeTimeParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        _chargeTimeFinishedParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        _chargedSpearParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+        StopCoroutine("ChargeTimeCoroutine");
+        StopCoroutine("ChargeShakeCoroutine");
+    }
+
     protected IEnumerator ThrowCooldownCoroutine()
     {
         _throwIsOnCooldown = true;
@@ -682,6 +774,12 @@ public class PlayerController : MonoBehaviour
         //yield return new WaitForSeconds(_throwCooldownTime);
 
         _throwIsOnCooldown = false;
+
+        if (_isPressingFire == true)
+        {
+            OnFirePressed();
+        }
+
         yield break;
     }
 
@@ -817,6 +915,9 @@ public class PlayerController : MonoBehaviour
         _playerCollider.enabled = true;
         OnRoundReset?.Invoke();
         _weaponFollowerScript.ChangeFollowObject(_weaponFollowerDefaultPosition);
+        StopCoroutine(ChargeTimeCoroutine());
+        _isFullyChargedThrow = false;
+
         OnFastFallReleased();
     }
 

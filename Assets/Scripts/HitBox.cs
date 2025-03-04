@@ -36,4 +36,9 @@ public class HitBox : MonoBehaviour
     {
         _collider.excludeLayers = layerMask;
     }
+
+    public void ColliderIsTrigger(bool isTrigger)
+    {
+        _collider.isTrigger = isTrigger;
+    }
 }
