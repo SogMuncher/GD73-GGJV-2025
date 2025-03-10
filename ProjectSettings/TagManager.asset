@@ -13,6 +13,7 @@ TagManager:
   - Dart
   - DartGun
   - Switch
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX
@@ -47,6 +48,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Template
+    uniqueID: 1115085413
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
