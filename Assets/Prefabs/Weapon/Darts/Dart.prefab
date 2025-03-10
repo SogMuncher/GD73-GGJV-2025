@@ -10199,8 +10199,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.705595, y: 3.1637654, z: -1}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7343022457977037402}
   - {fileID: 7938527180334018029}
@@ -10332,8 +10332,7 @@ MonoBehaviour:
   _dustParticleSystem: {fileID: 5271082316313958354}
   TrailPrefab: {fileID: 1813119774171087128, guid: 4a027a5a223da2f4c8796ec499fa4d16, type: 3}
   TrailAnchor: {fileID: 5652542481927110044}
-  TrailObject: {fileID: 4078020463218979060}
-  _isStuck: 0
+  _layerMaskChangedToStuck: 0
   _lifeTimer: 6
 --- !u!1 &6784180548429954228
 GameObject:
