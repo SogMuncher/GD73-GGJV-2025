@@ -78,5 +78,8 @@ TagManager:
   - name: Player
     uniqueID: 3949784353
     locked: 0
+  - name: Glass
+    uniqueID: 487118953
+    locked: 0
   m_RenderingLayers:
   - Default
