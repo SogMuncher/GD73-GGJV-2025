@@ -38,17 +38,28 @@ public class DartShooter : MonoBehaviour
     {
         _aimInput = gameObject.transform.right;
         _shootAngle = gameObject.transform.rotation;
-        _gameManager.RoundStarting.AddListener(CallShootDartsCoroutine);
+        _gameManager.RoundStarting.AddListener(ShootDarts);
         
         if ( _dartShooterSwitch != null )
         {
-            _dartShooterSwitch.OnSwitchOn.AddListener(CallShootDartsCoroutine);
+            _dartShooterSwitch.OnSwitchOn.AddListener(SwitchShootDarts);
             _dartShooterSwitch.OnSwitchOff.AddListener(StopShooting);
         }
     }
 
+    public void ShootDarts()
+    {
+        if (_dartShooterSwitch != null)
+        {
+            if (_dartShooterSwitch.IsOn == true)
+            {
+                _canShoot = true;
+                StartCoroutine(ShootDartsCorroutine());
+            }
+        }
+    }
     
-    public void CallShootDartsCoroutine()
+    public void SwitchShootDarts()
     {
         _canShoot = !_canShoot;
         if (_isShooting == false)

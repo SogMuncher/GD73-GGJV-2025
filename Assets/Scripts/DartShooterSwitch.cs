@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class DartShooterSwitch : MonoBehaviour
 {
-    private bool _isOn = true;
+    public bool IsOn { get; private set; }  = true;
 
     [SerializeField] private GameObject _baseOff;
     [SerializeField] private GameObject _leverOff;
@@ -17,7 +17,7 @@ public class DartShooterSwitch : MonoBehaviour
 
     public void SwitchOnOff()
     {
-        if (_isOn == false )
+        if (IsOn == false )
         {
             _baseOff.gameObject.SetActive(false);
             _leverOff.gameObject.SetActive(false);
@@ -25,11 +25,11 @@ public class DartShooterSwitch : MonoBehaviour
             _leverOn.gameObject.SetActive(true);
             OnSwitchOn?.Invoke();
             Debug.Log("Switch ON!");
-            _isOn = true;
+            IsOn = true;
             return;
         }
 
-        if (_isOn == true)
+        if (IsOn == true)
         {
             _baseOff.gameObject.SetActive(true);
             _leverOff.gameObject.SetActive(true);
@@ -37,7 +37,7 @@ public class DartShooterSwitch : MonoBehaviour
             _leverOn.gameObject.SetActive(false);
             OnSwitchOff?.Invoke();
             Debug.Log("Switch OFF!");
-            _isOn = false;
+            IsOn = false;
             return;
         }
     }
